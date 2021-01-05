@@ -21,5 +21,6 @@ public class App {
         labelFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         labelFrame.setSize(300, 200);
         labelFrame.setVisible(true);
+
     }
 }

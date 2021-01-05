@@ -1,8 +1,8 @@
 package com.pix;
 
 public class Banco {
-    protected String codigoBanco;
-    protected String nomeBanco;
+    private String codigoBanco;
+    private String nomeBanco;
 
     public String getCodigoBanco() {
         return codigoBanco;

@@ -1,10 +1,10 @@
 package com.pix;
 
 public class Agencia {
-    protected  String nomeBanco ;
-    protected  String numeroAgencia;
+    private  String nomeBanco ;
+    private  String numeroAgencia;
 
-    protected Banco banco;
+    private Banco banco;
 
     public String getNomeBanco() {
         return nomeBanco;

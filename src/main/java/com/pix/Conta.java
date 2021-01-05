@@ -1,11 +1,11 @@
 package com.pix;
 
 public class Conta {
-    protected String titular;
-    protected String numero;
+    private String titular;
+    private String numero;
 
-    protected float saldo;
-    protected Agencia agencia;
+    private float saldo;
+    private Agencia agencia;
 
     Conta(String titular, String numero, float saldo, Agencia agencia){
         this.titular = titular;

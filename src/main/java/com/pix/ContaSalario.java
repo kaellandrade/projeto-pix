@@ -1,6 +1,6 @@
 package com.pix;
 
-public class ContaSalario extends Conta{
+public class ContaSalario extends Conta {
 
     ContaSalario(String titular, String numero, float saldo, Agencia agencia) {
         super(titular, numero, saldo, agencia);
@@ -10,7 +10,8 @@ public class ContaSalario extends Conta{
     public void setSaldo(float saldo) {
         super.setSaldo(saldo);
     }
-    public boolean verificarOperacaoMensal(){
+
+    public boolean verificarOperacaoMensal() {
         return true;
     }
 }
