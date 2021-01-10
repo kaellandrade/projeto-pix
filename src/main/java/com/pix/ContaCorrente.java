@@ -2,7 +2,7 @@ package com.pix;
 
 public class ContaCorrente extends Conta{
 
-    ContaCorrente(String numero, float saldo, Agencia agencia){
+    public ContaCorrente(String numero, float saldo, Agencia agencia){
         super(numero, saldo, agencia);
     }
 

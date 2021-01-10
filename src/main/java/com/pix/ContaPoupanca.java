@@ -2,7 +2,7 @@ package com.pix;
 
 public class ContaPoupanca extends Conta{
 
-    ContaPoupanca(String titular, String numero, float saldo, Agencia agencia) {
+    public ContaPoupanca(String numero, float saldo, Agencia agencia) {
         super(numero, saldo, agencia);
     }
 

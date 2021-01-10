@@ -1,13 +1,12 @@
 package com.pix;
 
 public class Agencia {
-    private String nomeBanco;
-    private String numeroAgencia;
-
+    private  String numeroAgencia;
     private Banco banco;
 
-    public String getNomeBanco() {
-        return nomeBanco;
+    public Agencia(String numeroAgencia, Banco banco){
+        this.numeroAgencia = numeroAgencia;
+        this.banco = banco;
     }
 
     public String getNumeroAgencia() {
@@ -17,7 +16,7 @@ public class Agencia {
     public void setNumeroAgencia(String numeroAgencia) {
         this.numeroAgencia = numeroAgencia;
     }
-
+    
     public Banco getBanco() {
         return banco;
     }
