@@ -2,8 +2,8 @@ package com.pix;
 
 public class ContaSalario extends Conta {
 
-    ContaSalario(String titular, String numero, float saldo, Agencia agencia) {
-        super(titular, numero, saldo, agencia);
+    ContaSalario(String numero, float saldo, Agencia agencia) {
+        super(numero, saldo, agencia);
     }
 
     @Override
