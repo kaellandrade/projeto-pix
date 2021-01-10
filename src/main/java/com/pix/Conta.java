@@ -39,8 +39,22 @@ public class Conta {
         return true;
     }
 
+    public boolean sacar(float valor){
+        this.saldo-=valor;
+        return true;
+    }
+
     public void gerartaxa(){ // genérico
 
+    }
+
+    public boolean transferir(Conta conta, float valor) {
+        if(this.getSaldo() >= valor){// Se possuir valor suficiente na conta;
+            conta.depositar(valor); // transfere o dinheiro
+            this.sacar(valor); // retira o valor transferido
+            return true; // sucesso
+        }
+        return false; // erro na tranferência
     }
 
     public Agencia getAgencia() {
