@@ -5,4 +5,8 @@ public abstract class  Pessoa{
     Pessoa(String nome){
         this.nome = nome;
     }
+
+    public String getNome() {
+        return nome;
+    }
 }
