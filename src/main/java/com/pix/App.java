@@ -1,6 +1,8 @@
 package com.pix;
 
 import javax.swing.JFrame;
+
+import com.bancocentral.GravarDados;
 import com.bancocentral.LerClientes;
 
 import com.gui.*;
@@ -34,5 +36,8 @@ public class App {
         System.out.println(a);
         System.out.println(b);
 
+        // grava um novo cliente no arquivo CSV
+        GravarDados.salvarNovoCliente(
+                "PF,CC,Maria santos silva,sil@hotmail.com,00321222107190,+5572909211204,3nl46boi2hasdfasy8bjl535,0066,0031,Andre,456,1212");
     }
 }
