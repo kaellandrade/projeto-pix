@@ -5,10 +5,7 @@ import com.bancocentral.LerClientes;
 
 import com.gui.*;
 
-/**
- * Hello world!
- *
- */
+
 public class App {
     public static void main( String[] args ){
         // JOptionPane
@@ -22,5 +19,6 @@ public class App {
         labelFrame.setSize(300, 200);
         labelFrame.setVisible(true);
 
+        
     }
 }
