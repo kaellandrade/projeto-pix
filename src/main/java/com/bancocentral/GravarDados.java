@@ -7,19 +7,19 @@ import java.io.IOException;
 
 public class GravarDados {
     private static final String CLIENTES_CSV = "src/main/java/com/bancocentral/clientes.csv";
-    public static boolean salvarNovoCliente(String dadosClientes) {
+    public static boolean cadastrarCliente(String dadosClientes) {
 
         try {
             File file = new File(CLIENTES_CSV);
-            // create FileWriter object with file as parameter
+            
             
             FileWriter outputfile = new FileWriter(file, true);
-            BufferedWriter out = new BufferedWriter(outputfile);
+            BufferedWriter out = new BufferedWriter(outputfile); // ler o arquivo para er gravado
 
-            out.write(dadosClientes); // informação ar ser gravada
-
+            out.write(dadosClientes); // Informação para ser gravada
             out.newLine();
             out.close();
+
             return true; // cliente salvo com sucesso;
         } catch (IOException e) {
             e.printStackTrace();
