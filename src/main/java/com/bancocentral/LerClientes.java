@@ -1,6 +1,7 @@
 package com.bancocentral;
 
-import com.pix.*;
+import com.banco.*;
+import com.pessoa.*;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -17,7 +18,7 @@ import java.io.FileReader;
 
 // leitura do banco de dados CSV
 public class LerClientes {
-    private static final String CLIENTES_CSV = "src/main/java/com/bancocentral/clientes.csv";
+    private static final String CLIENTES_CSV = "src/main/java/com/banco/clientes.csv";
 
     // Retorna uma lista de lista de string com cada cliente;
     public static List<String[]> recuperaClientes() {

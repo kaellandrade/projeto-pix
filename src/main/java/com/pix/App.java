@@ -1,8 +1,10 @@
 package com.pix;
 
-import javax.swing.JFrame;
 
-import com.bancocentral.GravarDados;
+import javax.swing.JFrame;
+import com.banco.*;
+import com.pessoa.*;
+import com.banco.GravarDados;
 import com.bancocentral.LerClientes;
 
 import com.gui.*;
