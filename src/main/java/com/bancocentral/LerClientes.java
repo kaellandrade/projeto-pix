@@ -39,8 +39,8 @@ public class LerClientes {
     }
 
     public static List<Cliente> recuperarClientesObj() {
-        String tipoCli, tipoConta, nome, email, documentoID, telefone, chaveAleatoria, numConta, codigoBanco, nomeBanco,
-                numeroAgencia;
+        String tipoCli, tipoConta, nome, email, documentoID, telefone, 
+        chaveAleatoria, numConta, codigoBanco, nomeBanco, numeroAgencia;
         float saldo;
 
         Banco banc;
