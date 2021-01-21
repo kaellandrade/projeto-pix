@@ -1,7 +1,5 @@
 package com.banco;
 
-import com.banco.*;
-
 public class ContaSalario extends Conta {
 
     public ContaSalario(String numero, float saldo, Agencia agencia) {

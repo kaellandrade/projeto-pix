@@ -1,7 +1,5 @@
 package com.banco;
 
-import com.banco.*;
-
 public class ContaPoupanca extends Conta{
 
     public ContaPoupanca(String numero, float saldo, Agencia agencia) {
@@ -15,7 +13,7 @@ public class ContaPoupanca extends Conta{
 
     @Override
     public void gerartaxa() {
-        // Lógica para Conta Poucança
+        // Implementar...
     }
 
     

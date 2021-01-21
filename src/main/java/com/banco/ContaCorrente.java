@@ -1,7 +1,5 @@
 package com.banco;
 
-import com.banco.*;
-
 public class ContaCorrente extends Conta{
 
     public ContaCorrente(String numero, float saldo, Agencia agencia){
@@ -15,6 +13,6 @@ public class ContaCorrente extends Conta{
 
     @Override
     public void gerartaxa() {
-        // Lógica para manutenção da Conta Corrente
+        // Implementar...
     }
 }
