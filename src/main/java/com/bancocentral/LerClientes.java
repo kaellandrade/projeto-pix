@@ -16,11 +16,15 @@ import com.opencsv.exceptions.CsvException;
 
 import java.io.FileReader;
 
-// leitura do banco de dados CSV
+/**
+ * LerCliente implementa métodos de leitura do arquivo CSV.
+ */
 public class LerClientes {
     private static final String CLIENTES_CSV = "src/main/java/com/banco/clientes.csv";
 
-    // Retorna uma lista de lista de string com cada cliente;
+    /**
+     * recuperaClientes ler todos os clients e retorna uma lista de String;
+     */
     public static List<String[]> recuperaClientes() {
         List<String[]> records;
 
@@ -38,9 +42,13 @@ public class LerClientes {
         return records;
     }
 
+    /**
+     * recuperarClientesObj retorna uma lista de objetos to tipo Cliente
+     */
+
     public static List<Cliente> recuperarClientesObj() {
-        String tipoCli, tipoConta, nome, email, documentoID, telefone, 
-        chaveAleatoria, numConta, codigoBanco, nomeBanco, numeroAgencia;
+        String tipoCli, tipoConta, nome, email, documentoID, telefone, chaveAleatoria, numConta, codigoBanco, nomeBanco,
+                numeroAgencia;
         float saldo;
 
         Banco banc;
@@ -70,14 +78,15 @@ public class LerClientes {
                 numeroAgencia = nextLine[10];
                 saldo = Float.parseFloat(nextLine[11]);
                 banc = new Banco(codigoBanco, nomeBanco); // Instância um objeto do tipo banco;
-                ag = new Agencia(numeroAgencia, banc); // Instância um objeto do tipo Agencia e vincula ao um determinado banco;
-                
+                ag = new Agencia(numeroAgencia, banc); // Instância um objeto do tipo Agencia e vincula ao um
+                                                       // determinado banco;
+
                 // Verifica o tipo da conta
                 if (tipoConta.equals("CC")) // conta corrente
                     conta = new ContaCorrente(numConta, saldo, ag);
                 else if (tipoConta.equals("CP")) // conta poupanca
                     conta = new ContaPoupanca(numConta, saldo, ag);
-                else //conta salario
+                else // conta salario
                     conta = new ContaSalario(numConta, saldo, ag);
 
                 // Verifica o tipo de cliente.
