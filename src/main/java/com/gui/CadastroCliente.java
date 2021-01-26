@@ -19,10 +19,12 @@ public class CadastroCliente extends JFrame {
     private Container x;
     private JLabel labelNome;
     private JLabel labelId;
+    private JLabel labelTipoId;
     private JLabel labemTelefone;
     private JLabel labelChavePix;
     private JTextField txtfNome;
     private JTextField txtfId;
+    private JTextField txtfTipoId;
     private JTextField txtfTelefone;
     private JTextField txtfChavePix;
     private final JRadioButton cpfRadioButton;
@@ -42,7 +44,6 @@ public class CadastroCliente extends JFrame {
         x.setLayout(null);
 
         // Nome
-    
         labelNome = new JLabel("Nome do cliente: ");
         labelNome.setSize(300,30);
         labelNome.setLocation(10,30);
@@ -53,6 +54,9 @@ public class CadastroCliente extends JFrame {
         x.add(txtfNome);
 
         // Identificação
+        labelTipoId = new JLabel("Tipo de ID:");
+        labelId.setSize(300, 30);
+
         labelId = new JLabel("Documento ID:");
         labelId.setSize(300,30);
         labelId.setLocation(10,75);
