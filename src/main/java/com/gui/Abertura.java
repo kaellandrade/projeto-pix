@@ -32,30 +32,30 @@ public class Abertura extends JFrame {
         // Titulo
         labelTituloId = new JLabel("Selecione o tipo de identificação");
         labelTituloId.setSize(300,30);
-        labelTituloId.setLocation(100,175);
+        labelTituloId.setLocation(100,140);
         c.add(labelTituloId);
 
         // Botões de celeção entre CPF e CNPJ
         cpfRadioButton = new JRadioButton("CPF", true);
-        cpfRadioButton.setLocation(100,210);
+        cpfRadioButton.setLocation(100,180);
         cpfRadioButton.setSize(100,20);
         c.add(cpfRadioButton);
         
         cnpjRadioButton = new JRadioButton("CNPJ", false);
-        cnpjRadioButton.setLocation(260,210);
+        cnpjRadioButton.setLocation(260,180);
         cnpjRadioButton.setSize(100,20);
         c.add(cnpjRadioButton);
 
         // Campo de texto para o CPF ou CNPJ
         textFieldId = new JTextField("Digite o documento ID");
         textFieldId.setSize(200,30);
-        textFieldId.setLocation(115,240);
+        textFieldId.setLocation(115,210);
         c.add(textFieldId);
 
         // Botão de entrar
         buttonEntrar = new JButton("Entrar");
         buttonEntrar.setSize(100,50);
-        buttonEntrar.setLocation(165, 280);
+        buttonEntrar.setLocation(165, 255);
         c.add(buttonEntrar);
 
         // Botão de acesso especial
