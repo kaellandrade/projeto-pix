@@ -8,58 +8,71 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+//import java.awt.FlowLayout;
 import java.text.ParseException;
+import java.awt.Container;
 
 public class CadastroCliente extends JFrame {
     
-    // JLabel
+    private Container x;
     private JLabel labelNome;
     private JLabel labelId;
     private JLabel labemTelefone;
     private JLabel labelChavePix;
-
-    // JTextField
     private JTextField txtfNome;
     private JTextField txtfId;
     private JTextField txtfTelefone;
     private JTextField txtfChavePix;
-
-    // JRadioButton
     private final JRadioButton cpfRadioButton;
     private final JRadioButton cnpjRadioButton;
 
     // ButtonGroup
-    private final ButtonGroup radioGroup;
+    //private final ButtonGroup radioGroup;
 
     public CadastroCliente() throws ParseException {
         super("Cadastro de cliente");
-        setLayout(new FlowLayout());
-        
+
+        setBounds(100, 100, 100, 100);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
+
+        x = getContentPane();
+        x.setLayout(null);
+
         // Nome
+    
         labelNome = new JLabel("Nome do cliente: ");
+        labelNome.setSize(300,30);
+        labelNome.setLocation(10,30);
         txtfNome = new JTextField(20);
-        add(labelNome);
-        add(txtfNome);
+        txtfNome.setSize(225,30);
+        txtfNome.setLocation(140,30);
+        x.add(labelNome);
+        x.add(txtfNome);
 
         // Identificação
-        labelId = new JLabel("Documento ID");
+        labelId = new JLabel("Documento ID:");
+        labelId.setSize(300,30);
+        labelId.setLocation(10,75);
         txtfId = new JTextField(20);
-        add(labelId);
-        add(txtfId);
+        txtfId.setSize(225,30);
+        txtfId.setLocation(140,75);
+        x.add(labelId);
+        x.add(txtfId);
 
         // Configuração dos botões de seleção entre CPF e CNPJ
         cpfRadioButton = new JRadioButton("CPF", true);
+        cpfRadioButton.setLocation(10,125);
+        cpfRadioButton.setSize(100,100);
+
+
         cnpjRadioButton = new JRadioButton("CNPJ", false);
-        add(cpfRadioButton);
-        add(cnpjRadioButton);
-        radioGroup = new ButtonGroup();
-        radioGroup.add(cpfRadioButton);
-        radioGroup.add(cnpjRadioButton);
+        cnpjRadioButton.setLocation(10,200);
+        cnpjRadioButton.setSize(100,100);
 
-
-
-
+        x.add(cpfRadioButton);
+        x.add(cnpjRadioButton);
     }
-
 }
