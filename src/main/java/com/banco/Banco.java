@@ -1,6 +1,7 @@
 package com.banco;
+import java.io.Serializable;
 
-public class Banco {
+public class Banco implements Serializable{
     private String codigoBanco;
     private String nomeBanco;
 
