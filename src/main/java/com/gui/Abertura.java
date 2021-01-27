@@ -63,6 +63,5 @@ public class Abertura extends JFrame {
         buttonAcessoEspecial.setSize(200,50);
         buttonAcessoEspecial.setLocation(120, 400);
         c.add(buttonAcessoEspecial);
-
     }
 }
