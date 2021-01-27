@@ -1,6 +1,7 @@
 package com.banco;
+import java.io.Serializable;
 
-public class Conta {
+public class Conta implements Serializable{
     private String numero;
     private float saldo;
     private Agencia agencia;
@@ -38,12 +39,12 @@ public class Conta {
     }
 
     public boolean depositar(float valor) {
-        // Implementar...
+        saldo += valor;
         return true;
     }
 
     public boolean sacar(float valor) {
-        // Implementar...
+        saldo-=valor;
         return true;
     }
 
