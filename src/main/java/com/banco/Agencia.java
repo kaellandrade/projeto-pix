@@ -15,10 +15,6 @@ public class Agencia implements Serializable {
         return numeroAgencia;
     }
 
-    public void setNumeroAgencia(String numeroAgencia) {
-        this.numeroAgencia = numeroAgencia;
-    }
-
     public Banco getBanco() {
         return banco;
     }
