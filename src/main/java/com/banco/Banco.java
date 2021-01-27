@@ -17,12 +17,4 @@ public class Banco implements Serializable{
     public String getNomeBanco() {
         return nomeBanco;
     }
-
-    public void setCodigoBanco(String codigoBanco) {
-        this.codigoBanco = codigoBanco;
-    }
-
-    public void setNomeBanco(String nomeBanco) {
-        this.nomeBanco = nomeBanco;
-    }
 }
