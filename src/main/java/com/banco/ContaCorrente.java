@@ -8,6 +8,11 @@ public class ContaCorrente extends Conta{
         super(numero, saldo, agencia);
     }
 
+    public boolean realizarPagamento(ContaSalario conta){
+        // Implementar...
+        return true;
+    }
+
     @Override
     public void gerartaxa() {
         // Implementar...
