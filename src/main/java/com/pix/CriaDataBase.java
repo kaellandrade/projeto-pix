@@ -10,14 +10,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-import com.banco.Agencia;
-import com.banco.Banco;
-import com.banco.Conta;
-import com.banco.ContaCorrente;
-import com.banco.ContaPoupanca;
-import com.pessoa.Cliente;
-import com.pessoa.ClientePessoaFisica;
-import com.pessoa.ClientePessoaJuridica;
+import com.banco.*;
+import com.pessoa.*;
 
 /*
 Serializa todos os clients no arquivo JSON
