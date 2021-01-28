@@ -19,9 +19,11 @@ public class ContaPoupanca extends Conta {
     @Override
     public boolean sacar(float valor) {
         Date data = new Date();
-        final float LIMITE_SAQUE = 1500;
-        if (valor > LIMITE_SAQUE) {
-            PixGui.dialogo(String.format("Limite de saque R$ %.2f", LIMITE_SAQUE));
+        final float LIMITE_SAQUE_MAX = 1500;
+        final float LIMITE_SAQUE_MIN = 10;
+
+        if (valor > LIMITE_SAQUE_MAX || valor < LIMITE_SAQUE_MIN) {
+            PixGui.dialogo(String.format("Limite de saque R$ %.2f até R$ %.2f", LIMITE_SAQUE_MIN, LIMITE_SAQUE_MAX));
             return false;
         } else if (super.sacar(valor)) {
             PixGui.dialogo(String.format("Saque de R$ %.2f efetuado com sucesso.", valor));
