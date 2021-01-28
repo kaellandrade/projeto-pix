@@ -86,7 +86,7 @@ public class Conta implements Serializable {
     /*
      * Gera uma determinada taxa de acordo com a conta;
      */
-    public void gerartaxa(int valor) {
+    public void gerartaxa(float valor) {
 
     };
 
