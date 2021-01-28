@@ -6,8 +6,13 @@ import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.pessoa.Cliente;
+import com.pessoa.ClientePessoaFisica;
+import com.pessoa.ClientePessoaJuridica;
+
 import java.io.ObjectOutputStream;
 
 /**
@@ -20,7 +25,7 @@ public class LerClientesSerializados {
 
     private static final String PATHSERPIX = "src/main/java/com/backend/clientesOBj.pix";
 
-    private static ArrayList<Cliente> todosClientes = new ArrayList<Cliente>(); // armazena todos os clientes deserializados
+    private static Map<String, Cliente> todosClientes = new HashMap<>(); // armazena todos os clientes deserializados
 
     /**
      * Abre o arquivo para desearilizar
@@ -37,13 +42,21 @@ public class LerClientesSerializados {
     /**
      * Retornar uma lista de Clientes lidos a partir do arquivo clienteOJb.pix
      */
-    public static ArrayList<Cliente> lerClientes() {
+    public static Map<String, Cliente> lerClientes() {
 
         try {
             while (true) // faz um loop até ocorrer uma EOFException
             {
                 Cliente cli = (Cliente) input.readObject();
-                todosClientes.add(cli);
+                if(cli instanceof ClientePessoaFisica){
+                    ClientePessoaFisica f;
+                    f = (ClientePessoaFisica) cli; // faz o downcast
+                    todosClientes.put(f.getCpf(), f);
+                }else{
+                    ClientePessoaJuridica j;
+                    j = (ClientePessoaJuridica) cli; // faz o downcast
+                    todosClientes.put(j.getCnpj(), j);
+                }
                 // System.out.println(cli);
             }
         } catch (EOFException endOfFileException) {
