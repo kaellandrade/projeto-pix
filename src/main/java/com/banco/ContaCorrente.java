@@ -34,8 +34,7 @@ public class ContaCorrente extends Conta {
         if (valor > LIMITE_SAQUE) {
             PixGui.dialogo(String.format("Limite de saque R$ %.2f", LIMITE_SAQUE));
             return false;
-        }
-        if (super.sacar(valor)) {
+        } else if (super.sacar(valor)) {
             PixGui.dialogo(String.format("Saque de R$ %.2f efetuado com sucesso.", valor));
             return true;
         } else {

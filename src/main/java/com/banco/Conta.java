@@ -31,6 +31,9 @@ public class Conta implements Serializable {
     public ArrayList<String> getExtrato() {
         return extrato;
     }
+    public void addExtrato(String msg) {
+        extrato.add(msg);
+    }
 
     public Agencia getAgencia() {
         return agencia;
