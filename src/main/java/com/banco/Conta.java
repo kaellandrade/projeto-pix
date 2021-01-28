@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class Conta implements Serializable {
     private String numero; // número da conta
-    private float saldo;
+    protected float saldo;
     private Agencia agencia; // agencia atrelada a essa conta
     private LinkedList<String> extrato = new LinkedList<String>();
     private String chavePIX;
@@ -23,6 +23,10 @@ public class Conta implements Serializable {
 
     public float getSaldo() {
         return saldo;
+    }
+
+    public void setConta(){
+        
     }
 
     public String getChavePIX() {
@@ -82,7 +86,7 @@ public class Conta implements Serializable {
     /*
      * Gera uma determinada taxa de acordo com a conta;
      */
-    public void gerartaxa() {
+    public void gerartaxa(int valor) {
 
     };
 

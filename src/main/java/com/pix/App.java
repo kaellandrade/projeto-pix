@@ -22,8 +22,8 @@ public class App {
 
         // todos_clientes.get("21637668000114").getConta().sacar(400);
 
-        System.out.println(todos_clientes.get("21637668000114").getConta().getSaldo());
-        System.out.println(todos_clientes.get("21637668000114").getConta().getExtrato());
+        System.out.println(todos_clientes.get("65436995152").getConta());
+        System.out.println(todos_clientes.get("65436995152").getConta());
 
 
 
