@@ -11,7 +11,7 @@ public class PixGui {
     /**
      * Mostra chave gerada em uma caixa de diálogo;
      */
-    public void mostraChave() {
+    public void dialogo(String msg) {
         JOptionPane.showMessageDialog(null, "Sua chave é: " + Pix.gerarChavePix(), "Nova Chave",
                 JOptionPane.PLAIN_MESSAGE);
     }

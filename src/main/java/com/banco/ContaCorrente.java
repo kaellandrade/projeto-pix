@@ -24,4 +24,17 @@ public class ContaCorrente extends Conta {
     public void gerartaxa() {
         // Implementar...
     }
+
+    public boolean sacar(float valor) {
+        final float LIMITE_SAQUE = 5000;
+        if(valor > LIMITE_SAQUE){
+            System.out.println("Limite de saque excedido");
+        }
+        if(valor <= getSaldo() && valor <= LIMITE_SAQUE){
+            saldo -= valor;
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
