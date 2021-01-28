@@ -10,15 +10,23 @@ import java.util.ArrayList;
 import com.pessoa.Cliente;
 import java.io.ObjectOutputStream;
 
+/**
+ * LerClientesSerializados contém métodos responsáveis por deserializar o
+ * arquivo clienteOJb.pix e atualizar as mudanças no arquivo serializado;
+ */
 public class LerClientesSerializados {
-    private static ObjectInputStream input;
-    private static ObjectOutputStream output; // gera saída dos dados no arquivo
+    private static ObjectInputStream input; // recupeara os dados do arquivo clienteOJb.pix
+    private static ObjectOutputStream output; // gera saída dos dados no arquivo clienteOJb.pix
 
     private static final String PATHSERPIX = "src/main/java/com/backend/clientesOBj.pix";
-    private static ArrayList<Cliente> todosClientes = new ArrayList<Cliente>();
 
+    private static ArrayList<Cliente> todosClientes = new ArrayList<Cliente>(); // armazena todos os clientes deserializados
+
+    /**
+     * Abre o arquivo para desearilizar
+     */
     public static void abreArquivo() {
-        try { // abre o arquivo para desearilizar
+        try {
             input = new ObjectInputStream(Files.newInputStream(Paths.get(PATHSERPIX)));
         } catch (IOException ioException) {
             System.err.println("Erro ao abrir o arquivo.");
@@ -26,7 +34,9 @@ public class LerClientesSerializados {
         }
     }
 
-    // lê o registro no arquivo
+    /**
+     * Retornar uma lista de Clientes lidos a partir do arquivo clienteOJb.pix
+     */
     public static ArrayList<Cliente> lerClientes() {
 
         try {
@@ -47,6 +57,11 @@ public class LerClientesSerializados {
 
     }
 
+    /**
+     * Revebe uma lista de clintes e serializa todos eles novamente dentro do arquivo clienteOJb.pix
+     * PS: Esse método deve ser executado após a finalização da aplicação para manter os estados dos
+     * objetos atualizados.
+     */
     public static void atualizar(ArrayList<Cliente> clientes) { // atualiza os estados dos objetos apois modificações
         try {
             output = new ObjectOutputStream(Files.newOutputStream(Paths.get(PATHSERPIX)));
@@ -61,7 +76,9 @@ public class LerClientesSerializados {
 
     }
 
-    // fecha o arquivo e termina o aplicativo
+    /**
+     * Fecha o arquivo e finaliza a gravação.
+     */
     public static void fecharArquivo() {
 
         try {

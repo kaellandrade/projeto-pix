@@ -39,6 +39,7 @@ public class CriaDataBase {
     /**
      * populaDados irá instanciar todos os clientes do arquivo clientesDataBase.json
      * serializando-os no arqruivo clientesOBj.pix.
+     * PS: Basta executar esse método uma única vez.
      */
     public static void populaDados() {
         final int LENGTH_CNPJ = 14;
