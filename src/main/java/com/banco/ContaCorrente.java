@@ -38,7 +38,7 @@ public class ContaCorrente extends Conta {
             return false;
         } else if (super.sacar(valor)) {
             PixGui.dialogo(String.format("Saque de R$ %.2f efetuado com sucesso.", valor));
-            this.addExtrato(String.format("Saque: R$ %f.2\nData: %s", valor, data.toString()));
+            this.addExtrato(String.format("Saque: R$ %.2f Data: %s", valor, data.toString()));
             return true;
         } else {
             PixGui.dialogo("Saldo insuficiente.");
