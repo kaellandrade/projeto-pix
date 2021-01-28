@@ -1,14 +1,15 @@
 package com.banco;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Conta implements Serializable{
-    private String numero;
+public class Conta implements Serializable {
+    private String numero; // número da conta
     private float saldo;
-    private Agencia agencia;
-    private ArrayList <String> extrato = new ArrayList<String>();
+    private Agencia agencia; // agencia atrelada a essa conta
+    private ArrayList<String> extrato = new ArrayList<String>();
     private String chavePIX;
-    
+
     Conta(String numero, float saldo, Agencia agencia) {
         this.numero = numero;
         this.saldo = saldo;
@@ -27,6 +28,9 @@ public class Conta implements Serializable{
         this.numero = numero;
     }
 
+    /**
+     * Realiza uma transferencia interna caso duas contas sejam do mesmo banco
+     */
     public boolean realizarTransferenciaInterna(String numeroConta, String agencia, float valor) {
         // Implementar...
         return true;
@@ -43,18 +47,25 @@ public class Conta implements Serializable{
     }
 
     public boolean sacar(float valor) {
-        saldo-=valor;
+        saldo -= valor;
         return true;
     }
 
-    public void gerartaxa(){
+    /*
+     * Gera uma determinada taxa de acordo com a conta;
+     */
+    public void gerartaxa() {
 
     };
 
-    public ArrayList <String> getExtrato(){
+    public ArrayList<String> getExtrato() {
         return extrato;
     }
 
+    /**
+     * Inicialmente uma chave pix aleatória é null, mas pode ser setada por esse
+     * método;
+     */
     public void setChavePIX(String chavePIX) {
         this.chavePIX = chavePIX;
     }
