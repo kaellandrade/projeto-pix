@@ -2,12 +2,13 @@ package com.banco;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Conta implements Serializable{
+public class Conta implements Serializable{
     private String numero;
     private float saldo;
     private Agencia agencia;
     private ArrayList <String> extrato = new ArrayList<String>();
-
+    private String chavePIX;
+    
     Conta(String numero, float saldo, Agencia agencia) {
         this.numero = numero;
         this.saldo = saldo;
@@ -46,10 +47,20 @@ public abstract class Conta implements Serializable{
         return true;
     }
 
-    public abstract void gerartaxa();
+    public void gerartaxa(){
+
+    };
 
     public ArrayList <String> getExtrato(){
         return extrato;
+    }
+
+    public void setChavePIX(String chavePIX) {
+        this.chavePIX = chavePIX;
+    }
+
+    public String getChavePIX() {
+        return chavePIX;
     }
 
     /**
