@@ -1,6 +1,7 @@
 package com.banco;
 
 import com.gui.PixGui;
+import java.util.Date;
 
 public class ContaCorrente extends Conta {
 
@@ -30,12 +31,14 @@ public class ContaCorrente extends Conta {
 
     @Override
     public boolean sacar(float valor) {
+        Date data = new Date();
         final float LIMITE_SAQUE = 5000;
         if (valor > LIMITE_SAQUE) {
             PixGui.dialogo(String.format("Limite de saque R$ %.2f", LIMITE_SAQUE));
             return false;
         } else if (super.sacar(valor)) {
             PixGui.dialogo(String.format("Saque de R$ %.2f efetuado com sucesso.", valor));
+            this.addExtrato(String.format("Saque: R$ %f.2\nData: %s", valor, data.toString()));
             return true;
         } else {
             PixGui.dialogo("Saldo insuficiente.");
