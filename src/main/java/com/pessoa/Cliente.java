@@ -1,23 +1,18 @@
 package com.pessoa;
+import java.io.Serializable;
 
 import com.banco.*;
 
-public class Cliente extends Pessoa {
+public class Cliente extends Pessoa implements Serializable{
     private String email;
     private String telefone;
-    private String chaveAleatoria;
     private Conta conta;
 
-    Cliente(String nome, String email, String telefone, String chaveString, Conta conta) {
+    Cliente(String nome, String email, String telefone, Conta conta) {
         super(nome);
         this.email = email;
         this.telefone = telefone;
-        this.chaveAleatoria = chaveString;
         this.conta = conta;
-    }
-
-    public String getChaveAleatoria() {
-        return chaveAleatoria;
     }
 
     public Conta getConta() {
@@ -34,10 +29,5 @@ public class Cliente extends Pessoa {
 
     public String getName() {
         return super.getNome();
-    }
-
-    @Override
-    public String toString() {
-        return "";
     }
 }

@@ -2,16 +2,18 @@ package com.banco;
 
 public class ContaSalario extends Conta {
 
+    private String ultimoPagamentoMES;
+
     public ContaSalario(String numero, float saldo, Agencia agencia) {
         super(numero, saldo, agencia);
     }
 
-    @Override
-    public void setSaldo(float saldo) {
-        super.setSaldo(saldo);
+    public String getUltimoPagamentoMES() {
+        return ultimoPagamentoMES;
     }
 
-    public boolean verificarOperacaoMensal() {
-        return true;
+    public void setUltimoPagamentoMES(String ultimoPagamentoMES) {
+        this.ultimoPagamentoMES = ultimoPagamentoMES;
     }
+
 }

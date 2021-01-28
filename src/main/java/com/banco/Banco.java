@@ -1,6 +1,7 @@
 package com.banco;
+import java.io.Serializable;
 
-public class Banco {
+public class Banco implements Serializable{
     private String codigoBanco;
     private String nomeBanco;
 
@@ -15,13 +16,5 @@ public class Banco {
 
     public String getNomeBanco() {
         return nomeBanco;
-    }
-
-    public void setCodigoBanco(String codigoBanco) {
-        this.codigoBanco = codigoBanco;
-    }
-
-    public void setNomeBanco(String nomeBanco) {
-        this.nomeBanco = nomeBanco;
     }
 }
