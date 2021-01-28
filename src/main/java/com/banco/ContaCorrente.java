@@ -7,11 +7,6 @@ public class ContaCorrente extends Conta{
     }
 
     @Override
-    public void setSaldo(float saldo) {
-        super.setSaldo(saldo);
-    }
-
-    @Override
     public void gerartaxa() {
         // Implementar...
     }
