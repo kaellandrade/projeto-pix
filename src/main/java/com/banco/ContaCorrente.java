@@ -25,8 +25,8 @@ public class ContaCorrente extends Conta {
      * 2%;
      */
     @Override
-    public void gerartaxa() {
-        // Implementar...
+    public void gerartaxa(int valor) {
+        setSaldo(getSaldo() - (valor * TAXA));
     }
 
     @Override
