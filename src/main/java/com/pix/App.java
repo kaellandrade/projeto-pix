@@ -22,9 +22,9 @@ public class App {
 
         // todos_clientes.get(0).getConta().setChavePIX(Pix.gerarChavePix());
 
-        System.out.println(todos_clientes.get("30322013305").getConta().getSaldo());
-        System.out.println(todos_clientes.get("30322013305").getConta().depositar(584));
-        System.out.println(todos_clientes.get("30322013305").getConta().getSaldo());
+        System.out.println(todos_clientes.get("21637668000114").getConta().getSaldo());
+        todos_clientes.get("21637668000114").getConta().sacar(5000);
+        // todos_clientes.get("21637668000114").getConta().getSaldo();
 
 
 
