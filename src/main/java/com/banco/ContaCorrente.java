@@ -2,9 +2,12 @@ package com.banco;
 
 import com.gui.PixGui;
 import java.util.Date;
+import java.util.Locale;
+import java.text.NumberFormat;
 
 public class ContaCorrente extends Conta {
 
+    private final Locale local = new Locale("pt", "BR");
     private final float TAXA = 0.02f;
 
     public ContaCorrente(String numero, float saldo, Agencia agencia) {
@@ -40,7 +43,9 @@ public class ContaCorrente extends Conta {
         final float LIMITE_SAQUE_MAX = 5000;
         final float LIMITE_SAQUE_MIN = 100;
         if (valor > LIMITE_SAQUE_MAX || valor < LIMITE_SAQUE_MIN) {
-            PixGui.dialogo(String.format("Limite de saque R$ %.2f até R$ %.2f", LIMITE_SAQUE_MIN, LIMITE_SAQUE_MAX));
+            PixGui.dialogo(String.format("Limite de saque %s até %s",
+                    NumberFormat.getCurrencyInstance(local).format(LIMITE_SAQUE_MIN),
+                    NumberFormat.getCurrencyInstance(local).format(LIMITE_SAQUE_MAX)));
             return false;
         } else if (super.sacar(valor)) {
             gerartaxa(valor); // Efetua a cobrança da taxa
