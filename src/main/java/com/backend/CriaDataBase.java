@@ -13,15 +13,20 @@ import java.util.Scanner;
 import com.banco.*;
 import com.pessoa.*;
 
-/*
-Serializa todos os clients no arquivo JSON
-*/
+/**
+ * CriaDataBase contém métodos responsáveis por criar e semear o arquivo
+ * clientesOBj.pix (armazena Clientes) com base no arquivo clientesDataBase.json
+ * (listas de clients para ser instanciada).
+ */
+
 public class CriaDataBase {
     private static ObjectOutputStream output; // gera saída dos dados no arquivo
     private static final String PATHJ = "src/main/java/com/backend/clientesDataBase.json";
     private static final String PATHSERPIX = "src/main/java/com/backend/clientesOBj.pix";
 
-    // abre o arquivo clientes.pix
+    /**
+     * Abre o arquivo clientesOBj.pix caso exista, senão será criado;
+     */
     public static void abrirArquivo() {
         try {
             output = new ObjectOutputStream(Files.newOutputStream(Paths.get(PATHSERPIX)));
@@ -31,7 +36,10 @@ public class CriaDataBase {
         }
     }
 
-    // popula os dados a partir do arquivo CSV
+    /**
+     * populaDados irá instanciar todos os clientes do arquivo clientesDataBase.json
+     * serializando-os no arqruivo clientesOBj.pix.
+     */
     public static void populaDados() {
         final int LENGTH_CNPJ = 14;
 
@@ -48,23 +56,21 @@ public class CriaDataBase {
                 Cliente cli;
                 Conta conta;
 
-                if (obj.get("cpfOUCNPJ").toString().length() == LENGTH_CNPJ) {// se for CNPJ
+                // se for CNPJ criar conta Corrente e uma pessoa jurídica
+                if (obj.get("cpfOUCNPJ").toString().length() == LENGTH_CNPJ) {
                     conta = new ContaCorrente(obj.get("conta").toString(),
                             Float.parseFloat(obj.get("saldo").toString()), ag);
 
                     cli = new ClientePessoaJuridica(obj.get("nome").toString(), obj.get("email").toString(),
                             obj.get("telefone").toString(), conta, obj.get("cpfOUCNPJ").toString());
-                } else {
+                } else { // caso contrário cria uma conta Poupanca e uma pessoa física
                     conta = new ContaPoupanca(obj.get("conta").toString(),
                             Float.parseFloat(obj.get("saldo").toString()), ag);
 
                     cli = new ClientePessoaFisica(obj.get("nome").toString(), obj.get("email").toString(),
                             obj.get("telefone").toString(), conta, obj.get("cpfOUCNPJ").toString());
                 }
-                output.writeObject(cli);
-
-                // serializa todos os clientes
-
+                output.writeObject(cli); // serializa o objeto cli
             }
 
         } catch (Exception e) {
@@ -73,7 +79,7 @@ public class CriaDataBase {
 
     }
 
-    // fecha o arquivo e termina o aplicativo
+    // Após a serialização fecha o arquivo
     public static void fechaArquivo() {
         try {
             if (output != null)
