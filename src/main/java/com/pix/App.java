@@ -20,11 +20,12 @@ public class App {
 
         // TODO: Operações aqui
 
-        // todos_clientes.get(0).getConta().setChavePIX(Pix.gerarChavePix());
+        // todos_clientes.get("21637668000114").getConta().sacar(400);
 
         System.out.println(todos_clientes.get("21637668000114").getConta().getSaldo());
-        // todos_clientes.get("21637668000114").getConta().sacar(5000);
-        // todos_clientes.get("21637668000114").getConta().getSaldo();
+        System.out.println(todos_clientes.get("21637668000114").getConta().getExtrato());
+
+
 
 
 
