@@ -28,16 +28,19 @@ public class ContaCorrente extends Conta {
     public void gerartaxa(float valor) {
         setSaldo(getSaldo() - (valor * TAXA));
     }
+
     /**
-     * Recebe um valor a ser sacado e verifica se o cliente possui saldo suficiente na conta,
-     * além disso verifica se o valor não excede o limite de saque. Caso contrário efetua o saque. 
+     * Recebe um valor a ser sacado e verifica se o cliente possui saldo suficiente
+     * na conta, além disso verifica se o valor não excede o limite de saque. Caso
+     * contrário efetua o saque.
      */
     @Override
     public boolean sacar(float valor) {
         Date data = new Date();
-        final float LIMITE_SAQUE = 5000;
-        if (valor > LIMITE_SAQUE) {
-            PixGui.dialogo(String.format("Limite de saque R$ %.2f", LIMITE_SAQUE));
+        final float LIMITE_SAQUE_MAX = 5000;
+        final float LIMITE_SAQUE_MIN = 100;
+        if (valor > LIMITE_SAQUE_MAX || valor < LIMITE_SAQUE_MIN) {
+            PixGui.dialogo(String.format("Limite de saque R$ %.2f até R$ %.2f", LIMITE_SAQUE_MIN, LIMITE_SAQUE_MAX));
             return false;
         } else if (super.sacar(valor)) {
             gerartaxa(valor); // Efetua a cobrança da taxa
