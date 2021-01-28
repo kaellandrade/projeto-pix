@@ -25,7 +25,7 @@ public class ContaCorrente extends Conta {
      * 2%;
      */
     @Override
-    public void gerartaxa(int valor) {
+    public void gerartaxa(float valor) {
         setSaldo(getSaldo() - (valor * TAXA));
     }
 
@@ -37,8 +37,10 @@ public class ContaCorrente extends Conta {
             PixGui.dialogo(String.format("Limite de saque R$ %.2f", LIMITE_SAQUE));
             return false;
         } else if (super.sacar(valor)) {
+            gerartaxa(valor);
             PixGui.dialogo(String.format("Saque de R$ %.2f efetuado com sucesso.", valor));
-            this.addExtrato(String.format("Saque: R$ %.2f Data: %s", valor, data.toString()));
+            this.addExtrato(
+                    String.format("Saque: R$ %.2f\nData: %s Taxa: %.2f", valor, data.toString(), (valor * TAXA)));
             return true;
         } else {
             PixGui.dialogo("Saldo insuficiente.");
