@@ -1,4 +1,4 @@
-package com.pix;
+package com.backend;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class LerClientesSerializados {
     private static ObjectInputStream input;
     private static ObjectOutputStream output; // gera saída dos dados no arquivo
 
-    private static final String PATHSERPIX = "src/main/java/com/pix/clientesOBj.pix";
+    private static final String PATHSERPIX = "src/main/java/com/backend/clientesOBj.pix";
     private static ArrayList<Cliente> todosClientes = new ArrayList<Cliente>();
 
     public static void abreArquivo() {

@@ -1,4 +1,4 @@
-package com.pix;
+package com.backend;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -18,8 +18,8 @@ Serializa todos os clients no arquivo JSON
 */
 public class CriaDataBase {
     private static ObjectOutputStream output; // gera saída dos dados no arquivo
-    private static final String PATHJ = "src/main/java/com/pix/clientesDataBase.json";
-    private static final String PATHSERPIX = "src/main/java/com/pix/clientesOBj.pix";
+    private static final String PATHJ = "src/main/java/com/backend/clientesDataBase.json";
+    private static final String PATHSERPIX = "src/main/java/com/backend/clientesOBj.pix";
 
     // abre o arquivo clientes.pix
     public static void abrirArquivo() {
