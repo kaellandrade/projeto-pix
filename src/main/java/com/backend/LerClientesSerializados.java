@@ -6,7 +6,9 @@ import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import com.pessoa.Cliente;
@@ -48,11 +50,11 @@ public class LerClientesSerializados {
             while (true) // faz um loop até ocorrer uma EOFException
             {
                 Cliente cli = (Cliente) input.readObject();
-                if(cli instanceof ClientePessoaFisica){
+                if (cli instanceof ClientePessoaFisica) {
                     ClientePessoaFisica f;
                     f = (ClientePessoaFisica) cli; // faz o downcast
                     todosClientes.put(f.getCpf(), f);
-                }else{
+                } else {
                     ClientePessoaJuridica j;
                     j = (ClientePessoaJuridica) cli; // faz o downcast
                     todosClientes.put(j.getCnpj(), j);
@@ -71,15 +73,16 @@ public class LerClientesSerializados {
     }
 
     /**
-     * Revebe uma lista de clintes e serializa todos eles novamente dentro do arquivo clienteOJb.pix
-     * PS: Esse método deve ser executado após a finalização da aplicação para manter os estados dos
-     * objetos atualizados.
+     * Revebe uma lista de clintes e serializa todos eles novamente dentro do
+     * arquivo clienteOJb.pix PS: Esse método deve ser executado após a finalização
+     * da aplicação para manter os estados dos objetos atualizados.
      */
-    public static void atualizar(ArrayList<Cliente> clientes) { // atualiza os estados dos objetos apois modificações
+    public static void atualizar(Collection<Cliente> clientes) { // atualiza os estados dos objetos apois modificações
         try {
             output = new ObjectOutputStream(Files.newOutputStream(Paths.get(PATHSERPIX)));
-            for (int i = 0; i < clientes.size(); i++) {
-                output.writeObject(clientes.get(i));
+            Iterator<Cliente> iterador = clientes.iterator();
+            while (iterador.hasNext()) {
+                output.writeObject(iterador.next());
             }
             output.close();
         } catch (IOException ioException) {
