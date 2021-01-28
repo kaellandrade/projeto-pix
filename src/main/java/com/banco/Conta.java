@@ -25,8 +25,8 @@ public class Conta implements Serializable {
         return saldo;
     }
 
-    public void setConta(){
-        
+    public void setSalario(){
+
     }
 
     public String getChavePIX() {
