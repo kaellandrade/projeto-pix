@@ -67,8 +67,12 @@ public class Conta implements Serializable {
     }
 
     public boolean sacar(float valor) {
-        saldo -= valor;
-        return true;
+        if(valor <= this.saldo){
+            saldo -= valor;
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /*
