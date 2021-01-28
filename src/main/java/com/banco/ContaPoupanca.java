@@ -1,11 +1,15 @@
 package com.banco;
 
 import java.util.Date;
+import java.util.Locale;
+
 import com.gui.PixGui;
+import java.text.NumberFormat;
 
 public class ContaPoupanca extends Conta {
 
     private final float TAXA = 0.012f;
+    private final Locale local = new Locale("pt", "BR");
 
     public ContaPoupanca(String numero, float saldo, Agencia agencia) {
         super(numero, saldo, agencia);
@@ -23,11 +27,17 @@ public class ContaPoupanca extends Conta {
         final float LIMITE_SAQUE_MIN = 10;
 
         if (valor > LIMITE_SAQUE_MAX || valor < LIMITE_SAQUE_MIN) {
-            PixGui.dialogo(String.format("Limite de saque R$ %.2f até R$ %.2f", LIMITE_SAQUE_MIN, LIMITE_SAQUE_MAX));
+            PixGui.dialogo(String.format("Limite de saque %s até %s",
+                    NumberFormat.getCurrencyInstance(local).format(LIMITE_SAQUE_MIN),
+                    NumberFormat.getCurrencyInstance(local).format(LIMITE_SAQUE_MAX)));
             return false;
         } else if (super.sacar(valor)) {
-            PixGui.dialogo(String.format("Saque de R$ %.2f efetuado com sucesso.", valor));
-            this.addExtrato(String.format("Saque: R$ %.2f\nData: %s", valor, data.toString()));
+
+            PixGui.dialogo(String.format("Saque de %s efetuado com sucesso.",
+                    NumberFormat.getCurrencyInstance(local).format(valor)));
+
+            this.addExtrato(String.format("Saque: %s\nData: %s", NumberFormat.getCurrencyInstance(local).format(valor),
+                    data.toString()));
             return true;
         } else {
             PixGui.dialogo("Saldo insuficiente.");
