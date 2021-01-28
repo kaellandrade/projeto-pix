@@ -24,8 +24,28 @@ public class Conta implements Serializable {
         return saldo;
     }
 
+    public String getChavePIX() {
+        return chavePIX;
+    }
+
+    public ArrayList<String> getExtrato() {
+        return extrato;
+    }
+
+    public Agencia getAgencia() {
+        return agencia;
+    }
+
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    /**
+     * Inicialmente uma chave pix aleatória é null, mas pode ser setada por esse
+     * método;
+     */
+    public void setChavePIX(String chavePIX) {
+        this.chavePIX = chavePIX;
     }
 
     /**
@@ -58,22 +78,6 @@ public class Conta implements Serializable {
 
     };
 
-    public ArrayList<String> getExtrato() {
-        return extrato;
-    }
-
-    /**
-     * Inicialmente uma chave pix aleatória é null, mas pode ser setada por esse
-     * método;
-     */
-    public void setChavePIX(String chavePIX) {
-        this.chavePIX = chavePIX;
-    }
-
-    public String getChavePIX() {
-        return chavePIX;
-    }
-
     /**
      * Realiza transferência para uma determinada conta;
      */
@@ -86,7 +90,4 @@ public class Conta implements Serializable {
         return false;
     }
 
-    public Agencia getAgencia() {
-        return agencia;
-    }
 }
