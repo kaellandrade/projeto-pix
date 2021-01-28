@@ -1,10 +1,12 @@
 package com.banco;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Conta implements Serializable{
     private String numero;
     private float saldo;
     private Agencia agencia;
+    private ArrayList <String> extrato = new ArrayList<String>();
 
     Conta(String numero, float saldo, Agencia agencia) {
         this.numero = numero;
@@ -50,6 +52,10 @@ public class Conta implements Serializable{
 
     public void gerartaxa() { 
 
+    }
+
+    public ArrayList <String> getExtrato(){
+        return extrato;
     }
 
     /**
