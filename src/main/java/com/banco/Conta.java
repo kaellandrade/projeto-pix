@@ -22,10 +22,6 @@ public class Conta implements Serializable{
         return saldo;
     }
 
-    public void setSaldo(float saldo) {
-        this.saldo = saldo;
-    }
-
     public void setNumero(String numero) {
         this.numero = numero;
     }
