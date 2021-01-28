@@ -2,12 +2,13 @@ package com.banco;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Conta implements Serializable {
     private String numero; // número da conta
     private float saldo;
     private Agencia agencia; // agencia atrelada a essa conta
-    private ArrayList<String> extrato = new ArrayList<String>();
+    private LinkedList<String> extrato = new LinkedList<String>();
     private String chavePIX;
 
     Conta(String numero, float saldo, Agencia agencia) {
@@ -28,11 +29,11 @@ public class Conta implements Serializable {
         return chavePIX;
     }
 
-    public ArrayList<String> getExtrato() {
+    public LinkedList<String> getExtrato() {
         return extrato;
     }
     public void addExtrato(String msg) {
-        extrato.add(msg);
+        extrato.add(0, msg);
     }
 
     public Agencia getAgencia() {
