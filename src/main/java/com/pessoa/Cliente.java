@@ -6,19 +6,13 @@ import com.banco.*;
 public class Cliente extends Pessoa implements Serializable{
     private String email;
     private String telefone;
-    private String chaveAleatoria;
     private Conta conta;
 
     Cliente(String nome, String email, String telefone, Conta conta) {
         super(nome);
         this.email = email;
         this.telefone = telefone;
-        this.chaveAleatoria = "";
         this.conta = conta;
-    }
-
-    public String getChaveAleatoria() {
-        return chaveAleatoria;
     }
 
     public Conta getConta() {
