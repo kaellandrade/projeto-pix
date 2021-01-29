@@ -24,8 +24,8 @@ public class App {
         System.out.println(todos_clientes.get("21637668000114").getConta().getExtrato());
 
         // passando um cpf
-        System.out.println(todos_clientes.get("86719122134").getConta().getSaldo());
-        System.out.println(todos_clientes.get("86719122134").getConta().getExtrato());
+        // System.out.println(todos_clientes.get("86719122134").getConta().getSaldo());
+        // System.out.println(todos_clientes.get("86719122134").getConta().getExtrato());
 
 
         // todos_clientes.get("86719122134").getConta().sacar(60);
