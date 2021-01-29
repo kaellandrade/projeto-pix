@@ -20,8 +20,8 @@ public class App {
         // TODO: Operações aqui
 
         // passando um cnpj
-        // System.out.println(todos_clientes.get("21637668000114").getConta().getSaldo());
-        // System.out.println(todos_clientes.get("21637668000114").getConta().getExtrato());
+        System.out.println(todos_clientes.get("21637668000114").getConta().getSaldo());
+        System.out.println(todos_clientes.get("21637668000114").getConta().getExtrato());
         LerClientesSerializados.atualizar(todos_clientes.values()); // atualiza o arquivo .pix
     }
 }
