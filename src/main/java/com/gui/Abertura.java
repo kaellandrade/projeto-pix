@@ -24,7 +24,7 @@ public class Abertura extends JFrame {
 
         setBounds(100, 100, 100, 100);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
+        //setResizable(false);
 
         c = getContentPane();
         c.setLayout(null);
