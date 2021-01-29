@@ -50,8 +50,9 @@ public class ContaCorrente extends Conta {
         } else if (super.sacar(valor)) {
             gerartaxa(valor); // Efetua a cobrança da taxa
             PixGui.dialogo(String.format("Saque de R$ %.2f efetuado com sucesso.", valor));
-            this.addExtrato(
-                    String.format("Saque: R$ %.2f\nData: %s\nTaxa: %.2f", valor, data.toString(), (valor * TAXA)));
+            this.addExtrato(String.format("Saque: %s\nData: %s\nTaxa: %s",
+                    NumberFormat.getCurrencyInstance(local).format(valor), data.toString(),
+                    NumberFormat.getCurrencyInstance(local).format((valor * TAXA))));
             return true;
         } else {
             PixGui.dialogo("Saldo insuficiente.");

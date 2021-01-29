@@ -1,6 +1,5 @@
 package com.pix;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 import com.bancocentral.Pix;
