@@ -1,16 +1,16 @@
 package com.pix;
 
-import com.gui.NewTransferencia;
+import com.gui.Abertura;
 import java.text.ParseException;
 import javax.swing.JFrame;
 
 public class App {
     public static void main(String[] args) throws ParseException {
-        NewTransferencia interfaceGrafica = new NewTransferencia();
+        Abertura interfaceGrafica = new Abertura();
         //interfaceGrafica.InterfaceGraficaGBL();
-        //cadastroTela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //cadastroTela.setSize(630, 520);
-        //cadastroTela.setResizable(false);
-        //cadastroTela.setVisible(true);
+        interfaceGrafica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        interfaceGrafica.setSize(400,800);
+        interfaceGrafica.setResizable(true);
+        interfaceGrafica.setVisible(true);
     }
 }
