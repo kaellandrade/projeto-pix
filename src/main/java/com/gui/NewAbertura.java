@@ -3,7 +3,7 @@ package com.gui;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
-import java.awt.Dimension;
+//import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -18,10 +18,7 @@ public class NewAbertura extends JFrame {
 
     // declarando JTextField
     JTextField textFieldCPF = new JTextField(11), textFieldCNPJ = new JTextField(14);
-    
-    // declarando JRadioButton
-    JRadioButton radioButtonCPF = new JRadioButton("CPF"), radioButtonCNPJ = new JRadioButton("CNPJ");
-    
+        
     // declarando JButton
     JButton buttonEntrar = new JButton("Entrar"), buttonAcessoEspecial = new JButton("Acesso especial");
 
@@ -31,23 +28,46 @@ public class NewAbertura extends JFrame {
         JPanel painel1 = new JPanel();
         painel1.setLayout(new GridBagLayout());
 
-        addElemento(painel1, new JLabel("Selecione a ID"), 0, 0, 1, 1, GridBagConstraints.CENTER);
-        addElemento(painel1, textFieldCPF, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        // adição do texto "Selecione a ID"
+        addElemento(painel1, new JLabel("Selecione a ID"), 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 10, 100);
+        
+        // ------ adição dos RadioButtons para CPF e CNPJ ------
+        // adição do CPF
+        JRadioButton radioButtonCPF = new JRadioButton("CPF");
+        radioButtonCPF.setActionCommand("CPF");
+        radioButtonCPF.setSelected(true);
+        addElemento(painel1, radioButtonCPF, 0, 1, 1, 1, GridBagConstraints.WEST, 10, 70, 10, 10);
+
+        // adição do CNPJ
+        JRadioButton radioButtonCNPJ = new JRadioButton("CNPJ");
+        radioButtonCNPJ.setActionCommand("CNPJ");
+        radioButtonCNPJ.setSelected(false);
+        addElemento(painel1, radioButtonCNPJ, 0, 1, 1, 1, GridBagConstraints.EAST, 10, 10, 10, 70);
+
+        // agrupamento dos RadioButtons
+        ButtonGroup grupo = new ButtonGroup();
+        grupo.add(radioButtonCNPJ);
+        grupo.add(radioButtonCPF);
+
+        // ADICIONAR O TEXTFIELD DO CNPJ DEPOIS
+        // TextField do CPNJ
+        addElemento(painel1, textFieldCPF, 0, 2, 1, 1, GridBagConstraints.CENTER, 0, 10, 10, 10);
 
         this.add(painel1);
         this.pack();
         this.setVisible(true);
     }
 
-    private void addElemento(JPanel p, JComponent c, int x, int y, int largura, int altura, int alinhamento) {
+    private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
+        int altura, int alinhamento, int superior, int esquerda, int inferior, int direita) {
         GridBagConstraints gc = new GridBagConstraints();
-        gc.gridx = x;
-        gc.gridy = y;
+        gc.gridx = linha;
+        gc.gridy = coluna;
         gc.gridwidth = largura;
         gc.gridheight = altura;
         gc.weightx = 100.0;
         gc.weighty = 100.0;
-        gc.insets = new Insets(5, 5, 5, 5);
+        gc.insets = new Insets(superior, esquerda, inferior, direita);
         gc.anchor = alinhamento;
         gc.fill = GridBagConstraints.NONE;
         p.add(c, gc);
