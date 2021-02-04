@@ -1,11 +1,11 @@
 package com.pix;
 
-import com.gui.NewAbertura;
+import com.gui.Abertura;
 
 import javax.swing.JFrame;
 
 public class NewApp extends JFrame {
     public static void main(String[] args) {
-        new NewAbertura();
+        new Abertura();
     }
 }       

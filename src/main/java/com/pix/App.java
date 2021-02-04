@@ -1,12 +1,12 @@
 package com.pix;
 
-import com.gui.NewAbertura;
+import com.gui.Abertura;
 import java.text.ParseException;
 import javax.swing.JFrame;
 
 public class App {
     public static void main(String[] args) throws ParseException {
-        NewAbertura interfaceGrafica = new NewAbertura();
+        Abertura interfaceGrafica = new Abertura();
         interfaceGrafica.interfaceGrafica();
         //interfaceGrafica.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //qinterfaceGrafica.setSize(400,800);
