@@ -19,7 +19,7 @@ public class TelaInicialPF extends JFrame {
 
     // declarando os JButtons
     JButton buttonTI = new JButton("<html><center>Realizar transferência<br />interna</center></html>"),
-        buttonExtrat = new JButton("Extrato"),
+        buttonExtrat = new JButton("<html><center>Consultar o<br />extrato da conta</center></html>"),
         buttonPix = new JButton("<html><center>Realizar transferência<br />via Pix</center></html>");
 
     public TelaInicialPF() {
@@ -29,6 +29,14 @@ public class TelaInicialPF extends JFrame {
 
         // título da tela
         addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 70, 100);
+
+        // campo de exibição do saldo
+        addElemento(painel, labelSaldo, 0, 1, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
+
+        // botões de operações
+        addElemento(painel, buttonTI, 0, 2, 1, 1, GridBagConstraints.CENTER, 30, 10, 10, 10);
+        addElemento(painel, buttonPix, 0, 3, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
+        addElemento(painel, buttonExtrat, 0, 4, 1, 1, GridBagConstraints.CENTER, 10, 10, 70, 10);
 
         this.add(painel);
         this.pack();
