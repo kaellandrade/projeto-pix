@@ -34,5 +34,32 @@ public class TransferenciaInterna extends JFrame {
 
     public TransferenciaInterna() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JPanel painel = new JPanel();
+        painel.setLayout(new GridBagLayout());
+
+        // adição do título da tela
+        addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
+
+        // adição do campo de exibição do saldo (provisório)
+        addElemento(painel, labelSaldo, 0, 1, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
+
+        this.add(painel);
+        this.pack();
+        this.setVisible(true);
+    }
+
+    private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
+        int altura, int alinhamento, int superior, int esquerda, int inferior, int direita) {
+        GridBagConstraints gc = new GridBagConstraints();
+        gc.gridx = linha;
+        gc.gridy = coluna;
+        gc.gridwidth = largura;
+        gc.gridheight = altura;
+        gc.weightx = 100.0;
+        gc.weighty = 100.0;
+        gc.insets = new Insets(superior, esquerda, inferior, direita);
+        gc.anchor = alinhamento;
+        gc.fill = GridBagConstraints.NONE;
+        p.add(c, gc);
     }
 }
