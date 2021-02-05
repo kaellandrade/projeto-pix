@@ -27,23 +27,23 @@ public class App {
 
         
         
-        ClientePessoaFisica funcionario =  (ClientePessoaFisica) todos_clientes.get("89657670160");
-        ContaSalario cs = (ContaSalario) funcionario.getConta(); // conta corrente do empregador
+        ClientePessoaFisica pf =  (ClientePessoaFisica) todos_clientes.get("89657670160");
+        ContaPoupanca cp = (ContaPoupanca) pf.getConta(); // conta corrente do empregador
 
 
-        System.out.println("\n\nAntes do pagamento");
-        System.out.println("Saldo Conta Corrente: " + cc.getSaldo());
-        System.out.println("Extrato Conta Corrente:" + cc.getExtrato());
+        System.out.println("\n\nAntes");
+        System.out.println("Saldo Conta Corrente: " + cp.getSaldo());
+        System.out.println("Extrato Conta Corrente:" + cp.getExtrato());
         // System.out.println("\nSaldo Conta Salario: " + cs.getSaldo());
         // System.out.println("Extrato Conta Salario: " + cs.getExtrato());
         
         // cc.realizarPagamento(funcionario, 600); // realiza pagamento para uma conta corrente;
-        cc.depositar(100);
+        cp.depositar(1001);
 
 
-        System.out.println("\n\nDepois do pagamento");
-        System.out.println("Saldo Conta Corrente: " + cc.getSaldo());
-        System.out.println("Extrato Conta Corrente: " + cc.getExtrato());
+        System.out.println("\n\nDepois");
+        System.out.println("Saldo Conta Corrente: " + cp.getSaldo());
+        System.out.println("Extrato Conta Corrente: " + cp.getExtrato());
         // System.out.println("\nSaldo Conta Salario:" + cs.getSaldo());
         // System.out.println("Extrato Conta Salario: " + cs.getExtrato());
 
