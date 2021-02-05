@@ -36,6 +36,10 @@ public class Conta implements Serializable {
     public LinkedList<String> getExtrato() {
         return extrato;
     }
+    /**
+     * Recebe uma mensagem com detalhes da operação efetuada na conta
+     * e adiciona na cabeça da lista encadeada a últma movimentação
+     */
     public void addExtrato(String msg) {
         extrato.add(0, msg);
     }
