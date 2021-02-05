@@ -46,7 +46,7 @@ public class ContaPoupanca extends Conta {
     }
 
     /**
-     * Gera uma taxa positiva de 1.2%
+     * Gera uma taxa positiva de 0.1%
      */
     @Override
     public void gerartaxa(float valor) {
