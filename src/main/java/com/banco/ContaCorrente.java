@@ -81,6 +81,10 @@ public class ContaCorrente extends Conta {
         }
     }
 
+    /**
+     * Recebe um valor e efetua o depósito caso esteja no limite 
+     * mínimo e máximo permitido
+     */
     @Override
     public boolean depositar(float valor) {
         Date data = new Date();
