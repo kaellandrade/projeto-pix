@@ -1,4 +1,9 @@
-# Projeto da Unidade 2 - Sistema Bancária
+# Projeto POO da Unidade 2 - Sistema Bancária
+### Descrição do projeto
+A partir de novembro, o Banco Central determinou que todas as contas bancárias do
+Brasil possam fazer transferências usando PIX. Dessa forma, é preciso criar um
+módulo onde os bancos possam manipular os dados dos clientes e do próprio Banco
+Central.
 ## Bibliografia
 - [Java®: Como Programar 📚](https://www.amazon.com.br/Java%C2%AE-como-programar-Paul-Deitel/dp/8543004799/ref=asc_df_8543004799/?tag=googleshopp00-20&linkCode=df0&hvadid=379748659420&hvpos=&hvnetw=g&hvrand=7458101882819761644&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1001715&hvtargid=pla-811137648368&psc=1)
 
