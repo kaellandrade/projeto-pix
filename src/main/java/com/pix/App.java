@@ -31,20 +31,21 @@ public class App {
         ContaSalario cs = (ContaSalario) funcionario.getConta(); // conta corrente do empregador
 
 
-        System.out.println("Antes do pagamento");
-        System.out.println(cc.getSaldo());
-        System.out.println(cc.getExtrato());
-        System.out.println(cs.getSaldo());
-        System.out.println(cs.getExtrato());
+        System.out.println("\n\nAntes do pagamento");
+        System.out.println("Saldo Conta Corrente: " + cc.getSaldo());
+        System.out.println("Extrato Conta Corrente:" + cc.getExtrato());
+        // System.out.println("\nSaldo Conta Salario: " + cs.getSaldo());
+        // System.out.println("Extrato Conta Salario: " + cs.getExtrato());
         
         // cc.realizarPagamento(funcionario, 600); // realiza pagamento para uma conta corrente;
+        cc.depositar(100);
 
 
-        System.out.println("Depois do pagamento");
-        System.out.println(cc.getSaldo());
-        System.out.println(cc.getExtrato());
-        System.out.println(cs.getSaldo());
-        System.out.println(cs.getExtrato());
+        System.out.println("\n\nDepois do pagamento");
+        System.out.println("Saldo Conta Corrente: " + cc.getSaldo());
+        System.out.println("Extrato Conta Corrente: " + cc.getExtrato());
+        // System.out.println("\nSaldo Conta Salario:" + cs.getSaldo());
+        // System.out.println("Extrato Conta Salario: " + cs.getExtrato());
 
         
 

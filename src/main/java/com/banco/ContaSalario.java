@@ -15,5 +15,5 @@ public class ContaSalario extends Conta {
     public void setUltimoPagamentoMES(String ultimoPagamentoMES) {
         this.ultimoPagamentoMES = ultimoPagamentoMES;
     }
-
+    
 }
