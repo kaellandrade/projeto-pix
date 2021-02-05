@@ -61,7 +61,7 @@ public class LerClientesSerializados {
                 // System.out.println(cli);
             }
         } catch (EOFException endOfFileException) {
-            System.out.printf("Não há mais clientes\n");
+            System.out.printf("Clientes lidos com sucesso!\n");
         } catch (ClassNotFoundException classNotFoundException) {
             System.err.println("Tipo de objeto inválido. Terminando.");
         } catch (IOException ioException) {
