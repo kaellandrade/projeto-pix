@@ -31,9 +31,9 @@ public class ContaCorrente extends Conta {
                 data.toString()));
 
         // add extrato na conta corrente(empregador)
-        this.addExtrato(String.format("Pagamento: %s\nData: %s\nRecebedor: AGÊNCIA:%s CONTA: %s",
-                NumberFormat.getCurrencyInstance(local).format(valor), data.toString(), conta.getAgencia(),
-                this.getNumero()));
+        this.addExtrato(String.format("Pagamento: %s\nData: %s\nRecebedor: AG:%s CONT: %s",
+                NumberFormat.getCurrencyInstance(local).format(valor), data.toString(),
+                conta.getAgencia().getNumeroAgencia(), conta.getNumero()));
         return true;
     }
 
