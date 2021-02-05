@@ -94,16 +94,4 @@ public class Conta implements Serializable {
 
     };
 
-    /**
-     * Realiza transferência para uma determinada conta;
-     */
-    public boolean transferir(Conta conta, float valor) {
-        if (this.getSaldo() >= valor) {// Se possuir valor suficiente na conta;
-            conta.depositar(valor); // transfere o dinheiro
-            this.sacar(valor); // retira o valor transferido
-            return true;
-        }
-        return false;
-    }
-
 }
