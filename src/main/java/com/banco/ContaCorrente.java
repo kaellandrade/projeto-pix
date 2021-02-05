@@ -1,8 +1,11 @@
 package com.banco;
 
 import com.gui.PixGui;
+import com.pessoa.ClientePessoaFisica;
+
 import java.util.Date;
 import java.util.Locale;
+import java.lang.ClassCastException;
 import java.text.NumberFormat;
 
 public class ContaCorrente extends Conta {
@@ -15,25 +18,29 @@ public class ContaCorrente extends Conta {
     }
 
     /**
-     * Recebe uma conta salário e efetua o pagamento, caso o empregado não tenha
-     * recebido no mes atual
+     * Recebe uma pessoa Física e efetua o pagamento caso a conta seja contaSalário
      */
-    public boolean realizarPagamento(ContaSalario conta, float valor) {
+    public boolean realizarPagamento(ClientePessoaFisica funcionario, float valor) {
         Date data = new Date();
+        try{
+            ContaSalario cs = (ContaSalario) funcionario.getConta();
+    
+            // TODO: Antes de depositar verificar o último pagamento;
+            cs.depositar(valor);
+            this.setSaldo(getSaldo() - valor); // Subtrai da conta corrente o valor pago
+    
+            // add extrato na conta salário
+            cs.addExtrato(String.format("Crédito: %s\nData: %s\n", NumberFormat.getCurrencyInstance(local).format(valor),
+                    data.toString()));
+    
+            // add extrato na conta corrente(empregador)
+            this.addExtrato(String.format("Pagamento: %s\nData: %s\nBeneficiário: %s",
+                    NumberFormat.getCurrencyInstance(local).format(valor), data.toString(), funcionario.getName()));
 
-        // TODO: Antes de depositar verificar o último pagamento;
-
-        conta.depositar(valor);
-        this.setSaldo(getSaldo() - valor); // Subtrai da conta corrente o valor pago
-
-        // add extrato na conta salário
-        conta.addExtrato(String.format("Crédito: %s\nData: %s\n", NumberFormat.getCurrencyInstance(local).format(valor),
-                data.toString()));
-
-        // add extrato na conta corrente(empregador)
-        this.addExtrato(String.format("Pagamento: %s\nData: %s\nRecebedor: AG:%s CONT: %s",
-                NumberFormat.getCurrencyInstance(local).format(valor), data.toString(),
-                conta.getAgencia().getNumeroAgencia(), conta.getNumero()));
+        }catch(ClassCastException e){
+            System.out.println("Permitido apenas conta salário para essa operação");
+            return false;
+        }
         return true;
     }
 
