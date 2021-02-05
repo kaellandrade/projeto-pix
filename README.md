@@ -1,45 +1,26 @@
 # Projeto da Unidade 2 - Sistema Bancária
-A partir de novembro, o Banco Central determinou que todas as contas bancárias doBrasil possam fazer transferências usando PIX. Dessa forma, é preciso criar ummódulo onde os bancos possam manipular os dados dos clientes e do próprio BancoCentral. Esse módulo deve ter as seguintes funcionalidades:
+## Bibliografia
+- [Java®: Como Programar 📚](https://www.amazon.com.br/Java%C2%AE-como-programar-Paul-Deitel/dp/8543004799/ref=asc_df_8543004799/?tag=googleshopp00-20&linkCode=df0&hvadid=379748659420&hvpos=&hvnetw=g&hvrand=7458101882819761644&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1001715&hvtargid=pla-811137648368&psc=1)
 
-- Fazer a manutenção do cadastro do banco e agência
-  - Todo banco tem um código
-  - Cada agência tem um código
+- [Object-Oriented Programming and Java (English Edition) 2nd Edição 📚](https://www.amazon.com.br/Object-Oriented-Programming-Java-English-Danny-ebook/dp/B00192QXTK)
 
-- Fazer a manutenção do cadastro dos clientes
-  - Cada cliente está associado a pelo menos uma agência do banco
-  - Um cliente pode ter mais de uma conta
-  - Cada conta tem um código
+## Artigos
+- [Alura 📃](https://www.alura.com.br/artigos/mascarando-campos-de-um-formulario-usando-java-para-desktop)
+- [DEV Media 📃](https://www.devmedia.com.br/orientacao-a-objetos-simples-assim/3254)
+- [Programcreek 📃](https://www.programcreek.com/2011/03/java-appendadd-something-to-an-existing-file/)
+- [How Todo In Java 📃](https://howtodoinjava.com/java/library/json-simple-read-write-json-examples/)
 
-- Fazer a manutenção de contas e chaves PIX
-  - Existem 3 tipos de conta: Conta corrente, poupança e conta-salário (nãorecebe depósitos, a não ser do empregador)
-  
-  - Cada conta pode ter no máximo 5 chaves PIX
-  
-  - As chaves PIX podem ser: e-mail, telefone ou um código gerado peloBanco Central, contendo 20 caracteres (entre letras e números)
-  
-  - Uma chave PIX é única para o sistema do Banco Central
-  
-  - No momento da transferência via PIX, os dados de quem for receber odinheiro devem aparecer na tela, com informações vindas do Banco Central
 
-- Operações a serem realizadas
-  - Exibir o montante em dinheiro aplicado no banco
-  - Exibir o montante em dinheiro aplicado em uma determinada agência
-  - Exibir o saldo de um cliente em uma agência
-  - Fazer transferências entre clientes
-  - Exibir   um   extrato   detalhado   de   um   cliente,   com   todas   as   operações realizadas e o saldo da conta por operação
+## Ferramentas De Desenvolvimento
+- [Vs Code 💻](https://code.visualstudio.com/)
+  - Version: 1.53.0
 
-- Requisitos de Java e Orientação a Objetos
-  - No mínimo 3 classes herdadas
-  - Usar bem Polimorfismo e Encapsulamento
-  - No mínimo 2 interfaces
-  - No mínimo 2 classes abstratas
-  - Usar ambiente gráfico
-  - Fazer teste de software usando JUnit em pelo menos 2 classes
-  - Separar parte gráfica de regra de negócio
-  - Separar os módulos em pacotes
+- [Java JDK 11 🍵](https://www.oracle.com/br/java/technologies/javase-jdk11-downloads.html)
+  - Openjdk 11.0.9.1
 
-- Requisitos Gerais
-  - Grupo com no máximo 3 pessoas
-  - Se optar por fazer individualmente, terá a pontuação reduzida em 20%
-  - Todo o material guardado em um servidor git. Quero apenas o link doprojeto para a avaliação
-  - A  qualidade   do   código   será   avaliada,   assim   como   as   boas   práticas   deprogramação e convenção de código Java
+- [Lucid 🖼](https://lucid.app/documents#/dashboard)
+
+- [Notion 📓](https://www.notion.so/)
+
+## UML
+![alt text](imgs/UMLPIX.svg "UML do projeto")
