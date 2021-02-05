@@ -27,7 +27,7 @@ public class App {
 
         
         
-        ClientePessoaFisica funcionario =  (ClientePessoaFisica) todos_clientes.get("91365036146");
+        ClientePessoaFisica funcionario =  (ClientePessoaFisica) todos_clientes.get("89657670160");
         ContaSalario cs = (ContaSalario) funcionario.getConta(); // conta corrente do empregador
 
 
@@ -37,8 +37,7 @@ public class App {
         System.out.println(cs.getSaldo());
         System.out.println(cs.getExtrato());
         
-        // cc.realizarPagamento(cs, 100); // realiza pagamento para uma conta corrente;
-        cc.sacar(100);
+        // cc.realizarPagamento(funcionario, 600); // realiza pagamento para uma conta corrente;
 
 
         System.out.println("Depois do pagamento");
