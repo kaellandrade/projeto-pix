@@ -22,22 +22,22 @@ public class ContaCorrente extends Conta {
      */
     public boolean realizarPagamento(ClientePessoaFisica funcionario, float valor) {
         Date data = new Date();
-        try{
+        try {
             ContaSalario cs = (ContaSalario) funcionario.getConta();
-    
+
             // TODO: Antes de depositar verificar o último pagamento;
             cs.depositar(valor);
             this.setSaldo(getSaldo() - valor); // Subtrai da conta corrente o valor pago
-    
+
             // add extrato na conta salário
-            cs.addExtrato(String.format("Crédito: %s\nData: %s\n", NumberFormat.getCurrencyInstance(local).format(valor),
-                    data.toString()));
-    
+            cs.addExtrato(String.format("Crédito: %s\nData: %s\n",
+                    NumberFormat.getCurrencyInstance(local).format(valor), data.toString()));
+
             // add extrato na conta corrente(empregador)
             this.addExtrato(String.format("Pagamento: %s\nData: %s\nBeneficiário: %s",
                     NumberFormat.getCurrencyInstance(local).format(valor), data.toString(), funcionario.getName()));
 
-        }catch(ClassCastException e){
+        } catch (ClassCastException e) {
             System.out.println("Permitido apenas conta salário para essa operação");
             return false;
         }
@@ -78,6 +78,29 @@ public class ContaCorrente extends Conta {
         } else {
             PixGui.dialogo("Saldo insuficiente.");
             return false;
+        }
+    }
+
+    @Override
+    public boolean depositar(float valor) {
+        Date data = new Date();
+
+        final float LIMITE_DEPOS_MAX = 10000;
+        final float LIMITE_DEPOS_MIN = 100;
+
+        if (valor > LIMITE_DEPOS_MAX || valor < LIMITE_DEPOS_MIN) {
+            PixGui.dialogo(String.format("Limite de depósito %s até %s",
+                    NumberFormat.getCurrencyInstance(local).format(LIMITE_DEPOS_MIN),
+                    NumberFormat.getCurrencyInstance(local).format(LIMITE_DEPOS_MAX)));
+
+            return false;
+        } else {
+            super.depositar(valor);
+            this.addExtrato(String.format("Depósito: %s\nData: %s",
+                    NumberFormat.getCurrencyInstance(local).format(valor), data.toString()));
+            PixGui.dialogo(String.format("Depósito de R$ %.2f efetuado com sucesso.", valor));
+
+            return true;
         }
     }
 }
