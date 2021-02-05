@@ -9,7 +9,7 @@ import java.text.NumberFormat;
 public class ContaPoupanca extends Conta {
 
     private final Locale local = new Locale("pt", "BR");
-    private final float TAXA = 0.012f;
+    private final float TAXA = 0.001f; // 0.1 %
 
     public ContaPoupanca(String numero, float saldo, Agencia agencia) {
         super(numero, saldo, agencia);
@@ -50,7 +50,7 @@ public class ContaPoupanca extends Conta {
      */
     @Override
     public void gerartaxa(float valor) {
-        // Implementar...
+        setSaldo(getSaldo() + (TAXA * valor));
     }
 
     /**
@@ -66,8 +66,9 @@ public class ContaPoupanca extends Conta {
         if (valor >= LIMITE_DEPOS_MIN && valor <= LIMITE_DEPOS_MAX) {
             
             super.depositar(valor);
-            this.addExtrato(String.format("Depósito: %s\nData: %s",
-            NumberFormat.getCurrencyInstance(local).format(valor), data.toLocaleString()));
+            gerartaxa(valor);
+            this.addExtrato(String.format("Depósito: %s\nData: %s \nRendimento: %s",
+            NumberFormat.getCurrencyInstance(local).format(valor), data.toLocaleString(), (TAXA*valor)));
             PixGui.dialogo(String.format("Depósito de R$ %.2f efetuado com sucesso.", valor));
 
             return true;
