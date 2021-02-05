@@ -8,8 +8,8 @@ import java.text.NumberFormat;
 
 public class ContaPoupanca extends Conta {
 
-    private final float TAXA = 0.012f;
     private final Locale local = new Locale("pt", "BR");
+    private final float TAXA = 0.012f;
 
     public ContaPoupanca(String numero, float saldo, Agencia agencia) {
         super(numero, saldo, agencia);
@@ -26,7 +26,7 @@ public class ContaPoupanca extends Conta {
         final float LIMITE_SAQUE_MAX = 1500;
         final float LIMITE_SAQUE_MIN = 10;
 
-        if (valor > LIMITE_SAQUE_MAX || valor < LIMITE_SAQUE_MIN) {
+        if (!(valor >= LIMITE_SAQUE_MIN && valor <= LIMITE_SAQUE_MAX)) { // se não estiver no intervalo retorna true
             PixGui.dialogo(String.format("Limite de saque %s até %s",
                     NumberFormat.getCurrencyInstance(local).format(LIMITE_SAQUE_MIN),
                     NumberFormat.getCurrencyInstance(local).format(LIMITE_SAQUE_MAX)));
@@ -51,6 +51,34 @@ public class ContaPoupanca extends Conta {
     @Override
     public void gerartaxa(float valor) {
         // Implementar...
+    }
+
+    /**
+     * Recebe um valor e efetua o depósito caso esteja no limite mínimo e máximo
+     * permitido
+     */
+    @Override
+    public boolean depositar(float valor) {
+        Date data = new Date();
+        final float LIMITE_DEPOS_MAX = 1000;
+        final float LIMITE_DEPOS_MIN = 10;
+
+        if (valor >= LIMITE_DEPOS_MIN && valor <= LIMITE_DEPOS_MAX) {
+            
+            super.depositar(valor);
+            this.addExtrato(String.format("Depósito: %s\nData: %s",
+            NumberFormat.getCurrencyInstance(local).format(valor), data.toLocaleString()));
+            PixGui.dialogo(String.format("Depósito de R$ %.2f efetuado com sucesso.", valor));
+
+            return true;
+
+        } else {
+            PixGui.dialogo(String.format("Limite de depósito %s até %s",
+                    NumberFormat.getCurrencyInstance(local).format(LIMITE_DEPOS_MIN),
+                    NumberFormat.getCurrencyInstance(local).format(LIMITE_DEPOS_MAX)));
+            
+            return false;
+        }
     }
 
 }
