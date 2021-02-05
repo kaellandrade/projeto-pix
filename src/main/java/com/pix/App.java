@@ -22,32 +22,36 @@ public class App {
 
         // TODO: Operações aqui
 
-        ClientePessoaJuridica empregador =  (ClientePessoaJuridica) todos_clientes.get("21637668000114");
-        ContaCorrente cc = (ContaCorrente) empregador.getConta(); // conta corrente do empregador
+        ClientePessoaJuridica juridico =  (ClientePessoaJuridica) todos_clientes.get("85598612000180");
+        ContaCorrente cc = (ContaCorrente) juridico.getConta(); // conta corrente do empregador
 
         
         
-        ClientePessoaFisica pf =  (ClientePessoaFisica) todos_clientes.get("89657670160");
+        ClientePessoaFisica pf =  (ClientePessoaFisica) todos_clientes.get("09532371338");
         ContaPoupanca cp = (ContaPoupanca) pf.getConta(); // conta corrente do empregador
 
+        /*
 
-        System.out.println("\n\nAntes");
-        System.out.println("Saldo Conta Corrente: " + cp.getSaldo());
-        System.out.println("Extrato Conta Corrente:" + cp.getExtrato());
-        // System.out.println("\nSaldo Conta Salario: " + cs.getSaldo());
-        // System.out.println("Extrato Conta Salario: " + cs.getExtrato());
+        System.out.println("\n\nAntes tranferencia interna");
+        System.out.println("Saldo Conta Corrente: " + cc.getSaldo());
+        System.out.println("Extrato Conta Corrente:" + cc.getExtrato());
+
+        System.out.println("Saldo Conta POP: " + cp.getSaldo());
+        System.out.println("Extrato Conta POP: " + cp.getExtrato());
         
-        // cc.realizarPagamento(funcionario, 600); // realiza pagamento para uma conta corrente;
-        cp.depositar(1000);
-
-
-        System.out.println("\n\nDepois");
-        System.out.println("Saldo Conta Corrente: " + cp.getSaldo());
-        System.out.println("Extrato Conta Corrente: " + cp.getExtrato());
-        // System.out.println("\nSaldo Conta Salario:" + cs.getSaldo());
-        // System.out.println("Extrato Conta Salario: " + cs.getExtrato());
-
+        cc.realizarTransferenciaInterna(pf, 100);
         
+        */
+
+        /*
+        System.out.println("\n\nDepois transferencia interna");
+
+        System.out.println("Saldo Conta Corrente: " + cc.getSaldo());
+        System.out.println("Extrato Conta Corrente:" + cc.getExtrato());
+
+        System.out.println("Saldo Conta POP: " + cp.getSaldo());
+        System.out.println("Extrato Conta POP: " + cp.getExtrato());
+        */
 
 
 
