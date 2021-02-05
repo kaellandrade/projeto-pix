@@ -18,8 +18,22 @@ public class ContaCorrente extends Conta {
      * Recebe uma conta salário e efetua o pagamento, caso o empregado não tenha
      * recebido no mes atual
      */
-    public boolean realizarPagamento(ContaSalario conta) {
-        // Implementar...
+    public boolean realizarPagamento(ContaSalario conta, float valor) {
+        Date data = new Date();
+
+        // TODO: Antes de depositar verificar o último pagamento;
+
+        conta.depositar(valor);
+        this.setSaldo(getSaldo() - valor); // Subtrai da conta corrente o valor pago
+
+        // add extrato na conta salário
+        conta.addExtrato(String.format("Crédito: %s\nData: %s\n", NumberFormat.getCurrencyInstance(local).format(valor),
+                data.toString()));
+
+        // add extrato na conta corrente(empregador)
+        this.addExtrato(String.format("Pagamento: %s\nData: %s\nRecebedor: AGÊNCIA:%s CONTA: %s",
+                NumberFormat.getCurrencyInstance(local).format(valor), data.toString(), conta.getAgencia(),
+                this.getNumero()));
         return true;
     }
 
