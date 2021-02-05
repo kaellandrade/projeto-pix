@@ -66,7 +66,7 @@ public class CriaDataBase {
                             obj.get("telefone").toString(), conta, obj.get("cpfOUCNPJ").toString());
                 } else { // caso contrário cria uma conta Poupanca e uma pessoa física
                     // TODO: Criar uma conta salário ou poupança com RANDOM;
-                    conta = new ContaSalario(obj.get("conta").toString(),
+                    conta = new ContaPoupanca(obj.get("conta").toString(),
                             Float.parseFloat(obj.get("saldo").toString()), ag);
 
                     cli = new ClientePessoaFisica(obj.get("nome").toString(), obj.get("email").toString(),
