@@ -11,8 +11,7 @@ import java.text.NumberFormat;
 
 public class ContaCorrente extends Conta {
 
-    private Locale local = new Locale("pt", "BR");
-    private Date data = new Date();
+    private final Locale local = new Locale("pt", "BR");
     private final float TAXA = 0.02f;
 
     public ContaCorrente(String numero, float saldo, Agencia agencia) {
@@ -23,15 +22,16 @@ public class ContaCorrente extends Conta {
      * Recebe uma pessoa Física e efetua o pagamento caso a conta seja contaSalário
      */
     public boolean realizarPagamento(ClientePessoaFisica funcionario, float valor) {
-
+        Date data = new Date();
         try {
             ContaSalario cs = (ContaSalario) funcionario.getConta();
 
             // TODO: Antes de depositar verificar o último pagamento;
+
             cs.depositar(valor);
             this.setSaldo(getSaldo() - valor); // Subtrai da conta corrente o valor pago
 
-            // add extrato na conta salário
+            // add extrato na conta salário(funcionário)
             cs.addExtrato(String.format("Crédito: %s\nData: %s\n",
                     NumberFormat.getCurrencyInstance(local).format(valor), data.toLocaleString()));
 
@@ -63,10 +63,11 @@ public class ContaCorrente extends Conta {
      */
     @Override
     public boolean sacar(float valor) {
+        Date data = new Date();
 
         final float LIMITE_SAQUE_MAX = 5000;
         final float LIMITE_SAQUE_MIN = 100;
-        if (valor > LIMITE_SAQUE_MAX || valor < LIMITE_SAQUE_MIN) {
+        if (!(valor >= LIMITE_SAQUE_MIN && valor <= LIMITE_SAQUE_MAX)) { // se não estiver no intervalo retorna true
             PixGui.dialogo(String.format("Limite de saque %s até %s",
                     NumberFormat.getCurrencyInstance(local).format(LIMITE_SAQUE_MIN),
                     NumberFormat.getCurrencyInstance(local).format(LIMITE_SAQUE_MAX)));
@@ -90,23 +91,23 @@ public class ContaCorrente extends Conta {
      */
     @Override
     public boolean depositar(float valor) {
-
+        Date data = new Date();
         final float LIMITE_DEPOS_MAX = 10000;
         final float LIMITE_DEPOS_MIN = 100;
 
-        if (valor > LIMITE_DEPOS_MAX || valor < LIMITE_DEPOS_MIN) {
-            PixGui.dialogo(String.format("Limite de depósito %s até %s",
-                    NumberFormat.getCurrencyInstance(local).format(LIMITE_DEPOS_MIN),
-                    NumberFormat.getCurrencyInstance(local).format(LIMITE_DEPOS_MAX)));
-
-            return false;
-        } else {
+        if (valor >= LIMITE_DEPOS_MIN && valor <= LIMITE_DEPOS_MAX) {
             super.depositar(valor);
             this.addExtrato(String.format("Depósito: %s\nData: %s",
                     NumberFormat.getCurrencyInstance(local).format(valor), data.toLocaleString()));
             PixGui.dialogo(String.format("Depósito de R$ %.2f efetuado com sucesso.", valor));
 
             return true;
+        } else {
+            PixGui.dialogo(String.format("Limite de depósito %s até %s",
+                    NumberFormat.getCurrencyInstance(local).format(LIMITE_DEPOS_MIN),
+                    NumberFormat.getCurrencyInstance(local).format(LIMITE_DEPOS_MAX)));
+
+            return false;
         }
     }
 }
