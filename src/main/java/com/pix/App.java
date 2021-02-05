@@ -38,7 +38,7 @@ public class App {
         // System.out.println("Extrato Conta Salario: " + cs.getExtrato());
         
         // cc.realizarPagamento(funcionario, 600); // realiza pagamento para uma conta corrente;
-        cp.depositar(1001);
+        cp.depositar(1000);
 
 
         System.out.println("\n\nDepois");
