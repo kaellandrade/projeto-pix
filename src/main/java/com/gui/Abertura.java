@@ -1,5 +1,8 @@
 package com.gui;
 
+import com.gui.TelaInicialPF;
+import com.gui.TelaInicialPJ;
+
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ItemEvent;
@@ -11,6 +14,7 @@ import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
@@ -119,10 +123,18 @@ public class Abertura extends JFrame {
 
             id = idCliente.getText();
             id = id.replaceAll("\\W", "");
+            
+            if(id.length() == 11) {
+                TelaInicialPF tela = new TelaInicialPF();
+                dispose();
+            }
+            else if (id.length() == 14) {
+                TelaInicialPJ tela = new TelaInicialPJ();
+                dispose();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "ID de formato incorreto", "ID de formato incorreto", JOptionPane.ERROR_MESSAGE);
+            }
         }
-    }
-
-    public String getId() {
-        return id;
     }
 }
