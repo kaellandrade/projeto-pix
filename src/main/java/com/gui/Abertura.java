@@ -2,6 +2,7 @@ package com.gui;
 
 import com.gui.TelaInicialPF;
 import com.gui.TelaInicialPJ;
+import com.gui.AcessoEspecial;
 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -17,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.Action;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JFormattedTextField;
@@ -31,15 +33,18 @@ public class Abertura extends JFrame {
     private JRadioButton radioButtonCNPJ, radioButtonCPF;
     private RadioButtonHandler handlerRadioButton;
     private ButtonHandler handlerButtom;
+    private ButtonHandlerAE buttonHadlerAE;
     private JPanel painel1;
     private String id;
 
+    // Construtor
     public Abertura() {
         painel1 = new JPanel();
         painel1.setLayout(new GridBagLayout());
 
         handlerRadioButton = new RadioButtonHandler();
         handlerButtom = new ButtonHandler();
+        buttonHadlerAE = new ButtonHandlerAE();
 
         idCliente.setColumns(14);
 
@@ -63,6 +68,7 @@ public class Abertura extends JFrame {
         grupo.add(radioButtonCNPJ);
         grupo.add(radioButtonCPF);
 
+        // Adição dos elementos ao painel
         this.add(painel1);
         this.pack();
 
@@ -70,8 +76,10 @@ public class Abertura extends JFrame {
         radioButtonCNPJ.addItemListener(handlerRadioButton);
         radioButtonCPF.addItemListener(handlerRadioButton);
         buttonEntrar.addActionListener(handlerButtom);
+        buttonAcessoEspecial.addActionListener(buttonHadlerAE);
     }
 
+    // Método que adiciona os elementos
     private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
         int altura, int alinhamento, int superior, int esquerda, int inferior, int direita) {
         GridBagConstraints gc = new GridBagConstraints();
@@ -87,6 +95,7 @@ public class Abertura extends JFrame {
         p.add(c, gc);
     }
 
+    // Tratamento de evento do RadioButton
     private class RadioButtonHandler implements ItemListener {
 
         @Override
@@ -116,6 +125,7 @@ public class Abertura extends JFrame {
         }
     }
 
+    // Tratamento de evento do botão Entrar
     private class ButtonHandler implements ActionListener {
 
         @Override
@@ -124,17 +134,29 @@ public class Abertura extends JFrame {
             id = idCliente.getText();
             id = id.replaceAll("\\W", "");
             
-            if(id.length() == 11) {
+            if (id.length() == 11) {
                 TelaInicialPF tela = new TelaInicialPF();
                 dispose();
             }
+
             else if (id.length() == 14) {
                 TelaInicialPJ tela = new TelaInicialPJ();
                 dispose();
             }
+
             else {
                 JOptionPane.showMessageDialog(null, "ID de formato incorreto", "ID de formato incorreto", JOptionPane.ERROR_MESSAGE);
             }
+        }
+    }
+
+    // Tratamento de evento do botão de acesso especial
+    private class ButtonHandlerAE implements ActionListener {
+        
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            AcessoEspecial acessoEspecial = new AcessoEspecial();
+            dispose();
         }
     }
 }
