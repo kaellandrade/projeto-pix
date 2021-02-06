@@ -17,22 +17,29 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
 
 public class Abertura extends JFrame {
 
     // declarando os elementos
-    JTextField textFieldCPF = new JTextField(11), textFieldCNPJ = new JTextField(14);
+    JFormattedTextField idCliente = new JFormattedTextField();
+
+    //JTextField textFieldCPF = new JTextField(11), textFieldCNPJ = new JTextField(14);
     JButton buttonEntrar = new JButton("Entrar"), buttonAcessoEspecial = new JButton("Acesso especial");
     
     private JRadioButton radioButtonCNPJ, radioButtonCPF;
     private RadioButtonHandler handler;
+    private JPanel painel1;
 
     public Abertura() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //setPreferredSize(new Dimension(300,500));
-        JPanel painel1 = new JPanel();
+        painel1 = new JPanel();
         painel1.setLayout(new GridBagLayout());
         handler = new RadioButtonHandler();
+
+        idCliente.setColumns(14);
 
         // adição dos elementos à interface 
         addElemento(painel1, new JLabel("Selecione a ID"), 0, 0, 1, 1, GridBagConstraints.CENTER, 70, 100, 10, 100);
@@ -45,16 +52,23 @@ public class Abertura extends JFrame {
         //radioButtonCNPJ.setSelected(false);
         addElemento(painel1, radioButtonCNPJ, 0, 1, 1, 1, GridBagConstraints.EAST, 10, 10, 10, 70);
 
-        //addElemento(painel1, textFieldCPF, 0, 2, 1, 1, GridBagConstraints.CENTER, 0, 10, 10, 10);
+        //try {
+        //    textFieldCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+        //    textFieldCPF.setColumns(11);;
+        //} catch (Exception e) {
+        //    System.out.println(e);
+        //}
+
+        addElemento(painel1, idCliente, 0, 2, 1, 1, GridBagConstraints.CENTER, 0, 10, 10, 10);
 
         addElemento(painel1, buttonEntrar, 0, 3, 1, 2, GridBagConstraints.CENTER, 10, 10, 150, 10);
 
         addElemento(painel1, buttonAcessoEspecial, 0, 4, 1, 1, GridBagConstraints.SOUTH, 100, 10, 20, 10);
 
-        // agrupamento dos RadioButtons
-        //ButtonGroup grupo = new ButtonGroup();
-        //grupo.add(radioButtonCNPJ);
-        //grupo.add(radioButtonCPF);
+        //agrupamento dos RadioButtons
+        ButtonGroup grupo = new ButtonGroup();
+        grupo.add(radioButtonCNPJ);
+        grupo.add(radioButtonCPF);
 
         this.add(painel1);
         this.pack();
@@ -63,7 +77,6 @@ public class Abertura extends JFrame {
         // Tratamento de eventos
         radioButtonCNPJ.addItemListener(handler);
         radioButtonCPF.addItemListener(handler);
-
     }
 
     private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
@@ -82,18 +95,32 @@ public class Abertura extends JFrame {
     }
 
     public class RadioButtonHandler implements ItemListener {
-        String cpf, cnpj;
-        
+
         @Override
         public void itemStateChanged(ItemEvent evento) {
 
-            if (radioButtonCPF.isSelected())
-                cpf = JOptionPane.showInputDialog("Informe seu CPF");
+            idCliente.setValue("");
 
-            if (radioButtonCNPJ.isSelected())
-                cnpj = JOptionPane.showInputDialog("Informe seu CPF");
+            if (radioButtonCPF.isSelected()) {
 
-            System.out.println(cpf);
+                try {
+                    MaskFormatter mascaraCPF = new MaskFormatter("###.###.###-##");
+                    mascaraCPF.install(idCliente);
+                } catch (Exception e) {
+                    System.out.print(e);
+                }
+            }
+
+            if (radioButtonCNPJ.isSelected()) {
+
+                try {
+                    MaskFormatter mascaraCNPJ = new MaskFormatter("##.###.###/0001-##");
+                    mascaraCNPJ.install(idCliente);
+                } catch (Exception e) {
+                    System.out.print(e);
+                }
+            }
+
         }
     }
 }
