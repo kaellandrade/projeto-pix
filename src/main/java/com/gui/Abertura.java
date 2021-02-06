@@ -28,6 +28,11 @@ public class Abertura extends JFrame {
     private RadioButtonHandler handlerRadioButton;
     private ButtonHandler handlerButtom;
     private JPanel painel1;
+    private String id;
+
+    public String getId() {
+        return id;
+    }
 
     public Abertura() {
         painel1 = new JPanel();
@@ -119,8 +124,9 @@ public class Abertura extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent evento) {
-            String id = idCliente.getText();
-            System.out.println(id);
+
+            id = idCliente.getText();
+            id = id.replaceAll("\\W", "");
         }
-    } 
+    }
 }
