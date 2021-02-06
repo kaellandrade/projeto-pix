@@ -2,15 +2,23 @@ package com.pix;
 
 import java.util.Map;
 
+import com.gui.*;
+
 import com.bancocentral.Pix;
 import com.pessoa.Cliente;
 import com.pessoa.ClientePessoaFisica;
 import com.pessoa.ClientePessoaJuridica;
 import com.backend.*;
 import com.banco.*;
+import javax.swing.JFrame;
 
 public class App {
     public static void main(String[] args) {
+
+        Abertura abertura = new Abertura();
+        abertura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        abertura.setVisible(true);
+
         Map<String, Cliente> todos_clientes;
         // CriaDataBase.abrirArquivo();
         // CriaDataBase.populaDados();
