@@ -24,8 +24,6 @@ public class Abertura extends JFrame {
 
     // declarando os elementos
     JFormattedTextField idCliente = new JFormattedTextField();
-
-    //JTextField textFieldCPF = new JTextField(11), textFieldCNPJ = new JTextField(14);
     JButton buttonEntrar = new JButton("Entrar"), buttonAcessoEspecial = new JButton("Acesso especial");
     
     private JRadioButton radioButtonCNPJ, radioButtonCPF;
@@ -34,7 +32,6 @@ public class Abertura extends JFrame {
 
     public Abertura() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setPreferredSize(new Dimension(300,500));
         painel1 = new JPanel();
         painel1.setLayout(new GridBagLayout());
         handler = new RadioButtonHandler();
@@ -45,19 +42,10 @@ public class Abertura extends JFrame {
         addElemento(painel1, new JLabel("Selecione a ID"), 0, 0, 1, 1, GridBagConstraints.CENTER, 70, 100, 10, 100);
 
         radioButtonCPF = new JRadioButton("CPF", false);
-        //radioButtonCPF.setSelected(true);
         addElemento(painel1, radioButtonCPF, 0, 1, 1, 1, GridBagConstraints.WEST, 10, 70, 10, 10);
 
         radioButtonCNPJ = new JRadioButton("CNPJ", false);
-        //radioButtonCNPJ.setSelected(false);
         addElemento(painel1, radioButtonCNPJ, 0, 1, 1, 1, GridBagConstraints.EAST, 10, 10, 10, 70);
-
-        //try {
-        //    textFieldCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
-        //    textFieldCPF.setColumns(11);;
-        //} catch (Exception e) {
-        //    System.out.println(e);
-        //}
 
         addElemento(painel1, idCliente, 0, 2, 1, 1, GridBagConstraints.CENTER, 0, 10, 10, 10);
 
@@ -109,6 +97,8 @@ public class Abertura extends JFrame {
                 } catch (Exception e) {
                     System.out.print(e);
                 }
+
+                System.out.println(idCliente.getValue());
             }
 
             if (radioButtonCNPJ.isSelected()) {
@@ -119,8 +109,9 @@ public class Abertura extends JFrame {
                 } catch (Exception e) {
                     System.out.print(e);
                 }
-            }
 
+                System.out.println(idCliente.getValue());
+            }
         }
     }
 }
