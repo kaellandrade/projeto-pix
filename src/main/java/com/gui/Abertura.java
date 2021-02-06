@@ -30,10 +30,6 @@ public class Abertura extends JFrame {
     private JPanel painel1;
     private String id;
 
-    public String getId() {
-        return id;
-    }
-
     public Abertura() {
         painel1 = new JPanel();
         painel1.setLayout(new GridBagLayout());
@@ -102,8 +98,6 @@ public class Abertura extends JFrame {
                 } catch (Exception e) {
                     System.out.print(e);
                 }
-
-                System.out.println(idCliente.getValue());
             }
 
             if (radioButtonCNPJ.isSelected()) {
@@ -114,8 +108,6 @@ public class Abertura extends JFrame {
                 } catch (Exception e) {
                     System.out.print(e);
                 }
-
-                System.out.println(idCliente.getValue());
             }
         }
     }
@@ -128,5 +120,9 @@ public class Abertura extends JFrame {
             id = idCliente.getText();
             id = id.replaceAll("\\W", "");
         }
+    }
+
+    public String getId() {
+        return id;
     }
 }

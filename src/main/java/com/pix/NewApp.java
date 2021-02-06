@@ -8,5 +8,7 @@ public class NewApp {
         Abertura abertura = new Abertura();
         abertura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         abertura.setVisible(true);
+
+        System.out.println("Hello world");
     }
 }       
