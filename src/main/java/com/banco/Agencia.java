@@ -1,6 +1,8 @@
 package com.banco;
 
-public class Agencia {
+import java.io.Serializable;
+
+public class Agencia implements Serializable {
     private String numeroAgencia;
     private Banco banco;
 
@@ -11,10 +13,6 @@ public class Agencia {
 
     public String getNumeroAgencia() {
         return numeroAgencia;
-    }
-
-    public void setNumeroAgencia(String numeroAgencia) {
-        this.numeroAgencia = numeroAgencia;
     }
 
     public Banco getBanco() {
