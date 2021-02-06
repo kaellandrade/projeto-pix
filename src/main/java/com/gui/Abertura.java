@@ -4,6 +4,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.GridBagConstraints;
 
 import javax.swing.JButton;
@@ -23,13 +25,16 @@ public class Abertura extends JFrame {
     JButton buttonEntrar = new JButton("Entrar"), buttonAcessoEspecial = new JButton("Acesso especial");
     
     private JRadioButton radioButtonCNPJ, radioButtonCPF;
-    private RadioButtonHandler handler;
+    private RadioButtonHandler handlerRadioButton;
+    private ButtonHandler handlerButtom;
     private JPanel painel1;
 
     public Abertura() {
         painel1 = new JPanel();
         painel1.setLayout(new GridBagLayout());
-        handler = new RadioButtonHandler();
+
+        handlerRadioButton = new RadioButtonHandler();
+        handlerButtom = new ButtonHandler();
 
         idCliente.setColumns(14);
 
@@ -57,8 +62,9 @@ public class Abertura extends JFrame {
         this.pack();
 
         // Tratamento de eventos
-        radioButtonCNPJ.addItemListener(handler);
-        radioButtonCPF.addItemListener(handler);
+        radioButtonCNPJ.addItemListener(handlerRadioButton);
+        radioButtonCPF.addItemListener(handlerRadioButton);
+        buttonEntrar.addActionListener(handlerButtom);
     }
 
     private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
@@ -76,7 +82,7 @@ public class Abertura extends JFrame {
         p.add(c, gc);
     }
 
-    public class RadioButtonHandler implements ItemListener {
+    private class RadioButtonHandler implements ItemListener {
 
         @Override
         public void itemStateChanged(ItemEvent evento) {
@@ -108,4 +114,13 @@ public class Abertura extends JFrame {
             }
         }
     }
+
+    private class ButtonHandler implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            String id = idCliente.getText();
+            System.out.println(id);
+        }
+    } 
 }
