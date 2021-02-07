@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 
 public class TesteInterface {
     public static void main(String[] args) {
-        TelaInicialPF pf = new TelaInicialPF();
-        pf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pf.setVisible(true);
+        TelaPix tela = new TelaPix();
+        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tela.setVisible(true);
     }    
 }
