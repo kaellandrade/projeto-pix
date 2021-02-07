@@ -96,7 +96,7 @@ public class TelaInicialPJ extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent evento) {
-            TransferenciaPix pix = new TransferenciaPix();
+            TelaPix pix = new TelaPix();
             dispose();
         }
     }
