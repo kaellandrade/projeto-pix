@@ -1,5 +1,3 @@
-////////// MUDAR O PREENCHIMENTO DOS BOTÕES
-
 package com.gui;
 
 import java.awt.GridBagLayout;
@@ -18,27 +16,29 @@ public class TelaInicialPJ extends JFrame {
     JLabel labelHeader = new JLabel("Menu Pessoa Jurídica"), labelSaldo = new JLabel("Saldo");
 
     // declarando os JButtons
-    JButton buttonTI = new JButton("<html><center>Realizar transferência<br />interna</center></html>"),
-        buttonExtrato = new JButton("<html><center>Consultar o<br />extrato da conta</center></html>"),
-        buttonPix = new JButton("<html><center>Realizar transferência<br />via Pix</center></html>"),
-        buttonPagamento = new JButton("<html><center>Realizar<br />pagamento</center></html>");
+    JButton buttonTI = new JButton("Realizar transferência"),
+        buttonExtrato = new JButton("Consultar o extrato da conta"),
+        buttonPix = new JButton("Realizar transferência via Pix"),
+        buttonPagamento = new JButton("Realizar pagamento");
 
     public TelaInicialPJ() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
 
+        labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
+
         // título da tela
-        addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 70, 100);
+        addElemento(painel, labelHeader, 1, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 10, 100, 50);
 
         // campo de exibição do saldo
-        addElemento(painel, labelSaldo, 0, 1, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
+        addElemento(painel, labelSaldo, 1, 1, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10, 50);
 
         // botões de operações
-        addElemento(painel, buttonTI, 0, 2, 1, 1, GridBagConstraints.CENTER, 30, 10, 10, 10);
-        addElemento(painel, buttonPix, 0, 3, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
-        addElemento(painel, buttonPagamento, 0, 4, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
-        addElemento(painel, buttonExtrato, 0, 5, 1, 1, GridBagConstraints.CENTER, 10, 10, 70, 10);
+        addElemento(painel, buttonTI, 1, 2, 1, 1, GridBagConstraints.CENTER, 30, 10, 10, 10, 10);
+        addElemento(painel, buttonPix, 1, 3, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10, 10);
+        addElemento(painel, buttonPagamento, 1, 4, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10, 10);
+        addElemento(painel, buttonExtrato, 1, 5, 1, 1, GridBagConstraints.CENTER, 10, 10, 70, 10, 10);
 
         this.add(painel);
         this.pack();
@@ -46,14 +46,16 @@ public class TelaInicialPJ extends JFrame {
     }
 
     private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
-        int altura, int alinhamento, int superior, int esquerda, int inferior, int direita) {
+        int altura, int alinhamento, int superior, int esquerda, int inferior, int direita, int ipady) {
         GridBagConstraints gc = new GridBagConstraints();
         gc.gridx = linha;
         gc.gridy = coluna;
         gc.gridwidth = largura;
         gc.gridheight = altura;
-        gc.weightx = 100.0;
-        gc.weighty = 100.0;
+        gc.ipady = ipady;
+        //gc.ipadx = 0;
+        //gc.weightx = 0;
+        //gc.weighty = 0;
         gc.insets = new Insets(superior, esquerda, inferior, direita);
         gc.anchor = alinhamento;
         gc.fill = GridBagConstraints.NONE;

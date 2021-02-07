@@ -1,5 +1,3 @@
-////////// MUDAR O PREENCHIMENTO DOS BOTÕES
-
 package com.gui;
 
 import java.awt.GridBagLayout;
@@ -16,7 +14,6 @@ public class TelaInicialPF extends JFrame {
 
     // declarando os JLabel
     JLabel labelHeader = new JLabel("Menu Pessoa Física"), labelSaldo = new JLabel("Saldo");
-
     // declarando os JButtons
     JButton buttonTI = new JButton("Realizar transferência"),
         buttonExtrato = new JButton("Consultar o extrato da conta"),
@@ -27,8 +24,10 @@ public class TelaInicialPF extends JFrame {
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
 
+        labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
+
         // título da tela
-        addElemento(painel, labelHeader, 1, 0, 1, 1, GridBagConstraints.CENTER, 30, 100, 40, 100, 50);
+        addElemento(painel, labelHeader, 1, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 10, 100, 50);
 
         // campo de exibição do saldo
         addElemento(painel, labelSaldo, 1, 1, 1, 1, GridBagConstraints.CENTER, 10, 100, 10, 100, 50);
@@ -36,7 +35,7 @@ public class TelaInicialPF extends JFrame {
         // botões de operações
         addElemento(painel, buttonTI, 1, 2, 1, 1, GridBagConstraints.CENTER, 30, 10, 10, 10, 10);
         addElemento(painel, buttonPix, 1, 3, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10, 10);
-        addElemento(painel, buttonExtrato, 1, 4, 1, 1, GridBagConstraints.CENTER, 10, 10, 70, 10, 10);
+        addElemento(painel, buttonExtrato, 1, 4, 1, 1, GridBagConstraints.CENTER, 10, 10, 20, 10, 10);
 
         this.add(painel);
         this.pack();
