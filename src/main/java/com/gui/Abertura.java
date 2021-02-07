@@ -45,7 +45,6 @@ public class Abertura extends JFrame {
     // Construtor
     public Abertura() {
         // Início Captura a data base
-
         LerClientesSerializados.abreArquivo();
         todos_clientes = LerClientesSerializados.lerClientes();
         LerClientesSerializados.fecharArquivo();
@@ -162,7 +161,7 @@ public class Abertura extends JFrame {
     }
     
     /**
-     * Verifica se o cliente é válido e cria sua respectivaa tela
+     * Verifica se o cliente é válido e cria sua respectiva tela
      */
     private void validaCliente(Cliente cli){
         if (cli != null) {// Cliente válido
