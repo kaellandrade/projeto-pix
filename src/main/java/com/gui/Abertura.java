@@ -1,11 +1,8 @@
 package com.gui;
 
-import com.gui.TelaInicialPF;
-import com.gui.TelaInicialPJ;
 import com.pessoa.Cliente;
 import com.pessoa.ClientePessoaFisica;
 import com.backend.LerClientesSerializados;
-import com.gui.AcessoEspecial;
 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -22,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.Action;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JFormattedTextField;
@@ -44,6 +40,7 @@ public class Abertura extends JFrame {
 
     // Construtor
     public Abertura() {
+
         // Início Captura a data base
         LerClientesSerializados.abreArquivo();
         todos_clientes = LerClientesSerializados.lerClientes();
@@ -82,6 +79,7 @@ public class Abertura extends JFrame {
         // Adição dos elementos ao painel
         this.add(painel1);
         this.pack();
+        this.setVisible(true);
 
         // Tratamento de eventos
         radioButtonCNPJ.addItemListener(handlerRadioButton);
@@ -144,6 +142,7 @@ public class Abertura extends JFrame {
 
             id = idCliente.getText();
             id = id.replaceAll("\\W", "");
+            
             Cliente cli;
             cli = todos_clientes.get(id);
             validaCliente(cli);
@@ -160,9 +159,7 @@ public class Abertura extends JFrame {
         }
     }
     
-    /**
-     * Verifica se o cliente é válido e cria sua respectiva tela
-     */
+    //Verifica se o cliente é válido e cria sua respectiva tela
     private void validaCliente(Cliente cli){
         if (cli != null) {// Cliente válido
 
