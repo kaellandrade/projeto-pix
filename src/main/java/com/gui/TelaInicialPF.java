@@ -19,7 +19,6 @@ public class TelaInicialPF extends JFrame {
 
     // declarando os JButtons
     JButton buttonTI = new JButton("Realizar transferência"),
-    //JButton buttonTI = new JButton("<html><center>Realizar transferência<br />interna</center></html>"),
         buttonExtrato = new JButton("Consultar o extrato da conta"),
         buttonPix = new JButton("Realizar transferência via Pix");
 

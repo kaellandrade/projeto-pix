@@ -1,11 +1,8 @@
 package com.gui;
 
-import com.gui.TelaInicialPF;
-import com.gui.TelaInicialPJ;
 import com.pessoa.Cliente;
 import com.pessoa.ClientePessoaFisica;
 import com.backend.LerClientesSerializados;
-import com.gui.AcessoEspecial;
 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -22,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.Action;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JFormattedTextField;
