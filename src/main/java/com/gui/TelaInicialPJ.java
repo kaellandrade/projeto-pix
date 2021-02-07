@@ -3,6 +3,8 @@ package com.gui;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -21,10 +23,20 @@ public class TelaInicialPJ extends JFrame {
         buttonPix = new JButton("Realizar transferência via Pix"),
         buttonPagamento = new JButton("Realizar pagamento");
 
+    private BHandlerTransferencia bHandlerTransferencia;
+    private BHandlerPix bHandlerPix;
+    //private BHandlerPagamento bHandlerPagamento;
+    //private BHandlerExtrato bHandlerExtrato;
+
     public TelaInicialPJ() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
+
+        bHandlerTransferencia = new BHandlerTransferencia();
+        bHandlerPix = new BHandlerPix();
+        //bHandlerPagamento = new BHandlerPagamento();
+        //bHandlerExtrato = new BHandlerExtrato();
 
         labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
 
@@ -43,8 +55,15 @@ public class TelaInicialPJ extends JFrame {
         this.add(painel);
         this.pack();
         this.setVisible(true);
+
+        // Tratamento de eventos
+        buttonTI.addActionListener(bHandlerTransferencia);
+        buttonPix.addActionListener(bHandlerPix);
+        //buttonPagamento.addActionListener(bHandlerPagamento);
+        //buttonExtrato.addActionListener(bHandlerExtrato);
     }
 
+    // Método que adiciona os elementos
     private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
         int altura, int alinhamento, int superior, int esquerda, int inferior, int direita, int ipady) {
         GridBagConstraints gc = new GridBagConstraints();
@@ -61,4 +80,50 @@ public class TelaInicialPJ extends JFrame {
         gc.fill = GridBagConstraints.NONE;
         p.add(c, gc);
     }
+
+    // Tratamento de eventos do botão de transferência
+    private class BHandlerTransferencia implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            TransferenciaInterna transferencia = new TransferenciaInterna();
+            dispose();
+        }
+    }
+
+    // Tratamento de eventos do botão do Pix
+    private class BHandlerPix implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            TransferenciaPix pix = new TransferenciaPix();
+            dispose();
+        }
+    }
+
+    // TODO: Tela de pagamento
+    // Tratamento de eventos do botão de pagamento
+    /* 
+    private class BHandlerPagamento implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            Pagamento pagamento = new Pagamento();
+            dispose();
+        }
+    }
+    */
+
+    // TODO: Tela de extrato
+    // Tratamento de eventos do botão de pagamento
+    /*
+    private class BHandlerExtrato implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            Extrato extrato = new Extrato();
+            dispose();
+        }
+    }
+    */
 }
