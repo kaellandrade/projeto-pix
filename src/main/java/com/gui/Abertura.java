@@ -166,9 +166,13 @@ public class Abertura extends JFrame {
      */
     private void validaCliente(Cliente cli){
         if (cli != null) {// Cliente válido
+
+            // cli.getConta().depositar(500);
+            // LerClientesSerializados.atualizar(todos_clientes.values()); // atualiza o arquivo .pix
+
             String nome = cli.getName();
             String saldo = Float.toString(cli.getConta().getSaldo());
-
+            
             if (cli instanceof ClientePessoaFisica) {
                 TelaInicialPF telaPF = new TelaInicialPF();
                 telaPF.labelHeader.setText(nome);
@@ -180,9 +184,9 @@ public class Abertura extends JFrame {
                 telaPJ.labelSaldo.setText(saldo);
                 dispose();
             }
-
+            // System.out.println(cli.getConta().getExtrato());
         } else {
-            JOptionPane.showMessageDialog(null, "ID de formato incorreto", "ID de formato incorreto",
+            JOptionPane.showMessageDialog(null, "ATENÇÃO!", "ID de formato incorreto",
                     JOptionPane.ERROR_MESSAGE);
         }
     }

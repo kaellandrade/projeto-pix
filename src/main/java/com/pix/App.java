@@ -14,7 +14,8 @@ import com.banco.*;
 
 public class App {
     public static void main(String[] args) {
-        Abertura abertura = new Abertura();;
+        // popularDados();
+        Abertura abertura = new Abertura();
         abertura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         abertura.setVisible(true);
         
@@ -23,7 +24,7 @@ public class App {
         // LerClientesSerializados.atualizar(todos_clientes.values()); // atualiza o arquivo .pix
     }
     /**
-     * Captura os clients do JSON e serializa-os;
+     * Captura os clientes do JSON e serializa-os. Basta executá-lo uma vez;
      */
     public static void popularDados(){
         CriaDataBase.abrirArquivo();
