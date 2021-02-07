@@ -21,21 +21,22 @@ public class App {
         abertura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         abertura.setVisible(true);
 
-        SaldoBanco sb = new SaldoBanco();
-        sb.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        sb.setVisible(true);
 
-        /*
-        PortalTransparencia a = new PortalTransparencia();
-        System.out.println("Itau:" + a.calcularMontanteItau());
-        System.out.println("Santander:" + a.calcularMontanSantander());
-        System.out.println("Bradesco:" + a.calcularMontanBradesco());
-        System.out.println("Brasil:" + a.calcularMontanteBrasil());
-        */
+        // Início Captura a data base
+        LerClientesSerializados.abreArquivo();
+        Map<String, Cliente> todos_clientes = LerClientesSerializados.lerClientes();
+        LerClientesSerializados.fecharArquivo();
+        // Fim Captura a data base
+
+        // Teste teste chave pix
+        ClientePessoaFisica pessoaf = (ClientePessoaFisica) todos_clientes.get("86719122134");
         
-        // após algumas movimentações rodar esse código abaixo
-        // LerClientesSerializados.atualizar(todos_clientes.values()); // atualiza o
-        // arquivo .pix
+        // pessoaf.getConta().setChavePIX(Pix.gerarChavePix());
+        // System.out.println(pessoaf.getConta().getChavePIX());
+        
+        // System.out.println(Pix.encontrarChave("jh68o3zknz7yyij4mk13"));
+
+        LerClientesSerializados.atualizar(todos_clientes.values()); // atualiza o arquivo .pix
     }
 
     /**
