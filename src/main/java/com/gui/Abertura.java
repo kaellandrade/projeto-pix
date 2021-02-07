@@ -185,7 +185,7 @@ public class Abertura extends JFrame {
             }
             // System.out.println(cli.getConta().getExtrato());
         } else {
-            JOptionPane.showMessageDialog(null, "ID de formato incorreto!", "ATENÇÃO!",
+            JOptionPane.showMessageDialog(null, "ID de formato incorreto", "ATENÇÃO!",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
