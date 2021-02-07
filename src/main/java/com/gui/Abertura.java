@@ -44,6 +44,7 @@ public class Abertura extends JFrame {
 
     // Construtor
     public Abertura() {
+
         // Início Captura a data base
         LerClientesSerializados.abreArquivo();
         todos_clientes = LerClientesSerializados.lerClientes();
@@ -144,6 +145,7 @@ public class Abertura extends JFrame {
 
             id = idCliente.getText();
             id = id.replaceAll("\\W", "");
+            
             Cliente cli;
             cli = todos_clientes.get(id);
             validaCliente(cli);
@@ -160,9 +162,7 @@ public class Abertura extends JFrame {
         }
     }
     
-    /**
-     * Verifica se o cliente é válido e cria sua respectiva tela
-     */
+    //Verifica se o cliente é válido e cria sua respectiva tela
     private void validaCliente(Cliente cli){
         if (cli != null) {// Cliente válido
 
@@ -185,7 +185,7 @@ public class Abertura extends JFrame {
             }
             // System.out.println(cli.getConta().getExtrato());
         } else {
-            JOptionPane.showMessageDialog(null, "ATENÇÃO!", "ID de formato incorreto",
+            JOptionPane.showMessageDialog(null, "ID de formato incorreto!", "ATENÇÃO!",
                     JOptionPane.ERROR_MESSAGE);
         }
     }

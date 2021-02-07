@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 
 public class TesteInterface {
     public static void main(String[] args) {
-        Abertura abertura = new Abertura();
-        abertura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        abertura.setVisible(true);
+        TelaInicialPF pf = new TelaInicialPF();
+        pf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pf.setVisible(true);
     }    
 }
