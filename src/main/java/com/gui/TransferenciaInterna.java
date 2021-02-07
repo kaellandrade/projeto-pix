@@ -3,6 +3,8 @@ package com.gui;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -11,6 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class TransferenciaInterna extends JFrame {
 
@@ -33,10 +38,25 @@ public class TransferenciaInterna extends JFrame {
         labelSaldo = new JLabel("<html><center>Saldo da <br /> conta corrente</center></html>"),
         labelBanco = new JLabel("Selecione o banco"), labelConta = new JLabel("Selecione a conta");
 
+    // Declarando o JMenu, JMenuBar e JMenuItem;
+    private JMenuBar barra;
+    private JMenu menu;
+    private JMenuItem login;
+
+    // Variáveis para tratamento de eventos do menu
+    private BHandlerLogin bHandlerLogin;
+
     public TransferenciaInterna() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
+
+        // Define o menu e seus componentes
+        barra = new JMenuBar();
+        menu = new JMenu("Opções");
+        login = new JMenuItem("Tela de login");
+
+        bHandlerLogin = new BHandlerLogin();
 
         // título da tela
         addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 70, 100);
@@ -68,9 +88,18 @@ public class TransferenciaInterna extends JFrame {
         // botão de transfeir
         addElemento(painel, buttonTransferir, 0, 8, 1, 1, GridBagConstraints.CENTER, 70, 10, 10, 10);
 
+        // adiciona menu ao JFrame
+        menu.add(login);
+        barra.add(menu);
+        this.setJMenuBar(barra);
+
+        // adiciona os componentes ao JFrame
         this.add(painel);
         this.pack();
         this.setVisible(true);
+
+        // Tratamento de eventos
+        login.addActionListener(bHandlerLogin);
     }
 
     private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
@@ -86,5 +115,15 @@ public class TransferenciaInterna extends JFrame {
         gc.anchor = alinhamento;
         gc.fill = GridBagConstraints.NONE;
         p.add(c, gc);
+    }
+
+    // Tratamento de eventos do menu (login)
+    private class BHandlerLogin implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            Abertura abertura = new Abertura();
+            dispose();
+        }
     }
 }
