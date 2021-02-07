@@ -3,6 +3,7 @@ package com.gui;
 import com.pessoa.Cliente;
 import com.pessoa.ClientePessoaFisica;
 import com.backend.LerClientesSerializados;
+import com.banco.Conta;
 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -144,8 +145,12 @@ public class Abertura extends JFrame {
             id = id.replaceAll("\\W", "");
             
             Cliente cli;
+            Conta conta;
+            
             cli = todos_clientes.get(id);
+            conta = todos_clientes.get(conta);
             validaCliente(cli);
+            chavePix(conta);
         }
     }
 
@@ -185,5 +190,11 @@ public class Abertura extends JFrame {
             JOptionPane.showMessageDialog(null, "ID de formato incorreto", "ATENÇÃO!",
                     JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void chavePix(Conta conta) {
+        String chave = conta.getChavePIX();
+        TelaPix telaPix = new TelaPix();
+        telaPix.labelChave.setText(chave);
     }
 }
