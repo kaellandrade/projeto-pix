@@ -33,6 +33,8 @@ public class TelaPix extends JFrame {
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
 
+        
+
         bHandlerTransferir = new BHandlerTransferir();
         //bHandlerExtrato = new BHandlerExtrato();
         //bHandlerGenChaves = BHandlerGenChaves();
@@ -80,13 +82,4 @@ public class TelaPix extends JFrame {
             dispose();
         }
     }
-
-    /*private void chavePix(Conta conta) {
-
-        String chave = conta.getChavePIX();
-
-        TelaPix telaPix = new TelaPix();
-        telaPix.labelChave.setText(chave);
-    }
-    */
 }
