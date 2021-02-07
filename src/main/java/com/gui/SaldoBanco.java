@@ -2,15 +2,21 @@ package com.gui;
 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.GridBagConstraints;
 
 import javax.swing.JPanel;
+
+import com.bancocentral.PortalTransparencia;
+
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 
 public class SaldoBanco extends JFrame {
+    PortalTransparencia transparencia = new PortalTransparencia();
 
     // declarando o JLabel
     JLabel labelH1 = new JLabel("Informações privilegiadas"),
@@ -25,6 +31,13 @@ public class SaldoBanco extends JFrame {
     JComboBox selecaoBanco = new JComboBox(bancos);
 
     public SaldoBanco() {
+        // Testando para o banco do brasil
+        ArrayList<Float> total = new ArrayList<>();
+        labelSaldoCC.setText(Float.toString(transparencia.calcularMontanteBrasil().get("corrente")));
+        labelSaldoPP.setText(Float.toString(transparencia.calcularMontanteBrasil().get("poupanca")));
+        labelSaldoCS.setText(Float.toString(transparencia.calcularMontanteBrasil().get("salario")));
+
+        
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
