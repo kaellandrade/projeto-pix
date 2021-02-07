@@ -19,7 +19,7 @@ public class TelaInicialPF extends JFrame {
     // declarando os JButtons
     JButton buttonTI = new JButton("Realizar transferência"),
         buttonExtrato = new JButton("Consultar o extrato da conta"),
-        buttonPix = new JButton("Realizar transferência via Pix");
+        buttonPix = new JButton("Acessar o Pix");
 
     private BHandlerTransferencia bHandlerTransferencia;
     private BHandlerPix bHandlerPix;
@@ -90,7 +90,7 @@ public class TelaInicialPF extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent evento) {
-            TransferenciaPix pix = new TransferenciaPix();
+            TelaPix pix = new TelaPix();
             dispose();
         }
     }
