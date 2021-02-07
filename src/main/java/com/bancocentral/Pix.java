@@ -1,6 +1,13 @@
 package com.bancocentral;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Random;
+
+import com.backend.LerClientesSerializados;
 
 /**
  * Pix é responsável pela manutenção das chaves.
@@ -23,5 +30,27 @@ public class Pix {
             chave += CARACTERES.charAt(ch);
         }
         return chave;
+    }
+
+    /**
+     * Retornar um cliente associado a uma determinada chave pix aleatória para realizar um PIX
+     */
+    public static com.pessoa.Cliente encontrarChave(String chavepix) {
+        Collection<com.pessoa.Cliente> todos_clientes;
+
+        // Início Captura a data base
+        LerClientesSerializados.abreArquivo();
+        todos_clientes = LerClientesSerializados.lerClientes().values();
+        LerClientesSerializados.fecharArquivo();
+        // Fim Captura a data base
+
+        Iterator<com.pessoa.Cliente> cliIterator = todos_clientes.iterator();
+        while (cliIterator.hasNext()) {
+            String chaveCliAtual = cliIterator.next().getConta().getChavePIX();
+            if (chavepix.equals(chaveCliAtual))
+                return cliIterator.next();
+
+        }
+        return null;
     }
 }
