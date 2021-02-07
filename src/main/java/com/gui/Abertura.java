@@ -79,6 +79,7 @@ public class Abertura extends JFrame {
         // Adição dos elementos ao painel
         this.add(painel1);
         this.pack();
+        this.setVisible(true);
 
         // Tratamento de eventos
         radioButtonCNPJ.addItemListener(handlerRadioButton);
