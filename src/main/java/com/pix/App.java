@@ -14,52 +14,20 @@ import com.banco.*;
 
 public class App {
     public static void main(String[] args) {
-        
-        Abertura abertura = new Abertura();
+        Abertura abertura = new Abertura();;
         abertura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         abertura.setVisible(true);
-
-        Map<String, Cliente> todos_clientes;
-        // CriaDataBase.abrirArquivo();
-        // CriaDataBase.populaDados();
-        // CriaDataBase.fechaArquivo();
-
-        LerClientesSerializados.abreArquivo();
-        todos_clientes = LerClientesSerializados.lerClientes();
-        LerClientesSerializados.fecharArquivo();
-
-        // TODO: Operações aqui
-
-        ClientePessoaJuridica juridico =  (ClientePessoaJuridica) todos_clientes.get("85598612000180");
-        ContaCorrente cc = (ContaCorrente) juridico.getConta(); // conta corrente do empregador
-
         
-        
-        ClientePessoaFisica pf =  (ClientePessoaFisica) todos_clientes.get("09532371338");
-        ContaPoupanca cp = (ContaPoupanca) pf.getConta(); // conta corrente do empregador
 
-        
-        /*
-        System.out.println("\n\nAntes tranferencia interna");
-        System.out.println("Saldo Conta Corrente: " + cc.getSaldo());
-        System.out.println("Extrato Conta Corrente:" + cc.getExtrato());
-
-        System.out.println("Saldo Conta POP: " + cp.getSaldo());
-        System.out.println("Extrato Conta POP: " + cp.getExtrato());
-        
-        cc.realizarTransferenciaInterna(pf, 100);
-        
-        */
-
-        /*
-        System.out.println("\n\nDepois transferencia interna");
-
-        System.out.println("Saldo Conta Corrente: " + cc.getSaldo());
-        System.out.println("Extrato Conta Corrente:" + cc.getExtrato());
-
-        System.out.println("Saldo Conta POP: " + cp.getSaldo());
-        System.out.println("Extrato Conta POP: " + cp.getExtrato());
-        */
-        LerClientesSerializados.atualizar(todos_clientes.values()); // atualiza o arquivo .pix
+        // após algumas movimentações rodar esse código abaixo
+        // LerClientesSerializados.atualizar(todos_clientes.values()); // atualiza o arquivo .pix
+    }
+    /**
+     * Captura os clients do JSON e serializa-os;
+     */
+    public static void popularDados(){
+        CriaDataBase.abrirArquivo();
+        CriaDataBase.populaDados();
+        CriaDataBase.fechaArquivo();
     }
 }
