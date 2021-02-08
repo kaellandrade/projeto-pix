@@ -36,7 +36,7 @@ public class TelaInicialPJ extends JFrame {
     // declarando os JButtons
     JButton buttonTI = new JButton("Realizar transferência"),
             buttonExtrato = new JButton("Consultar o extrato da conta"),
-            buttonPix = new JButton("Realizar transferência via Pix"),
+            buttonPix = new JButton("Acessar o Pix"),
             buttonPagamento = new JButton("Realizar pagamento");
 
     private BHandlerTransferencia bHandlerTransferencia;
@@ -121,9 +121,6 @@ public class TelaInicialPJ extends JFrame {
         gc.gridwidth = 1;
         gc.gridheight = 1;
         gc.ipady = ipady;
-        // gc.ipadx = 0;
-        // gc.weightx = 0;
-        // gc.weighty = 0;
         gc.insets = new Insets(superior, esquerda, inferior, direita);
         gc.anchor = alinhamento;
         gc.fill = preenchimento;
