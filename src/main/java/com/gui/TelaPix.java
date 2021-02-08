@@ -18,6 +18,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class TelaPix extends JFrame {
     private com.pessoa.Cliente cliente;
@@ -36,11 +39,25 @@ public class TelaPix extends JFrame {
 
     private Conta conta;
 
+    // Declarando o JMenu, JMenuBar e JMenuItem;
+    private JMenuBar barra;
+    private JMenu menu;
+    private JMenuItem login;
+
+    // Variáveis para tratamento de eventos do menu
+    private BHandlerLogin bHandlerLogin;
+
     public TelaPix(Cliente cliente, Collection clientes) {
 
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Define o menu e seus componentes
+        barra = new JMenuBar();
+        menu = new JMenu("Opções");
+        login = new JMenuItem("Tela de login");
+        bHandlerLogin = new BHandlerLogin();
 
         this.cliente = cliente;
         this.clientes = clientes;
@@ -68,6 +85,11 @@ public class TelaPix extends JFrame {
         addElemento(painel, buttonGenChaves, 1, 4, GridBagConstraints.CENTER, 10, 60, 40, 60,
                 GridBagConstraints.HORIZONTAL);
 
+        // adiciona menu ao JFrame
+        menu.add(login);
+        barra.add(menu);
+        this.setJMenuBar(barra);
+
         // Adiciona ao painel e torna visível
         this.add(painel);
         this.pack();
@@ -76,6 +98,7 @@ public class TelaPix extends JFrame {
 
         // tratamento de eventos
         buttonTransferir.addActionListener(bHandlerTransferir);
+        login.addActionListener(bHandlerLogin);
         // buttonExtrato.addActionListener(bHandlerExtrato);
         // buttonGenChaves.addActionListener(bHandlerGenChaves);
     }
@@ -100,6 +123,16 @@ public class TelaPix extends JFrame {
         @Override
         public void actionPerformed(ActionEvent evento) {
             new TransferenciaPix(cliente, clientes);
+            dispose();
+        }
+    }
+    
+    // Tratamento de eventos do menu (login)
+    private class BHandlerLogin implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            Abertura abertura = new Abertura();
             dispose();
         }
     }
