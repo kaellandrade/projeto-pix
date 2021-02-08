@@ -5,6 +5,8 @@ import java.awt.Insets;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -12,29 +14,41 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.bancocentral.Cliente;
+
 public class TelaInicialPF extends JFrame {
+    private com.pessoa.Cliente cliente;
+    private final Locale local = new Locale("pt", "BR");
 
     // declarando os JLabel
     JLabel labelHeader = new JLabel("Menu Pessoa Física"), labelSaldo = new JLabel("Saldo");
     // declarando os JButtons
     JButton buttonTI = new JButton("Realizar transferência"),
-        buttonExtrato = new JButton("Consultar o extrato da conta"),
-        buttonPix = new JButton("Acessar o Pix");
+            buttonExtrato = new JButton("Consultar o extrato da conta"), buttonPix = new JButton("Acessar o Pix");
 
     private BHandlerTransferencia bHandlerTransferencia;
     private BHandlerPix bHandlerPix;
-    //private BHandlerExtrato bHandlerExtrato;
+    // private BHandlerExtrato bHandlerExtrato;
 
-    public TelaInicialPF() {
+    public TelaInicialPF(com.pessoa.Cliente cli) {
+        this.cliente = cli; // cliente logado
+        Float saldoExibicao = cli.getConta().getSaldo();
+        String nomeExibicao = cli.getNome();
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
-
         bHandlerTransferencia = new BHandlerTransferencia();
         bHandlerPix = new BHandlerPix();
         //bHandlerExtrato = new BHandlerExtrato();
 
         labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
+        labelHeader.setText(nomeExibicao);
+        
+        labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
+
+
+
 
         // título da tela
         addElemento(painel, labelHeader, 1, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 10, 100, 50);
@@ -58,17 +72,17 @@ public class TelaInicialPF extends JFrame {
     }
 
     // Método que adiciona os elementos
-    private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
-        int altura, int alinhamento, int superior, int esquerda, int inferior, int direita, int ipady) {
+    private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, int altura, int alinhamento,
+            int superior, int esquerda, int inferior, int direita, int ipady) {
         GridBagConstraints gc = new GridBagConstraints();
         gc.gridx = linha;
         gc.gridy = coluna;
         gc.gridwidth = largura;
         gc.gridheight = altura;
         gc.ipady = ipady;
-        //gc.ipadx = 0;
-        //gc.weightx = 0;
-        //gc.weighty = 0;
+        // gc.ipadx = 0;
+        // gc.weightx = 0;
+        // gc.weighty = 0;
         gc.insets = new Insets(superior, esquerda, inferior, direita);
         gc.anchor = alinhamento;
         gc.fill = GridBagConstraints.NONE;
@@ -98,13 +112,9 @@ public class TelaInicialPF extends JFrame {
     // TODO: Tela de extrato
     // Tratamento de eventos do botão de pagamento
     /*
-    private class BHandlerExtrato implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent evento) {
-            Extrato extrato = new Extrato();
-            dispose();
-        }
-    }
-    */
+     * private class BHandlerExtrato implements ActionListener {
+     * 
+     * @Override public void actionPerformed(ActionEvent evento) { Extrato extrato =
+     * new Extrato(); dispose(); } }
+     */
 }
