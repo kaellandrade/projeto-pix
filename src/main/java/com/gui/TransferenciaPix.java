@@ -21,13 +21,13 @@ import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
 
 public class TransferenciaPix extends JFrame {
+    
+    // Configuração do JComboBox
+    private final JComboBox<String> jCBoxChaves;
+    private static final String[] tiposChaves = {"Selecione uma chave", "CPF", "CNPJ", "E-mail", "Telefone", "Chave Pix"};
 
     // declarando os JTextField
     JFormattedTextField textFieldValor = new JFormattedTextField(), textFieldChave = new JFormattedTextField();
-
-    // Declarando o JComboBox com os meios de transferências
-    String meiosTransferencia[] = {"CPF", "E-mail", "Telefone", "Chave Pix"};
-    JComboBox comboBoxTransferencia = new JComboBox(meiosTransferencia);
 
     // Declarando o JButton
     JButton buttonTransferir = new JButton("Transferir");
@@ -44,37 +44,26 @@ public class TransferenciaPix extends JFrame {
 
     // Variáveis para tratamento de eventos do menu
     private BHandlerLogin bHandlerLogin;
-
-    // Variáveis para tratamento eventos do ComboBox
-    private CHandlerCPF cHandlerCPF;
-    //private CHandlerEmail cHandlerEail;
-    //private CHandlerTelefone cHandlerTelefone;
-    //private CHandlerChave cHandlerChave;
+    private JComboBoxHandler jComboBoxHandler;
 
     public TransferenciaPix() {
+
+        jCBoxChaves = new JComboBox<String>(tiposChaves);
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
 
         // Definindo o tamanho dos JFormattedTextField
         textFieldValor.setColumns(8);
-        textFieldChave.setColumns(8);
+        textFieldChave.setColumns(14);
 
         // Define o menu e seus componentes
         barra = new JMenuBar();
         menu = new JMenu("Opções");
         login = new JMenuItem("Tela de login");
 
-        comboBoxTransferencia.setSelectedIndex(0);
-        String email = meiosTransferencia[1];
-        String telefone = meiosTransferencia[2];
-        String chave = meiosTransferencia[3];
-
         bHandlerLogin = new BHandlerLogin();
-        //cHandlerCPF = new CHandlerCPF();
-        //cHandlerTelefone = new CHandlerTelefone();
-        //qcHandlerEail = new CHandlerEmail();
-        //cHandlerChave = new CHandlerChave();
 
         // título da tela
         addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 70, 100);
@@ -89,7 +78,7 @@ public class TransferenciaPix extends JFrame {
         addElemento(painel, labelTransferencia, 0, 3, 1, 1, GridBagConstraints.CENTER, 30, 10, 10, 10);
 
         // lista de bancos
-        addElemento(painel, comboBoxTransferencia, 0, 4, 1, 1, GridBagConstraints.CENTER, 1, 10, 10, 10);
+        addElemento(painel, jCBoxChaves, 0, 4, 1, 1, GridBagConstraints.CENTER, 1, 10, 10, 10);
 
         addElemento(painel, textFieldChave, 0, 5, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
 
@@ -105,8 +94,12 @@ public class TransferenciaPix extends JFrame {
         this.pack();
         this.setVisible(true);
 
+        jComboBoxHandler = new JComboBoxHandler();
+
         // Tratamento de eventos
         login.addActionListener(bHandlerLogin);
+        jCBoxChaves.addActionListener(jComboBoxHandler);
+
     }
 
     private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
@@ -134,25 +127,37 @@ public class TransferenciaPix extends JFrame {
         }
     }
 
-    private class CHandlerCPF implements ItemListener {
+    private class JComboBoxHandler implements ActionListener {
 
         @Override
-        public void itemStateChanged(ItemEvent evento) {
+        public void actionPerformed(ActionEvent evento) {
 
-            if (evento.getStateChange() == ItemEvent.SELECTED) {
-                Object source = evento.getSource();
+            textFieldChave.setValue("");
 
-                if (source instanceof JComboBox) {
-                    JComboBox cBox = (JComboBox)source;
-                    Object selectedItem = cBox.getSelectedItem();
-                    if ("CPF".equals(selectedItem)) {
-                        try {
-                            MaskFormatter mascaraCPF = new MaskFormatter("###.###.###-##");
-                            mascaraCPF.install(textFieldChave);
-                        } catch (Exception e) {
-                            System.out.print(e);
-                        }
-                    }
+            if (jCBoxChaves.getSelectedIndex() == 1) {
+                try {
+                    MaskFormatter mascaraCPF = new MaskFormatter("###.###.###-##");
+                    mascaraCPF.install(textFieldChave);
+                } catch (Exception e) {
+                    System.out.print(e);
+                }
+            }
+
+            if (jCBoxChaves.getSelectedIndex() == 2) {
+                try {
+                    MaskFormatter mascaraCNPJ = new MaskFormatter("##.###.###/0001-##");
+                    mascaraCNPJ.install(textFieldChave);
+                } catch (Exception e) {
+                    System.out.print(e);
+                }
+            }
+
+            if (jCBoxChaves.getSelectedIndex() == 4) {
+                try {
+                    MaskFormatter mascaraTelefone = new MaskFormatter("(##) # ####-####");
+                    mascaraTelefone.install(textFieldChave);
+                } catch (Exception e) {
+                    System.out.print(e);
                 }
             }
         }
