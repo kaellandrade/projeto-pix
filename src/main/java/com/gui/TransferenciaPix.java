@@ -42,7 +42,8 @@ public class TransferenciaPix extends JFrame {
 
     // Declarando os JLabels
     JLabel labelHeader = new JLabel("<html><center>Realizar transferência <br />via Pix</center></html>"),
-        labelSaldo = new JLabel("<html><center>Saldo da<br />conta corrente</center></html>"),
+        labelSaldo = new JLabel(""),
+        labelTituloSaldo = new JLabel("Saldo atual"),
         labelTransferencia = new JLabel("<html><center>Selecione o meio<br />de transferência</center></html>");
 
     // Declarando o JMenu, JMenuBar e JMenuItem;
@@ -77,25 +78,17 @@ public class TransferenciaPix extends JFrame {
 
         bHandlerLogin = new BHandlerLogin();
 
-        // título da tela
-        addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 70, 100);
+        labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
 
-        // campo de exibição do saldo (provisório)
-        addElemento(painel, labelSaldo, 0, 1, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
-
-        // campo de texto para entrada do saldo
-        addElemento(painel, textFieldValor, 0, 2, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
-
-        // título da seleção do meio de transferência
-        addElemento(painel, labelTransferencia, 0, 3, 1, 1, GridBagConstraints.CENTER, 30, 10, 10, 10);
-
-        // lista de bancos
-        addElemento(painel, jCBoxChaves, 0, 4, 1, 1, GridBagConstraints.CENTER, 1, 10, 10, 10);
-
-        addElemento(painel, textFieldChave, 0, 5, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
-
-        // botão de transferência
-        addElemento(painel, buttonTransferir, 0, 6, 1, 1, GridBagConstraints.CENTER, 70, 10, 10, 10);
+        // Adição dos elementos
+        addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 40, 100);
+        addElemento(painel, labelTituloSaldo, 0, 1, 1, 1, GridBagConstraints.CENTER, 10, 10, 2, 10);
+        addElemento(painel, labelSaldo, 0, 2, 1, 1, GridBagConstraints.CENTER, 2, 10, 30, 10);
+        addElemento(painel, textFieldValor, 0, 3, 1, 1, GridBagConstraints.CENTER, 0, 10, 20, 10);
+        addElemento(painel, labelTransferencia, 0, 4, 1, 1, GridBagConstraints.CENTER, 30, 10, 10, 10);
+        addElemento(painel, jCBoxChaves, 0, 5, 1, 1, GridBagConstraints.CENTER, 1, 10, 10, 10);
+        addElemento(painel, textFieldChave, 0, 6, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
+        addElemento(painel, buttonTransferir, 0, 7, 1, 1, GridBagConstraints.CENTER, 70, 10, 10, 10);
 
         // adiciona menu ao JFrame
         menu.add(login);

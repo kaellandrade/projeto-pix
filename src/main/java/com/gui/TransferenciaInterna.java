@@ -43,7 +43,9 @@ public class TransferenciaInterna extends JFrame {
     // Declarando os JLabels
     JLabel labelHeader = new JLabel("<html><center>Realizar transferência <br /> interna</center></html>"),
             labelSaldo = new JLabel("<html><center>Saldo da <br /> conta corrente</center></html>"),
-            labelBanco = new JLabel("Selecione o banco"), labelConta = new JLabel("Selecione a conta");
+            labelBanco = new JLabel("Selecione o banco"),
+            labelTituloSaldo = new JLabel("Saldo atual"),
+            labelConta = new JLabel("Selecione a conta");
 
     // Declarando o JMenu, JMenuBar e JMenuItem;
     private JMenuBar barra;
@@ -67,37 +69,22 @@ public class TransferenciaInterna extends JFrame {
         login = new JMenuItem("Tela de login");
 
         bHandlerLogin = new BHandlerLogin();
-        labelSaldo.setText("Saldo Atual: " + NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
+        labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
 
-        // título da tela
-        addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 70, 100);
+        labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
 
-        // campo de exibição do saldo (provisório)
-        addElemento(painel, labelSaldo, 0, 1, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
-
-        // campo de texto para entrada do saldo
-        addElemento(painel, textFieldValor, 0, 2, 1, 1, GridBagConstraints.CENTER, 10, 10, 12, 10);
-
-        // título da seleção de banco
-        addElemento(painel, labelBanco, 0, 3, 1, 1, GridBagConstraints.CENTER, 12, 10, 3, 10);
-
-        // lista de bancos
-        addElemento(painel, jComboBoxBanco, 0, 4, 1, 1, GridBagConstraints.CENTER, 3, 10, 10, 10);
-
-        // campo de entrada da agência
-        addElemento(painel, textFieldAgencia, 0, 5, 1, 1, GridBagConstraints.WEST, 12, 70, 10, 10);
-
-        // campo de entrada da conta
-        addElemento(painel, textFieldConta, 0, 5, 1, 1, GridBagConstraints.EAST, 12, 10, 12, 70);
-
-        // título da seleção de conta
-        addElemento(painel, labelConta, 0, 6, 1, 1, GridBagConstraints.CENTER, 12, 10, 3, 10);
-
-        // campo de seleção do tipo de conta
-        addElemento(painel, jComboBoxConta, 0, 7, 1, 1, GridBagConstraints.CENTER, 3, 10, 10, 10);
-
-        // botão de transfeir
-        addElemento(painel, buttonTransferir, 0, 8, 1, 1, GridBagConstraints.CENTER, 70, 10, 10, 10);
+        // Adição dos elementos
+        addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 40, 100);
+        addElemento(painel, labelTituloSaldo, 0, 1, 1, 1, GridBagConstraints.CENTER, 10, 10, 2, 10);
+        addElemento(painel, labelSaldo, 0, 2, 1, 1, GridBagConstraints.CENTER, 2, 10, 30, 10);
+        addElemento(painel, textFieldValor, 0, 3, 1, 1, GridBagConstraints.CENTER, 0, 10, 20, 10);
+        addElemento(painel, labelBanco, 0, 4, 1, 1, GridBagConstraints.CENTER, 12, 10, 3, 10);
+        addElemento(painel, jComboBoxBanco, 0, 5, 1, 1, GridBagConstraints.CENTER, 3, 10, 10, 10);
+        addElemento(painel, textFieldAgencia, 0, 6, 1, 1, GridBagConstraints.WEST, 12, 70, 10, 10);
+        addElemento(painel, textFieldConta, 0, 6, 1, 1, GridBagConstraints.EAST, 12, 10, 12, 70);
+        addElemento(painel, labelConta, 0, 7, 1, 1, GridBagConstraints.CENTER, 12, 10, 3, 10);
+        addElemento(painel, jComboBoxConta, 0, 8, 1, 1, GridBagConstraints.CENTER, 3, 10, 10, 10);
+        addElemento(painel, buttonTransferir, 0, 9, 1, 1, GridBagConstraints.CENTER, 70, 10, 10, 10);
 
         // adiciona menu ao JFrame
         menu.add(login);
