@@ -72,7 +72,7 @@ public class LerClientesSerializados {
     }
 
     /**
-     * Revebe uma lista de clintes e serializa todos eles novamente dentro do
+     * Recebe uma lista de clintes e serializa todos eles novamente dentro do
      * arquivo clienteOJb.pix PS: Esse método deve ser executado após a finalização
      * da aplicação para manter os estados dos objetos atualizados.
      */

@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JFrame;
 
 public class TelaPix extends JFrame {
@@ -24,7 +25,8 @@ public class TelaPix extends JFrame {
     private final Icon iconKey = new ImageIcon("../projeto-pix/imgs/key.png");
 
     // declarando os elementos
-    JLabel labelHeader = new JLabel("Pix"), labelChave = new JLabel("Crie uma chave");
+    JLabel labelHeader = new JLabel("Pix");
+    JTextField labelChave = new JTextField("Crie uma chave");
     JButton buttonTransferir = new JButton("Realizar transferência"), buttonExtrato = new JButton("Extrato"),
             buttonGenChaves = new JButton("Gerenciar chaves");
 
@@ -46,9 +48,11 @@ public class TelaPix extends JFrame {
         String minhaChave = cliente.getConta().getChavePIX();
 
         bHandlerTransferir = new BHandlerTransferir();
-        labelChave.setIcon(iconKey);
+        labelHeader.setIcon(iconKey);
+        
+        labelChave.setEditable(false);
         if (!minhaChave.isEmpty()) { // caso tenha uma chave
-            labelChave.setText(minhaChave);
+            labelChave.setText("Sua chave é :" + minhaChave);
         }
 
         // bHandlerExtrato = new BHandlerExtrato();
