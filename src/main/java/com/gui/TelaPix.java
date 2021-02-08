@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 import java.awt.GridBagConstraints;
 
 import javax.swing.Icon;
@@ -19,6 +20,7 @@ import javax.swing.JFrame;
 
 public class TelaPix extends JFrame {
     private com.pessoa.Cliente cliente;
+    private Collection<Cliente> clientes;
     private final Icon iconKey = new ImageIcon("../projeto-pix/imgs/key.png");
 
     // declarando os elementos
@@ -32,28 +34,35 @@ public class TelaPix extends JFrame {
 
     private Conta conta;
 
-    public TelaPix(Cliente cliente) {
-        this.cliente = cliente;
-        String minhaChave = cliente.getConta().getChavePIX();
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public TelaPix(Cliente cliente, Collection clientes) {
+
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.cliente = cliente;
+        this.clientes = clientes;
+
+        String minhaChave = cliente.getConta().getChavePIX();
 
         bHandlerTransferir = new BHandlerTransferir();
         labelChave.setIcon(iconKey);
-        if (minhaChave != null) { // caso tenha uma chave
+        if (!minhaChave.isEmpty()) { // caso tenha uma chave
             labelChave.setText(minhaChave);
         }
-        
+
         // bHandlerExtrato = new BHandlerExtrato();
         // bHandlerGenChaves = BHandlerGenChaves();
 
         // Adição dos elementos
         addElemento(painel, labelHeader, 1, 0, GridBagConstraints.CENTER, 10, 150, 40, 150, GridBagConstraints.NONE);
         addElemento(painel, labelChave, 1, 1, GridBagConstraints.CENTER, 10, 10, 40, 10, GridBagConstraints.NONE);
-        addElemento(painel, buttonTransferir, 1, 2, GridBagConstraints.CENTER, 10, 60, 20, 60, GridBagConstraints.HORIZONTAL);
-        addElemento(painel, buttonExtrato, 1, 3, GridBagConstraints.CENTER, 10, 60, 20, 60, GridBagConstraints.HORIZONTAL);
-        addElemento(painel, buttonGenChaves, 1, 4, GridBagConstraints.CENTER, 10, 60, 40, 60, GridBagConstraints.HORIZONTAL);
+        addElemento(painel, buttonTransferir, 1, 2, GridBagConstraints.CENTER, 10, 60, 20, 60,
+                GridBagConstraints.HORIZONTAL);
+        addElemento(painel, buttonExtrato, 1, 3, GridBagConstraints.CENTER, 10, 60, 20, 60,
+                GridBagConstraints.HORIZONTAL);
+        addElemento(painel, buttonGenChaves, 1, 4, GridBagConstraints.CENTER, 10, 60, 40, 60,
+                GridBagConstraints.HORIZONTAL);
 
         // Adiciona ao painel e torna visível
         this.add(painel);
@@ -67,8 +76,8 @@ public class TelaPix extends JFrame {
     }
 
     // Método que adiciona os elementos à interface
-    private void addElemento(JPanel p, JComponent c, int coluna, int linha, int alinhamento, 
-        int superior, int esquerda, int inferior, int direita, int preenchimento) {
+    private void addElemento(JPanel p, JComponent c, int coluna, int linha, int alinhamento, int superior, int esquerda,
+            int inferior, int direita, int preenchimento) {
 
         GridBagConstraints gc = new GridBagConstraints();
         gc.gridx = coluna;
@@ -85,7 +94,7 @@ public class TelaPix extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent evento) {
-            new TransferenciaPix(cliente);
+            new TransferenciaPix(cliente, clientes);
             dispose();
         }
     }

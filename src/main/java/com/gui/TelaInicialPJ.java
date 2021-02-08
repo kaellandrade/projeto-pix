@@ -7,6 +7,7 @@ import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
+import java.util.Collection;
 import java.util.Locale;
 
 import javax.swing.JComponent;
@@ -17,9 +18,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import com.banco.Banco;
+import com.bancocentral.Cliente;
 
 public class TelaInicialPJ extends JFrame {
     private com.pessoa.Cliente cliente;
+    private Collection<Cliente> clientes;
+
     private final Locale local = new Locale("pt", "BR");
 
     // declarando os JLabel
@@ -36,11 +40,13 @@ public class TelaInicialPJ extends JFrame {
     // private BHandlerPagamento bHandlerPagamento;
     // private BHandlerExtrato bHandlerExtrato;
 
-    public TelaInicialPJ(com.pessoa.Cliente cli) {
+    public TelaInicialPJ(com.pessoa.Cliente cli, Collection clientes) {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
+
+        this.clientes = clientes;
 
         this.cliente = cli;
         String nomeExibicao = cli.getName();
@@ -81,8 +87,8 @@ public class TelaInicialPJ extends JFrame {
     }
 
     // Método que adiciona os elementos
-    private void addElemento(JPanel p, JComponent c, int coluna, int linha, int alinhamento,
-            int superior, int esquerda, int inferior, int direita, int preenchimento, int ipady) {
+    private void addElemento(JPanel p, JComponent c, int coluna, int linha, int alinhamento, int superior, int esquerda,
+            int inferior, int direita, int preenchimento, int ipady) {
         GridBagConstraints gc = new GridBagConstraints();
         gc.gridx = coluna;
         gc.gridy = linha;
@@ -113,7 +119,7 @@ public class TelaInicialPJ extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent evento) {
-            new TelaPix(cliente);
+            new TelaPix(cliente, clientes);
             dispose();
         }
     }
