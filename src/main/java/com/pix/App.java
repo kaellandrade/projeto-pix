@@ -17,9 +17,9 @@ import com.banco.*;
 public class App {
     public static void main(String[] args) {
         // popularDados();
-        Abertura abertura = new Abertura();
-        abertura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        abertura.setVisible(true);
+        // Abertura abertura = new Abertura();
+        // abertura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // abertura.setVisible(true);
 
 
         // Início Captura a data base
@@ -29,14 +29,20 @@ public class App {
         // Fim Captura a data base
 
         // Teste teste chave pix
-        // ClientePessoaJuridica pessoj = (ClientePessoaJuridica) todos_clientes.get("21637668000114");
-        // pessoj.getConta().setChavePIX(Pix.gerarChavePix());
-        
-        // pessoaf.getConta().setChavePIX(Pix.gerarChavePix());
-        // System.out.println(pessoaf.getConta().getChavePIX());
-        
-        // System.out.println(Pix.encontrarChave("jh68o3zknz7yyij4mk13"));
+        Cliente pessoj = (ClientePessoaJuridica) todos_clientes.get("21637668000114");
+        Cliente pessof = (ClientePessoaFisica) todos_clientes.get("36579272554");
 
+        String chave = pessoj.getConta().getChavePIX();
+
+        Pix.encontrarChave(chave, todos_clientes.values());
+
+        System.out.println(pessoj.getConta().getExtrato());
+        System.out.println(pessof.getConta().getExtrato());
+
+
+
+        // pessof.getConta().fazerPix(Pix.encontrarChave(chave, todos_clientes.values()), 100);
+        
         LerClientesSerializados.atualizar(todos_clientes.values()); // atualiza o arquivo .pix
     }
 

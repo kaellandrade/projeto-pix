@@ -51,6 +51,10 @@ public class Abertura extends JFrame {
         LerClientesSerializados.fecharArquivo();
         // Fim Captura a data base
 
+        ImageIcon icon = new ImageIcon("../projeto-pix/imgs/pix.png");
+        this.setIconImage(icon.getImage());
+        this.setTitle("Faça seu login");
+        
         painel1 = new JPanel();
         painel1.setLayout(new GridBagLayout());
 
