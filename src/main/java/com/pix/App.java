@@ -17,9 +17,9 @@ import com.banco.*;
 public class App {
     public static void main(String[] args) {
         // popularDados();
-        // Abertura abertura = new Abertura();
-        // abertura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // abertura.setVisible(true);
+        Abertura abertura = new Abertura();
+        abertura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        abertura.setVisible(true);
 
 
         // Início Captura a data base
