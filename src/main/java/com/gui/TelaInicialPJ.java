@@ -17,6 +17,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
 import com.banco.Banco;
 import com.bancocentral.Cliente;
 
@@ -40,11 +44,25 @@ public class TelaInicialPJ extends JFrame {
     // private BHandlerPagamento bHandlerPagamento;
     private BHandlerExtrato bHandlerExtrato;
 
+    // Declarando o JMenu, JMenuBar e JMenuItem;
+    private JMenuBar barra;
+    private JMenu menu;
+    private JMenuItem login;
+
+    // Variáveis para tratamento de eventos do menu
+    private BHandlerLogin bHandlerLogin;
+
     public TelaInicialPJ(com.pessoa.Cliente cli, Collection clientes) {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
+
+        // Define o menu e seus componentes
+        barra = new JMenuBar();
+        menu = new JMenu("Opções");
+        login = new JMenuItem("Tela de login");
+        bHandlerLogin = new BHandlerLogin();
 
         this.clientes = clientes;
 
@@ -75,15 +93,23 @@ public class TelaInicialPJ extends JFrame {
         addElemento(painel, buttonPagamento, 1, 4, GridBagConstraints.CENTER, 10, 80, 10, 80, GridBagConstraints.HORIZONTAL, 10);
         addElemento(painel, buttonExtrato, 1, 5, GridBagConstraints.CENTER, 10, 80, 70, 80, GridBagConstraints.HORIZONTAL, 10);
 
-        this.add(painel);
-        this.pack();
-        this.setVisible(true);
+        // adiciona menu ao JFrame
+        menu.add(login);
+        barra.add(menu);
+        this.setJMenuBar(barra);
 
         // Tratamento de eventos
         buttonTI.addActionListener(bHandlerTransferencia);
         buttonPix.addActionListener(bHandlerPix);
         // buttonPagamento.addActionListener(bHandlerPagamento);
         buttonExtrato.addActionListener(bHandlerExtrato);
+        login.addActionListener(bHandlerLogin);
+
+        this.add(painel);
+        this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+
     }
 
     // Método que adiciona os elementos
@@ -138,6 +164,16 @@ public class TelaInicialPJ extends JFrame {
         @Override
         public void actionPerformed(ActionEvent evento) {
             new Extrato(cliente);
+            dispose();
+        }
+    }
+
+    // Tratamento de eventos do menu (login)
+    private class BHandlerLogin implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            Abertura abertura = new Abertura();
             dispose();
         }
     }
