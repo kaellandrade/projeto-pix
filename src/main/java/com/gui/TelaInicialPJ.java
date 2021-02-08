@@ -1,6 +1,7 @@
 package com.gui;
 
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -10,9 +11,12 @@ import java.util.Locale;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import com.banco.Banco;
 
 public class TelaInicialPJ extends JFrame {
     private com.pessoa.Cliente cliente;
@@ -36,7 +40,11 @@ public class TelaInicialPJ extends JFrame {
         this.cliente = cli;
         String nomeExibicao = cli.getName();
         Float saldoExibicao = cli.getConta().getSaldo();
+        Banco banco = cli.getConta().getAgencia().getBanco();
+        ImageIcon icon = new ImageIcon("../projeto-pix/imgs/" + banco.getCodigoBanco() + ".png");
 
+        this.setTitle("Bem-Vindo ao " + banco.getNomeBanco());
+        this.setIconImage(icon.getImage());
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
