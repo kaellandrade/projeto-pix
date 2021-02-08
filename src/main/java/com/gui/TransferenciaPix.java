@@ -16,7 +16,6 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.plaf.basic.BasicMenuUI.ChangeHandler;
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
 import javax.swing.JMenuBar;

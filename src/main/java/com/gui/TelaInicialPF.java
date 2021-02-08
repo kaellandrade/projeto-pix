@@ -51,12 +51,8 @@ public class TelaInicialPF extends JFrame {
 
         labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
         labelHeader.setText(nomeExibicao);
-
         
         labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
-
-
-
 
         // título da tela
         addElemento(painel, labelHeader, 1, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 10, 100, 50);
