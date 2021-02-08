@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 
 public class TesteInterface {
     public static void main(String[] args) {
-        TelaPix tela = new TelaPix();
+        TransferenciaPix tela = new TransferenciaPix();
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setVisible(true);
     }    

@@ -6,21 +6,25 @@ import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.plaf.basic.BasicMenuUI.ChangeHandler;
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
 
 public class TransferenciaPix extends JFrame {
 
     // declarando os JTextField
-    JTextField textFieldValor = new JTextField("Valor", 8);
+    JFormattedTextField textFieldValor = new JFormattedTextField(), textFieldChave = new JFormattedTextField();
 
     // Declarando o JComboBox com os meios de transferências
     String meiosTransferencia[] = {"CPF", "E-mail", "Telefone", "Chave Pix"};
@@ -42,17 +46,36 @@ public class TransferenciaPix extends JFrame {
     // Variáveis para tratamento de eventos do menu
     private BHandlerLogin bHandlerLogin;
 
+    // Variáveis para tratamento eventos do ComboBox
+    private CHandlerCPF cHandlerCPF;
+    private CHandlerEmail cHandlerEail;
+    private CHandlerTelefone cHandlerTelefone;
+    private CHandlerChave cHandlerChave;
+
     public TransferenciaPix() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
+
+        // Definindo o tamanho dos JFormattedTextField
+        textFieldValor.setColumns(8);
+        textFieldChave.setColumns(8);
 
         // Define o menu e seus componentes
         barra = new JMenuBar();
         menu = new JMenu("Opções");
         login = new JMenuItem("Tela de login");
 
+        String cpf = meiosTransferencia[0];
+        String email = meiosTransferencia[1];
+        String telefone = meiosTransferencia[2];
+        String chave = meiosTransferencia[3];
+
         bHandlerLogin = new BHandlerLogin();
+        cHandlerCPF = new CHandlerCPF;
+        cHandlerTelefone = new CHandlerTelefone;
+        cHandlerEail = new CHandlerEmail;
+        cHandlerChave = new CHandlerChave;
 
         // título da tela
         addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 70, 100);
@@ -69,8 +92,10 @@ public class TransferenciaPix extends JFrame {
         // lista de bancos
         addElemento(painel, comboBoxTransferencia, 0, 4, 1, 1, GridBagConstraints.CENTER, 1, 10, 10, 10);
 
+        addElemento(painel, textFieldChave, 0, 5, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
+
         // botão de transferência
-        addElemento(painel, buttonTransferir, 0, 5, 1, 1, GridBagConstraints.CENTER, 70, 10, 10, 10);
+        addElemento(painel, buttonTransferir, 0, 6, 1, 1, GridBagConstraints.CENTER, 70, 10, 10, 10);
 
         // adiciona menu ao JFrame
         menu.add(login);
@@ -83,6 +108,7 @@ public class TransferenciaPix extends JFrame {
 
         // Tratamento de eventos
         login.addActionListener(bHandlerLogin);
+        cpf.addActionListener(cHandlerCPF);
     }
 
     private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
@@ -107,6 +133,13 @@ public class TransferenciaPix extends JFrame {
         public void actionPerformed(ActionEvent evento) {
             Abertura abertura = new Abertura();
             dispose();
+        }
+    }
+
+    private class CHandlerCPF implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
         }
     }
 }
