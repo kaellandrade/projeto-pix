@@ -13,14 +13,13 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import com.bancocentral.Cliente;
-
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+
+import com.bancocentral.Cliente;
 
 public class TransferenciaInterna extends JFrame {
     private com.pessoa.Cliente cliente;
@@ -56,12 +55,13 @@ public class TransferenciaInterna extends JFrame {
     private BHandlerLogin bHandlerLogin;
 
     public TransferenciaInterna(com.pessoa.Cliente cli) {
-        this.cliente = cli;
-        Float saldoExibicao = cli.getConta().getSaldo();
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.cliente = cli;
+        Float saldoExibicao = cli.getConta().getSaldo();
 
         // Define o menu e seus componentes
         barra = new JMenuBar();
