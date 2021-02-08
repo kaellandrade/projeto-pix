@@ -29,10 +29,6 @@ public class TransferenciaInterna extends JFrame {
     JTextField textFieldValor = new JTextField("Valor", 8), textFieldAgencia = new JTextField("Agência", 8),
             textFieldConta = new JTextField("Conta", 8);
 
-    // Declarando o JComboBox com a lista de bancos
-    String bancos[] = { "Banco do Brasil", "Bradesco", "Itaú", "Santander" };
-    JComboBox jComboBoxBanco = new JComboBox(bancos);
-
     String tipoConta[] = { "Conta corrente", "Conta poupança" };
     JComboBox jComboBoxConta = new JComboBox(tipoConta);
 
@@ -42,7 +38,6 @@ public class TransferenciaInterna extends JFrame {
     // Declarando os JLabels
     JLabel labelHeader = new JLabel("<html><center>Realizar transferência <br /> interna</center></html>"),
             labelSaldo = new JLabel("<html><center>Saldo da <br /> conta corrente</center></html>"),
-            labelBanco = new JLabel("Selecione o banco"),
             labelTituloSaldo = new JLabel("Saldo atual"),
             labelConta = new JLabel("Selecione a conta");
 
@@ -67,24 +62,22 @@ public class TransferenciaInterna extends JFrame {
         barra = new JMenuBar();
         menu = new JMenu("Opções");
         login = new JMenuItem("Tela de login");
-
         bHandlerLogin = new BHandlerLogin();
+
         labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
 
         labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
 
         // Adição dos elementos
-        addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 40, 100);
-        addElemento(painel, labelTituloSaldo, 0, 1, 1, 1, GridBagConstraints.CENTER, 10, 10, 2, 10);
-        addElemento(painel, labelSaldo, 0, 2, 1, 1, GridBagConstraints.CENTER, 2, 10, 30, 10);
-        addElemento(painel, textFieldValor, 0, 3, 1, 1, GridBagConstraints.CENTER, 0, 10, 20, 10);
-        addElemento(painel, labelBanco, 0, 4, 1, 1, GridBagConstraints.CENTER, 12, 10, 3, 10);
-        addElemento(painel, jComboBoxBanco, 0, 5, 1, 1, GridBagConstraints.CENTER, 3, 10, 10, 10);
-        addElemento(painel, textFieldAgencia, 0, 6, 1, 1, GridBagConstraints.WEST, 12, 70, 10, 10);
-        addElemento(painel, textFieldConta, 0, 6, 1, 1, GridBagConstraints.EAST, 12, 10, 12, 70);
-        addElemento(painel, labelConta, 0, 7, 1, 1, GridBagConstraints.CENTER, 12, 10, 3, 10);
-        addElemento(painel, jComboBoxConta, 0, 8, 1, 1, GridBagConstraints.CENTER, 3, 10, 10, 10);
-        addElemento(painel, buttonTransferir, 0, 9, 1, 1, GridBagConstraints.CENTER, 70, 10, 10, 10);
+        addElemento(painel, labelHeader, 0, 0, GridBagConstraints.CENTER, 10, 100, 40, 100);
+        addElemento(painel, labelTituloSaldo, 0, 1, GridBagConstraints.CENTER, 10, 10, 2, 10);
+        addElemento(painel, labelSaldo, 0, 2, GridBagConstraints.CENTER, 2, 10, 30, 10);
+        addElemento(painel, textFieldValor, 0, 3, GridBagConstraints.CENTER, 0, 10, 30, 10);
+        addElemento(painel, textFieldAgencia, 0, 4, GridBagConstraints.WEST, 0, 50, 10, 10);
+        addElemento(painel, textFieldConta, 0, 4, GridBagConstraints.EAST, 0, 10, 12, 50);
+        addElemento(painel, labelConta, 0, 5, GridBagConstraints.CENTER, 12, 10, 3, 10);
+        addElemento(painel, jComboBoxConta, 0, 6, GridBagConstraints.CENTER, 3, 10, 10, 10);
+        addElemento(painel, buttonTransferir, 0, 7, GridBagConstraints.CENTER, 70, 10, 10, 10);
 
         // adiciona menu ao JFrame
         menu.add(login);
@@ -94,19 +87,20 @@ public class TransferenciaInterna extends JFrame {
         // adiciona os componentes ao JFrame
         this.add(painel);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
 
         // Tratamento de eventos
         login.addActionListener(bHandlerLogin);
     }
 
-    private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, int altura, int alinhamento,
+    private void addElemento(JPanel p, JComponent c, int coluna, int linha, int alinhamento,
             int superior, int esquerda, int inferior, int direita) {
         GridBagConstraints gc = new GridBagConstraints();
-        gc.gridx = linha;
-        gc.gridy = coluna;
-        gc.gridwidth = largura;
-        gc.gridheight = altura;
+        gc.gridx = coluna;
+        gc.gridy = linha;
+        gc.gridwidth = 1;
+        gc.gridheight = 1;
         gc.weightx = 100.0;
         gc.weighty = 100.0;
         gc.insets = new Insets(superior, esquerda, inferior, direita);
