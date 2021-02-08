@@ -38,7 +38,7 @@ public class TelaInicialPJ extends JFrame {
     private BHandlerTransferencia bHandlerTransferencia;
     private BHandlerPix bHandlerPix;
     // private BHandlerPagamento bHandlerPagamento;
-    // private BHandlerExtrato bHandlerExtrato;
+    private BHandlerExtrato bHandlerExtrato;
 
     public TelaInicialPJ(com.pessoa.Cliente cli, Collection clientes) {
 
@@ -60,7 +60,7 @@ public class TelaInicialPJ extends JFrame {
         bHandlerTransferencia = new BHandlerTransferencia();
         bHandlerPix = new BHandlerPix();
         // bHandlerPagamento = new BHandlerPagamento();
-        // bHandlerExtrato = new BHandlerExtrato();
+        bHandlerExtrato = new BHandlerExtrato();
 
         // Formataçẽos dos JLabel da tela
         labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
@@ -83,7 +83,7 @@ public class TelaInicialPJ extends JFrame {
         buttonTI.addActionListener(bHandlerTransferencia);
         buttonPix.addActionListener(bHandlerPix);
         // buttonPagamento.addActionListener(bHandlerPagamento);
-        // buttonExtrato.addActionListener(bHandlerExtrato);
+        buttonExtrato.addActionListener(bHandlerExtrato);
     }
 
     // Método que adiciona os elementos
@@ -133,12 +133,12 @@ public class TelaInicialPJ extends JFrame {
      * pagamento = new Pagamento(); dispose(); } }
      */
 
-    // TODO: Tela de extrato
-    // Tratamento de eventos do botão de pagamento
-    /*
-     * private class BHandlerExtrato implements ActionListener {
-     * 
-     * @Override public void actionPerformed(ActionEvent evento) { Extrato extrato =
-     * new Extrato(); dispose(); } }
-     */
+    private class BHandlerExtrato implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            new Extrato(cliente);
+            dispose();
+        }
+    }
 }
