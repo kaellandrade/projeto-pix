@@ -37,6 +37,11 @@ public class TelaInicialPJ extends JFrame {
     // private BHandlerExtrato bHandlerExtrato;
 
     public TelaInicialPJ(com.pessoa.Cliente cli) {
+
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JPanel painel = new JPanel();
+        painel.setLayout(new GridBagLayout());
+
         this.cliente = cli;
         String nomeExibicao = cli.getName();
         Float saldoExibicao = cli.getConta().getSaldo();
@@ -46,31 +51,23 @@ public class TelaInicialPJ extends JFrame {
         this.setTitle("Bem-Vindo ao " + banco.getNomeBanco());
         this.setIconImage(icon.getImage());
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JPanel painel = new JPanel();
-        painel.setLayout(new GridBagLayout());
-
         bHandlerTransferencia = new BHandlerTransferencia();
         bHandlerPix = new BHandlerPix();
         // bHandlerPagamento = new BHandlerPagamento();
         // bHandlerExtrato = new BHandlerExtrato();
 
+        // Formataçẽos dos JLabel da tela
         labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
         labelHeader.setText(nomeExibicao);
-
         labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
 
-        // título da tela
-        addElemento(painel, labelHeader, 1, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 10, 100, 50);
-
-        // campo de exibição do saldo
-        addElemento(painel, labelSaldo, 1, 1, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10, 50);
-
-        // botões de operações
-        addElemento(painel, buttonTI, 1, 2, 1, 1, GridBagConstraints.CENTER, 30, 10, 10, 10, 10);
-        addElemento(painel, buttonPix, 1, 3, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10, 10);
-        addElemento(painel, buttonPagamento, 1, 4, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10, 10);
-        addElemento(painel, buttonExtrato, 1, 5, 1, 1, GridBagConstraints.CENTER, 10, 10, 70, 10, 10);
+        // Adição dos elementos
+        addElemento(painel, labelHeader, 1, 0, GridBagConstraints.CENTER, 10, 100, 10, 100, GridBagConstraints.NONE, 50);
+        addElemento(painel, labelSaldo, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10, GridBagConstraints.NONE, 50);
+        addElemento(painel, buttonTI, 1, 2, GridBagConstraints.CENTER, 30, 80, 10, 80, GridBagConstraints.HORIZONTAL, 10);
+        addElemento(painel, buttonPix, 1, 3, GridBagConstraints.CENTER, 10, 80, 10, 80, GridBagConstraints.HORIZONTAL, 10);
+        addElemento(painel, buttonPagamento, 1, 4, GridBagConstraints.CENTER, 10, 80, 10, 80, GridBagConstraints.HORIZONTAL, 10);
+        addElemento(painel, buttonExtrato, 1, 5, GridBagConstraints.CENTER, 10, 80, 70, 80, GridBagConstraints.HORIZONTAL, 10);
 
         this.add(painel);
         this.pack();
@@ -84,20 +81,20 @@ public class TelaInicialPJ extends JFrame {
     }
 
     // Método que adiciona os elementos
-    private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, int altura, int alinhamento,
-            int superior, int esquerda, int inferior, int direita, int ipady) {
+    private void addElemento(JPanel p, JComponent c, int coluna, int linha, int alinhamento,
+            int superior, int esquerda, int inferior, int direita, int preenchimento, int ipady) {
         GridBagConstraints gc = new GridBagConstraints();
-        gc.gridx = linha;
-        gc.gridy = coluna;
-        gc.gridwidth = largura;
-        gc.gridheight = altura;
+        gc.gridx = coluna;
+        gc.gridy = linha;
+        gc.gridwidth = 1;
+        gc.gridheight = 1;
         gc.ipady = ipady;
         // gc.ipadx = 0;
         // gc.weightx = 0;
         // gc.weighty = 0;
         gc.insets = new Insets(superior, esquerda, inferior, direita);
         gc.anchor = alinhamento;
-        gc.fill = GridBagConstraints.NONE;
+        gc.fill = preenchimento;
         p.add(c, gc);
     }
 
