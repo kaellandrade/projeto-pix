@@ -1,9 +1,14 @@
 package com.gui;
 
+import com.bancocentral.Cliente;
+
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
 import java.awt.event.*;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.swing.Action;
 import javax.swing.JButton;
@@ -21,6 +26,9 @@ import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
 
 public class TransferenciaPix extends JFrame {
+
+    private com.pessoa.Cliente cliente;
+    private final Locale local = new Locale("pt", "BR");
     
     // Configuração do JComboBox
     private final JComboBox<String> jCBoxChaves;
@@ -46,7 +54,11 @@ public class TransferenciaPix extends JFrame {
     private BHandlerLogin bHandlerLogin;
     private JComboBoxHandler jComboBoxHandler;
 
-    public TransferenciaPix() {
+    public TransferenciaPix(com.pessoa.Cliente cli) {;
+        this.cliente = cli;
+
+        Float saldoExibicao = cliente.getConta().getSaldo();
+        labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
 
         jCBoxChaves = new JComboBox<String>(tiposChaves);
 
