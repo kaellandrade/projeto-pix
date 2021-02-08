@@ -3,9 +3,11 @@ package com.gui;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
+import java.awt.event.*;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,9 +22,13 @@ public class AcessoEspecial extends JFrame {
         buttonAgencia = new JButton("Saldo das agências"),
         buttonCliente = new JButton("Saldo dos clientes");
 
+    private BHandlerBanco bHandlerBanco;
+
     public AcessoEspecial() {
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
+
+        BHandlerBanco bHandlerBanco = new BHandlerBanco();
 
         // adição dos elementos
         addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 70, 100);
@@ -33,6 +39,8 @@ public class AcessoEspecial extends JFrame {
         this.add(painel);
         this.pack();
         this.setVisible(true);
+
+        buttonBanco.addActionListener(bHandlerBanco);
     }
 
     private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
@@ -48,5 +56,14 @@ public class AcessoEspecial extends JFrame {
         gc.anchor = alinhamento;
         gc.fill = GridBagConstraints.NONE;
         p.add(c, gc);
+    }
+
+    private class BHandlerBanco implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            SaldoBanco saldoBanco = new SaldoBanco();
+            dispose();
+        }
     }
 }
