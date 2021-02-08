@@ -179,7 +179,7 @@ public class Abertura extends JFrame {
                 new TelaInicialPF(cli);
                 dispose();
             } else {
-                new TelaInicialPJ(cli);
+                new TelaInicialPJ(cli, todos_clientes.values());
                 dispose();
             }
             // System.out.println(cli.getConta().getExtrato());
