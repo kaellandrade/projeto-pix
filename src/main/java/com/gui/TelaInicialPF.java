@@ -10,9 +10,11 @@ import java.util.Locale;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import com.banco.Banco;
 
 import com.bancocentral.Cliente;
 
@@ -34,6 +36,11 @@ public class TelaInicialPF extends JFrame {
         this.cliente = cli; // cliente logado
         Float saldoExibicao = cli.getConta().getSaldo();
         String nomeExibicao = cli.getNome();
+        Banco banco = cli.getConta().getAgencia().getBanco();
+        ImageIcon icon = new ImageIcon("../projeto-pix/imgs/" + banco.getCodigoBanco() + ".png");
+
+        this.setTitle("Bem-Vindo ao " + banco.getNomeBanco());
+        this.setIconImage(icon.getImage());
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
@@ -44,6 +51,7 @@ public class TelaInicialPF extends JFrame {
 
         labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
         labelHeader.setText(nomeExibicao);
+
         
         labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
 
