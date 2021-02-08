@@ -33,11 +33,11 @@ public class Abertura extends JFrame {
     JFormattedTextField idCliente = new JFormattedTextField();
     JButton buttonEntrar = new JButton("Entrar"), buttonAcessoEspecial = new JButton("Acesso especial");
     JLabel labelTitulo = new JLabel("Selecione a ID");
+
     private final Icon iconUser = new ImageIcon("../projeto-pix/imgs/lock.png");
     private JRadioButton radioButtonCNPJ, radioButtonCPF;
     private RadioButtonHandler handlerRadioButton;
     private ButtonHandler handlerButtom;
-    private ButtonHandlerAE buttonHadlerAE;
     private JPanel painel1;
     private String id;
     private Map<String, Cliente> todos_clientes;
@@ -60,7 +60,6 @@ public class Abertura extends JFrame {
 
         handlerRadioButton = new RadioButtonHandler();
         handlerButtom = new ButtonHandler();
-        buttonHadlerAE = new ButtonHandlerAE();
 
 
         idCliente.setColumns(14);
@@ -68,45 +67,52 @@ public class Abertura extends JFrame {
         labelTitulo.setIcon(iconUser);
 
         // adição dos elementos à interface
-        addElemento(painel1, labelTitulo , 0, 0, 1, 1, GridBagConstraints.CENTER, 70, 100, 10, 100);
+        addElemento(painel1, labelTitulo , 0, 0, GridBagConstraints.CENTER, 70, 100, 10, 100);
 
         radioButtonCPF = new JRadioButton("CPF", false);
-        addElemento(painel1, radioButtonCPF, 0, 1, 1, 1, GridBagConstraints.WEST, 10, 70, 10, 10);
+        addElemento(painel1, radioButtonCPF, 0, 1, GridBagConstraints.WEST, 10, 100, 10, 10);
 
         radioButtonCNPJ = new JRadioButton("CNPJ", false);
-        addElemento(painel1, radioButtonCNPJ, 0, 1, 1, 1, GridBagConstraints.EAST, 10, 10, 10, 70);
+        addElemento(painel1, radioButtonCNPJ, 0, 1, GridBagConstraints.EAST, 10, 10, 10, 100);
 
-        addElemento(painel1, idCliente, 0, 2, 1, 1, GridBagConstraints.CENTER, 0, 10, 10, 10);
-
-        addElemento(painel1, buttonEntrar, 0, 3, 1, 2, GridBagConstraints.CENTER, 10, 10, 150, 10);
-
-        addElemento(painel1, buttonAcessoEspecial, 0, 4, 1, 1, GridBagConstraints.SOUTH, 100, 10, 20, 10);
+        addElemento(painel1, idCliente, 0, 2, GridBagConstraints.CENTER, 0, 10, 10, 10);
+        addElemento(painel1, buttonEntrar, 0, 3, GridBagConstraints.CENTER, 10, 10, 100, 10);
 
         // agrupamento dos RadioButtons
         ButtonGroup grupo = new ButtonGroup();
         grupo.add(radioButtonCNPJ);
         grupo.add(radioButtonCPF);
 
-        // Adição dos elementos ao painel
-        this.add(painel1);
-        this.pack();
-        this.setVisible(true);
-
         // Tratamento de eventos
         radioButtonCNPJ.addItemListener(handlerRadioButton);
         radioButtonCPF.addItemListener(handlerRadioButton);
         buttonEntrar.addActionListener(handlerButtom);
-        buttonAcessoEspecial.addActionListener(buttonHadlerAE);
+
+        // Dispara ação ao fechar a janela
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent evento) {
+                System.out.println("Fechando");
+                evento.getWindow().dispose();
+                System.out.println("Fechado");
+            }
+        });
+
+        // Adição dos elementos ao painel
+        this.add(painel1);
+        this.pack();
+        this.setVisible(true);
     }
 
     // Método que adiciona os elementos
-    private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, int altura, int alinhamento,
+    private void addElemento(JPanel p, JComponent c, int coluna, int linha, int alinhamento,
             int superior, int esquerda, int inferior, int direita) {
         GridBagConstraints gc = new GridBagConstraints();
-        gc.gridx = linha;
-        gc.gridy = coluna;
-        gc.gridwidth = largura;
-        gc.gridheight = altura;
+        gc.gridx = coluna;
+        gc.gridy = linha;
+        gc.gridwidth = 1;
+        gc.gridheight = 1;
         gc.weightx = 100.0;
         gc.weighty = 100.0;
         gc.insets = new Insets(superior, esquerda, inferior, direita);
@@ -158,16 +164,6 @@ public class Abertura extends JFrame {
             
             cli = todos_clientes.get(id);
             validaCliente(cli);
-        }
-    }
-
-    // Tratamento de evento do botão de acesso especial
-    private class ButtonHandlerAE implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent evento) {
-            AcessoEspecial acessoEspecial = new AcessoEspecial();
-            dispose();
         }
     }
     
