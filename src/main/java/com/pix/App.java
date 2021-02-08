@@ -16,7 +16,11 @@ import com.banco.*;
 
 public class App {
     public static void main(String[] args) {
+<<<<<<< HEAD
         popularDados();
+=======
+        // popularDados();
+>>>>>>> b44c834aad1248c91a58f1ebc1eb040156337a61
         Abertura abertura = new Abertura();
         abertura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         abertura.setVisible(true);
