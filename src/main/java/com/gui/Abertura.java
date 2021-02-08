@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
@@ -30,7 +32,8 @@ public class Abertura extends JFrame {
     // declarando os elementos
     JFormattedTextField idCliente = new JFormattedTextField();
     JButton buttonEntrar = new JButton("Entrar"), buttonAcessoEspecial = new JButton("Acesso especial");
-
+    JLabel labelTitulo = new JLabel("Selecione a ID");
+    private final Icon iconUser = new ImageIcon("../projeto-pix/imgs/lock.png");
     private JRadioButton radioButtonCNPJ, radioButtonCPF;
     private RadioButtonHandler handlerRadioButton;
     private ButtonHandler handlerButtom;
@@ -55,10 +58,13 @@ public class Abertura extends JFrame {
         handlerButtom = new ButtonHandler();
         buttonHadlerAE = new ButtonHandlerAE();
 
+
         idCliente.setColumns(14);
 
+        labelTitulo.setIcon(iconUser);
+
         // adição dos elementos à interface
-        addElemento(painel1, new JLabel("Selecione a ID"), 0, 0, 1, 1, GridBagConstraints.CENTER, 70, 100, 10, 100);
+        addElemento(painel1, labelTitulo , 0, 0, 1, 1, GridBagConstraints.CENTER, 70, 100, 10, 100);
 
         radioButtonCPF = new JRadioButton("CPF", false);
         addElemento(painel1, radioButtonCPF, 0, 1, 1, 1, GridBagConstraints.WEST, 10, 70, 10, 10);
@@ -165,21 +171,11 @@ public class Abertura extends JFrame {
     private void validaCliente(Cliente cli){
         if (cli != null) {// Cliente válido
 
-            // cli.getConta().depositar(500);
-            // LerClientesSerializados.atualizar(todos_clientes.values()); // atualiza o arquivo .pix
-
-            String nome = cli.getName();
-            String saldo = Float.toString(cli.getConta().getSaldo());
-            
             if (cli instanceof ClientePessoaFisica) {
-                TelaInicialPF telaPF = new TelaInicialPF();
-                telaPF.labelHeader.setText(nome);
-                telaPF.labelSaldo.setText(saldo);
+                new TelaInicialPF(cli);
                 dispose();
             } else {
-                TelaInicialPJ telaPJ = new TelaInicialPJ();
-                telaPJ.labelHeader.setText(nome);
-                telaPJ.labelSaldo.setText(saldo);
+                new TelaInicialPJ(cli);
                 dispose();
             }
             // System.out.println(cli.getConta().getExtrato());
