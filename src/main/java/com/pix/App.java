@@ -16,11 +16,7 @@ import com.banco.*;
 
 public class App {
     public static void main(String[] args) {
-<<<<<<< HEAD
-        popularDados();
-=======
-        // popularDados();
->>>>>>> b44c834aad1248c91a58f1ebc1eb040156337a61
+        //popularDados();
         Abertura abertura = new Abertura();
         abertura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         abertura.setVisible(true);
@@ -36,9 +32,8 @@ public class App {
         Cliente pessoj = (ClientePessoaJuridica) todos_clientes.get("21637668000114");
         Cliente pessof = (ClientePessoaFisica) todos_clientes.get("36579272554");
 
-        String chave = pessoj.getConta().getChavePIX();
-
-        Pix.encontrarChave(chave, todos_clientes.values());
+        //pessof.getConta().setChavePIX(Pix.gerarChavePix());
+        //System.out.println(pessof.getConta().getChavePIX());
 
         System.out.println(pessoj.getConta().getExtrato());
         System.out.println(pessof.getConta().getExtrato());
@@ -47,7 +42,7 @@ public class App {
 
         // pessof.getConta().fazerPix(Pix.encontrarChave(chave, todos_clientes.values()), 100);
         
-        LerClientesSerializados.atualizar(todos_clientes.values()); // atualiza o arquivo .pix
+        //LerClientesSerializados.atualizar(todos_clientes.values()); // atualiza o arquivo .pix
     }
 
     /**
