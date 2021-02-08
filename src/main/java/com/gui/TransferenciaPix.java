@@ -3,8 +3,7 @@ package com.gui;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 import javax.swing.Action;
 import javax.swing.JButton;
@@ -48,9 +47,9 @@ public class TransferenciaPix extends JFrame {
 
     // Variáveis para tratamento eventos do ComboBox
     private CHandlerCPF cHandlerCPF;
-    private CHandlerEmail cHandlerEail;
-    private CHandlerTelefone cHandlerTelefone;
-    private CHandlerChave cHandlerChave;
+    //private CHandlerEmail cHandlerEail;
+    //private CHandlerTelefone cHandlerTelefone;
+    //private CHandlerChave cHandlerChave;
 
     public TransferenciaPix() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,16 +65,16 @@ public class TransferenciaPix extends JFrame {
         menu = new JMenu("Opções");
         login = new JMenuItem("Tela de login");
 
-        String cpf = meiosTransferencia[0];
+        comboBoxTransferencia.setSelectedIndex(0);
         String email = meiosTransferencia[1];
         String telefone = meiosTransferencia[2];
         String chave = meiosTransferencia[3];
 
         bHandlerLogin = new BHandlerLogin();
-        cHandlerCPF = new CHandlerCPF;
-        cHandlerTelefone = new CHandlerTelefone;
-        cHandlerEail = new CHandlerEmail;
-        cHandlerChave = new CHandlerChave;
+        //cHandlerCPF = new CHandlerCPF();
+        //cHandlerTelefone = new CHandlerTelefone();
+        //qcHandlerEail = new CHandlerEmail();
+        //cHandlerChave = new CHandlerChave();
 
         // título da tela
         addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 70, 100);
@@ -108,7 +107,6 @@ public class TransferenciaPix extends JFrame {
 
         // Tratamento de eventos
         login.addActionListener(bHandlerLogin);
-        cpf.addActionListener(cHandlerCPF);
     }
 
     private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
@@ -136,10 +134,27 @@ public class TransferenciaPix extends JFrame {
         }
     }
 
-    private class CHandlerCPF implements ActionListener {
+    private class CHandlerCPF implements ItemListener {
 
         @Override
-        public void actionPerformed(ActionEvent evento) {
+        public void itemStateChanged(ItemEvent evento) {
+
+            if (evento.getStateChange() == ItemEvent.SELECTED) {
+                Object source = evento.getSource();
+
+                if (source instanceof JComboBox) {
+                    JComboBox cBox = (JComboBox)source;
+                    Object selectedItem = cBox.getSelectedItem();
+                    if ("CPF".equals(selectedItem)) {
+                        try {
+                            MaskFormatter mascaraCPF = new MaskFormatter("###.###.###-##");
+                            mascaraCPF.install(textFieldChave);
+                        } catch (Exception e) {
+                            System.out.print(e);
+                        }
+                    }
+                }
+            }
         }
     }
 }
