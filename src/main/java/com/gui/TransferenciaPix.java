@@ -104,6 +104,7 @@ public class TransferenciaPix extends JFrame {
 
         this.add(painel);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
 
         jComboBoxHandler = new JComboBoxHandler();

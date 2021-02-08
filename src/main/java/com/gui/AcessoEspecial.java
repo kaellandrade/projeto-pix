@@ -38,6 +38,7 @@ public class AcessoEspecial extends JFrame {
 
         this.add(painel);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
 
         buttonBanco.addActionListener(bHandlerBanco);

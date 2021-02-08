@@ -71,6 +71,7 @@ public class TelaPix extends JFrame {
         // Adiciona ao painel e torna visível
         this.add(painel);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
 
         // tratamento de eventos

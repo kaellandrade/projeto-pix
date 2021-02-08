@@ -38,6 +38,7 @@ public class Extrato extends JFrame {
 
         this.add(painel);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 

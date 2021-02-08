@@ -55,6 +55,7 @@ public class SaldoBanco extends JFrame {
 
         this.add(painel);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 

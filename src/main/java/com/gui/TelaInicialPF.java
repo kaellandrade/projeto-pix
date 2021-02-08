@@ -67,6 +67,7 @@ public class TelaInicialPF extends JFrame {
 
         this.add(painel);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
 
         // Tratamento de eventos
