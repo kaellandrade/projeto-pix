@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
+import com.pessoa.Cliente;
 
 import com.backend.LerClientesSerializados;
 
@@ -33,22 +34,19 @@ public class Pix {
     }
 
     /**
-     * Retornar um cliente associado a uma determinada chave pix aleatória para realizar um PIX
+     * Recebe como parâmetro uma chave pix aleatoria e o banco de dados de todos os clientes.
+     * Retornar um cliente associado a uma determinada chave pix para realizar um PIX
      */
-    public static com.pessoa.Cliente encontrarChave(String chavepix) {
-        Collection<com.pessoa.Cliente> todos_clientes;
+    public static Cliente encontrarChave(String chavepix, Collection clientes) {
 
-        // Início Captura a data base
-        LerClientesSerializados.abreArquivo();
-        todos_clientes = LerClientesSerializados.lerClientes().values();
-        LerClientesSerializados.fecharArquivo();
-        // Fim Captura a data base
+        Iterator<Cliente> cliIterator = clientes.iterator();
 
-        Iterator<com.pessoa.Cliente> cliIterator = todos_clientes.iterator();
         while (cliIterator.hasNext()) {
-            String chaveCliAtual = cliIterator.next().getConta().getChavePIX();
-            if (chavepix.equals(chaveCliAtual))
-                return cliIterator.next();
+            Cliente cli = cliIterator.next();
+            String chaveCliAtual = cli.getConta().getChavePIX();
+
+            if (chaveCliAtual.equals(chavepix))
+                return cli;
 
         }
         return null;
