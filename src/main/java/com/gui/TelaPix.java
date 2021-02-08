@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JFrame;
 
 public class TelaPix extends JFrame {
+    private com.pessoa.Cliente cliente;
     private final Icon iconKey = new ImageIcon("../projeto-pix/imgs/key.png");
 
     // declarando os elementos
@@ -32,6 +33,7 @@ public class TelaPix extends JFrame {
     private Conta conta;
 
     public TelaPix(Cliente cliente) {
+        this.cliente = cliente;
         String minhaChave = cliente.getConta().getChavePIX();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
@@ -86,7 +88,7 @@ public class TelaPix extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent evento) {
-            TransferenciaPix transferenciaPix = new TransferenciaPix();
+            new TransferenciaPix(cliente);
             dispose();
         }
     }
