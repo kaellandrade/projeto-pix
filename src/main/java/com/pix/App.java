@@ -29,7 +29,8 @@ public class App {
         // Fim Captura a data base
 
         // Teste teste chave pix
-        ClientePessoaFisica pessoaf = (ClientePessoaFisica) todos_clientes.get("86719122134");
+        // ClientePessoaJuridica pessoj = (ClientePessoaJuridica) todos_clientes.get("21637668000114");
+        // pessoj.getConta().setChavePIX(Pix.gerarChavePix());
         
         // pessoaf.getConta().setChavePIX(Pix.gerarChavePix());
         // System.out.println(pessoaf.getConta().getChavePIX());
