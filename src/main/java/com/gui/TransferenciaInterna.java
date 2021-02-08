@@ -5,12 +5,17 @@ import java.awt.Insets;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.bancocentral.Cliente;
+
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
 import javax.swing.JMenuBar;
@@ -18,16 +23,18 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 public class TransferenciaInterna extends JFrame {
+    private com.pessoa.Cliente cliente;
+    private final Locale local = new Locale("pt", "BR");
 
     // declarando os JTextField
-    JTextField textFieldValor = new JTextField("Valor", 8), textFieldAgencia = new JTextField("Agência", 8), 
-        textFieldConta = new JTextField("Conta", 8);
+    JTextField textFieldValor = new JTextField("Valor", 8), textFieldAgencia = new JTextField("Agência", 8),
+            textFieldConta = new JTextField("Conta", 8);
 
     // Declarando o JComboBox com a lista de bancos
-    String bancos[] = {"Banco do Brasil", "Bradesco", "Itaú", "Santander"};
+    String bancos[] = { "Banco do Brasil", "Bradesco", "Itaú", "Santander" };
     JComboBox jComboBoxBanco = new JComboBox(bancos);
 
-    String tipoConta[] = {"Conta corrente", "Conta poupança"};
+    String tipoConta[] = { "Conta corrente", "Conta poupança" };
     JComboBox jComboBoxConta = new JComboBox(tipoConta);
 
     // Declarando o JButton
@@ -35,8 +42,8 @@ public class TransferenciaInterna extends JFrame {
 
     // Declarando os JLabels
     JLabel labelHeader = new JLabel("<html><center>Realizar transferência <br /> interna</center></html>"),
-        labelSaldo = new JLabel("<html><center>Saldo da <br /> conta corrente</center></html>"),
-        labelBanco = new JLabel("Selecione o banco"), labelConta = new JLabel("Selecione a conta");
+            labelSaldo = new JLabel("<html><center>Saldo da <br /> conta corrente</center></html>"),
+            labelBanco = new JLabel("Selecione o banco"), labelConta = new JLabel("Selecione a conta");
 
     // Declarando o JMenu, JMenuBar e JMenuItem;
     private JMenuBar barra;
@@ -46,7 +53,10 @@ public class TransferenciaInterna extends JFrame {
     // Variáveis para tratamento de eventos do menu
     private BHandlerLogin bHandlerLogin;
 
-    public TransferenciaInterna() {
+    public TransferenciaInterna(com.pessoa.Cliente cli) {
+        this.cliente = cli;
+        Float saldoExibicao = cli.getConta().getSaldo();
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
@@ -57,6 +67,7 @@ public class TransferenciaInterna extends JFrame {
         login = new JMenuItem("Tela de login");
 
         bHandlerLogin = new BHandlerLogin();
+        labelSaldo.setText("Saldo Atual: " + NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
 
         // título da tela
         addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 70, 100);
@@ -102,8 +113,8 @@ public class TransferenciaInterna extends JFrame {
         login.addActionListener(bHandlerLogin);
     }
 
-    private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
-        int altura, int alinhamento, int superior, int esquerda, int inferior, int direita) {
+    private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, int altura, int alinhamento,
+            int superior, int esquerda, int inferior, int direita) {
         GridBagConstraints gc = new GridBagConstraints();
         gc.gridx = linha;
         gc.gridy = coluna;
