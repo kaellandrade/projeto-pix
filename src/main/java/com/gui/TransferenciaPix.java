@@ -1,6 +1,8 @@
 package com.gui;
 
+import com.backend.LerClientesSerializados;
 import com.bancocentral.Cliente;
+import com.bancocentral.Pix;
 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -8,6 +10,7 @@ import java.awt.GridBagConstraints;
 import java.awt.event.*;
 
 import java.text.NumberFormat;
+import java.util.Collection;
 import java.util.Locale;
 
 import javax.swing.Action;
@@ -21,12 +24,14 @@ import javax.swing.JComboBox;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
 
 public class TransferenciaPix extends JFrame {
 
     private com.pessoa.Cliente cliente;
+    private Collection<Cliente> clientes;
     private final Locale local = new Locale("pt", "BR");
     
     // Configuração do JComboBox
@@ -53,9 +58,11 @@ public class TransferenciaPix extends JFrame {
     // Variáveis para tratamento de eventos do menu
     private BHandlerLogin bHandlerLogin;
     private JComboBoxHandler jComboBoxHandler;
+    private BHandlerTransferir bHandlerTransferir;
 
-    public TransferenciaPix(com.pessoa.Cliente cli) {;
+    public TransferenciaPix(com.pessoa.Cliente cli, Collection clientes) {;
         this.cliente = cli;
+        this.clientes = clientes;
 
         Float saldoExibicao = cliente.getConta().getSaldo();
         labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
@@ -76,6 +83,7 @@ public class TransferenciaPix extends JFrame {
         login = new JMenuItem("Tela de login");
 
         bHandlerLogin = new BHandlerLogin();
+        bHandlerTransferir = new BHandlerTransferir();
 
         labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
 
@@ -103,6 +111,7 @@ public class TransferenciaPix extends JFrame {
         // Tratamento de eventos
         login.addActionListener(bHandlerLogin);
         jCBoxChaves.addActionListener(jComboBoxHandler);
+        buttonTransferir.addActionListener(bHandlerTransferir);
 
     }
 
@@ -162,6 +171,32 @@ public class TransferenciaPix extends JFrame {
                     mascaraTelefone.install(textFieldChave);
                 } catch (Exception e) {
                     System.out.print(e);
+                }
+            }
+        }
+    }
+
+    private class BHandlerTransferir implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            String chave = textFieldChave.getText();
+            
+            Float valor = Float.parseFloat(textFieldValor.getText());
+            int selecionado = jCBoxChaves.getSelectedIndex();
+
+            Float saldoExibicao = cliente.getConta().getSaldo();
+
+            chave = chave.replaceAll("\\W", "");
+
+            // 5 é a posição do item "chave pix" no array
+            if (selecionado == 5) {
+                if (cliente.getConta().fazerPix(Pix.encontrarChave(chave, clientes), valor)) {
+                    JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+                    labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
+                    TransferenciaPix tela = new TransferenciaPix(cliente, clientes);
+                    LerClientesSerializados.atualizar(clientes); // atualiza o arquivo .pix
+                    dispose();
                 }
             }
         }
