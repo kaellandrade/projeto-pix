@@ -31,6 +31,7 @@ public class Extrato extends JFrame {
         
         String extrato = cli.getConta().getExtrato().toString();
 
+        textAreaExtrato.setEditable(false);
         textAreaExtrato.setText(extrato);
 
         addElemento(painel, labelHeader, 0, 1, GridBagConstraints.CENTER, 10, 100, 10, 100);
