@@ -7,7 +7,6 @@ import java.awt.event.*;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

@@ -4,7 +4,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.awt.GridBagConstraints;
 
 import com.bancocentral.PortalTransparencia;

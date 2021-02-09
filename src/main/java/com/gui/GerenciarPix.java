@@ -13,11 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 
-import com.pessoa.Cliente;
-import com.pessoa.ClientePessoaFisica;
-import com.pessoa.ClientePessoaJuridica;
+import com.pessoa.*;
 
-import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -28,7 +25,7 @@ import com.bancocentral.Pix;
 
 public class GerenciarPix extends JFrame {
     
-    private com.pessoa.Cliente cliente;
+    private Cliente cliente;
     private Collection<Cliente> clientes;
 
     JLabel labelHeader = new JLabel("Gerenciador do Pix"), labelHeader2 = new JLabel("Selecione o tipo de chave"),
@@ -55,7 +52,7 @@ public class GerenciarPix extends JFrame {
 
     private String chaveCPF, chaveCNPJ, chaveEmail, chaveTelefone, chaveAleatoria;
 
-    public GerenciarPix(com.pessoa.Cliente cli, Collection cli2) {
+    public GerenciarPix(Cliente cli, Collection cli2) {
 
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());

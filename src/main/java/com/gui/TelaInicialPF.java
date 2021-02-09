@@ -20,12 +20,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-import com.backend.LerClientesSerializados;
-import com.banco.Banco;
-import com.bancocentral.Cliente;
+import com.pessoa.Cliente;
 
 public class TelaInicialPF extends JFrame {
-    private com.pessoa.Cliente cliente;
+    private Cliente cliente;
     private Collection<Cliente> clientes;
 
     private final Locale local = new Locale("pt", "BR");

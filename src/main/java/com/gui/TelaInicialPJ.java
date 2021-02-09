@@ -1,7 +1,6 @@
 package com.gui;
 
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -12,8 +11,6 @@ import java.util.Locale;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.Action;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -24,10 +21,10 @@ import javax.swing.JMenuItem;
 
 import com.backend.LerClientesSerializados;
 import com.banco.Banco;
-import com.bancocentral.Cliente;
+import com.pessoa.Cliente;
 
 public class TelaInicialPJ extends JFrame {
-    private com.pessoa.Cliente cliente;
+    private Cliente cliente;
     private Collection<Cliente> clientes;
 
     private final Locale local = new Locale("pt", "BR");
@@ -56,7 +53,7 @@ public class TelaInicialPJ extends JFrame {
     // Variáveis para tratamento de eventos do menu
     private BHandlerLogin bHandlerLogin;
 
-    public TelaInicialPJ(com.pessoa.Cliente cli, Collection cli2) {
+    public TelaInicialPJ(Cliente cli, Collection cli2) {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();

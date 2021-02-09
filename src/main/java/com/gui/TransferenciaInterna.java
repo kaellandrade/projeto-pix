@@ -19,10 +19,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-import com.bancocentral.Cliente;
+import com.pessoa.Cliente;
 
 public class TransferenciaInterna extends JFrame {
-    private com.pessoa.Cliente cliente;
+    private Cliente cliente;
     private final Locale local = new Locale("pt", "BR");
 
     // declarando os JTextField

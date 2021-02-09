@@ -3,7 +3,6 @@ package com.gui;
 import com.pessoa.Cliente;
 import com.pessoa.ClientePessoaFisica;
 import com.backend.LerClientesSerializados;
-import com.banco.Conta;
 
 import java.awt.GridBagLayout;
 import java.awt.Insets;

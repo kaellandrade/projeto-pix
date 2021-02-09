@@ -10,13 +10,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+
+import com.pessoa.Cliente;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 public class Extrato extends JFrame {
     
-    private com.pessoa.Cliente cliente;
+    private Cliente cliente;
     
     JLabel labelHeader = new JLabel("Extrato bancário");
     JTextArea textAreaExtrato = new JTextArea(20, 5);
@@ -29,7 +32,7 @@ public class Extrato extends JFrame {
     // Variáveis para tratamento de eventos do menu
     private BHandlerLogin bHandlerLogin;
 
-    public Extrato(com.pessoa.Cliente cli) {
+    public Extrato(Cliente cli) {
 
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());

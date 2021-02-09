@@ -1,7 +1,8 @@
 package com.gui;
 
+import com.pessoa.Cliente;
+
 import com.backend.LerClientesSerializados;
-import com.bancocentral.Cliente;
 import com.bancocentral.Pix;
 
 import java.awt.GridBagLayout;
@@ -13,12 +14,11 @@ import java.text.NumberFormat;
 import java.util.Collection;
 import java.util.Locale;
 
-import javax.swing.Action;
+
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
 import javax.swing.JMenuBar;
@@ -30,7 +30,7 @@ import javax.swing.text.MaskFormatter;
 
 public class TransferenciaPix extends JFrame {
 
-    private com.pessoa.Cliente cliente;
+    private Cliente cliente;
     private Collection<Cliente> clientes;
     private final Locale local = new Locale("pt", "BR");
 
@@ -61,7 +61,7 @@ public class TransferenciaPix extends JFrame {
     private JComboBoxHandler jComboBoxHandler;
     private BHandlerTransferir bHandlerTransferir;
 
-    public TransferenciaPix(com.pessoa.Cliente cli, Collection cli2) {
+    public TransferenciaPix(Cliente cli, Collection cli2) {
         this.cliente = cli;
         this.clientes = cli2;
 
@@ -213,7 +213,7 @@ public class TransferenciaPix extends JFrame {
             Float saldoExibicao = cliente.getConta().getSaldo();
 
             if (!chave.isEmpty()) { // se há valor no campo
-                com.pessoa.Cliente recebedor = Pix.encontrarChave(chave, clientes);
+                Cliente recebedor = Pix.encontrarChave(chave, clientes);
                 if (recebedor != null && recebedor != cliente) { // verifica se há um cliente válido
                     String valor_formatado = NumberFormat.getCurrencyInstance(local).format(valor);
                     int resposta = JOptionPane.showConfirmDialog(null,
