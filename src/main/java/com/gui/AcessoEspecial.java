@@ -11,6 +11,9 @@ import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class AcessoEspecial extends JFrame {
 
@@ -24,38 +27,60 @@ public class AcessoEspecial extends JFrame {
 
     private BHandlerBanco bHandlerBanco;
 
+    // Declarando o JMenu, JMenuBar e JMenuItem;
+    private JMenuBar barra;
+    private JMenu menu;
+    private JMenuItem login;
+
+    // Variáveis para tratamento de eventos do menu
+    private BHandlerLogin bHandlerLogin;
+
     public AcessoEspecial() {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
+
+        // Define o menu e seus componentes
+        barra = new JMenuBar();
+        menu = new JMenu("Opções");
+        login = new JMenuItem("Tela de login");
+        bHandlerLogin = new BHandlerLogin();
 
         BHandlerBanco bHandlerBanco = new BHandlerBanco();
 
         // adição dos elementos
-        addElemento(painel, labelHeader, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 70, 100);
-        addElemento(painel, buttonBanco, 0, 2, 1, 1, GridBagConstraints.CENTER, 30, 10, 10, 10);
-        addElemento(painel, buttonAgencia, 0, 3, 1, 1, GridBagConstraints.CENTER, 10, 10, 10, 10);
-        addElemento(painel, buttonCliente, 0, 4, 1, 1, GridBagConstraints.CENTER, 10, 10, 70, 10);
+        addElemento(painel, labelHeader, 1, 0, GridBagConstraints.CENTER, 10, 100, 10, 100, GridBagConstraints.NONE, 50);
+        addElemento(painel, buttonBanco, 1, 1, GridBagConstraints.CENTER, 30, 80, 10, 80, GridBagConstraints.HORIZONTAL, 10);
+        addElemento(painel, buttonAgencia, 1, 2, GridBagConstraints.CENTER, 10, 80, 10, 80, GridBagConstraints.HORIZONTAL, 10);
+        addElemento(painel, buttonCliente, 1, 3, GridBagConstraints.CENTER, 10, 80, 40, 80, GridBagConstraints.HORIZONTAL, 10);
+
+        // adiciona menu ao JFrame
+        menu.add(login);
+        barra.add(menu);
+        this.setJMenuBar(barra);
+        
+        // Tratamento de eventos
+        login.addActionListener(bHandlerLogin);
+        buttonBanco.addActionListener(bHandlerBanco);
 
         this.add(painel);
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-
-        buttonBanco.addActionListener(bHandlerBanco);
     }
 
-    private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
-        int altura, int alinhamento, int superior, int esquerda, int inferior, int direita) {
+    // Método que adiciona os elementos
+    private void addElemento(JPanel p, JComponent c, int coluna, int linha, int alinhamento, 
+        int superior, int esquerda, int inferior, int direita, int preenchimento, int ipady) {
         GridBagConstraints gc = new GridBagConstraints();
-        gc.gridx = linha;
-        gc.gridy = coluna;
-        gc.gridwidth = largura;
-        gc.gridheight = altura;
-        gc.weightx = 100.0;
-        gc.weighty = 100.0;
+        gc.gridx = coluna;
+        gc.gridy = linha;
+        gc.gridwidth = 1;
+        gc.gridheight = 1;
+        gc.ipady = ipady;
         gc.insets = new Insets(superior, esquerda, inferior, direita);
         gc.anchor = alinhamento;
-        gc.fill = GridBagConstraints.NONE;
+        gc.fill = preenchimento;
         p.add(c, gc);
     }
 
@@ -64,6 +89,16 @@ public class AcessoEspecial extends JFrame {
         @Override
         public void actionPerformed(ActionEvent evento) {
             SaldoBanco saldoBanco = new SaldoBanco();
+            dispose();
+        }
+    }
+
+    // Tratamento de eventos do menu (login)
+    private class BHandlerLogin implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            Abertura abertura = new Abertura();
             dispose();
         }
     }
