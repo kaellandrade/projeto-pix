@@ -35,9 +35,8 @@ public class Pix {
     }
 
     /**
-     * Recebe como parâmetro uma chave pix aleatoria e o banco de dados de todos os
-     * clientes. Retornar um cliente associado a uma determinada chave pix para
-     * realizar um PIX
+     * Recebe como parâmetro uma chave pix e o banco de dados de todos os
+     * clientes. Retornar um cliente associado a uma determinada chave pix
      */
     public static Cliente encontrarChave(String chavepix, Collection clientes) {
 
