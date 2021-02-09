@@ -12,6 +12,7 @@ import java.util.Locale;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -37,12 +38,14 @@ public class TelaInicialPJ extends JFrame {
     JButton buttonTI = new JButton("Realizar transferência"),
             buttonExtrato = new JButton("Consultar o extrato da conta"),
             buttonPix = new JButton("Acessar o Pix"),
-            buttonPagamento = new JButton("Realizar pagamento");
+            buttonPagamento = new JButton("Realizar pagamento"),
+            buttonSaldo = new JButton("Saldo geral");
 
     private BHandlerTransferencia bHandlerTransferencia;
     private BHandlerPix bHandlerPix;
     // private BHandlerPagamento bHandlerPagamento;
     private BHandlerExtrato bHandlerExtrato;
+    private BHandlerSaldo bHandlerSaldo;
 
     // Declarando o JMenu, JMenuBar e JMenuItem;
     private JMenuBar barra;
@@ -79,6 +82,7 @@ public class TelaInicialPJ extends JFrame {
         bHandlerPix = new BHandlerPix();
         // bHandlerPagamento = new BHandlerPagamento();
         bHandlerExtrato = new BHandlerExtrato();
+        bHandlerSaldo = new BHandlerSaldo();
 
         // Formataçẽos dos JLabel da tela
         labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
@@ -91,7 +95,8 @@ public class TelaInicialPJ extends JFrame {
         addElemento(painel, buttonTI, 1, 2, GridBagConstraints.CENTER, 30, 80, 10, 80, GridBagConstraints.HORIZONTAL, 10);
         addElemento(painel, buttonPix, 1, 3, GridBagConstraints.CENTER, 10, 80, 10, 80, GridBagConstraints.HORIZONTAL, 10);
         addElemento(painel, buttonPagamento, 1, 4, GridBagConstraints.CENTER, 10, 80, 10, 80, GridBagConstraints.HORIZONTAL, 10);
-        addElemento(painel, buttonExtrato, 1, 5, GridBagConstraints.CENTER, 10, 80, 70, 80, GridBagConstraints.HORIZONTAL, 10);
+        addElemento(painel, buttonExtrato, 1, 5, GridBagConstraints.CENTER, 10, 80, 10, 80, GridBagConstraints.HORIZONTAL, 10);
+        addElemento(painel, buttonSaldo, 1, 6, GridBagConstraints.CENTER, 10, 80, 70, 80, GridBagConstraints.HORIZONTAL, 10);
 
         // adiciona menu ao JFrame
         menu.add(login);
@@ -104,6 +109,7 @@ public class TelaInicialPJ extends JFrame {
         // buttonPagamento.addActionListener(bHandlerPagamento);
         buttonExtrato.addActionListener(bHandlerExtrato);
         login.addActionListener(bHandlerLogin);
+        buttonSaldo.addActionListener(bHandlerSaldo);
 
         this.add(painel);
         this.pack();
@@ -171,6 +177,15 @@ public class TelaInicialPJ extends JFrame {
         @Override
         public void actionPerformed(ActionEvent evento) {
             Abertura abertura = new Abertura();
+            dispose();
+        }
+    }
+
+    public class BHandlerSaldo implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            AcessoEspecial acessoEspecial = new AcessoEspecial();
             dispose();
         }
     }
