@@ -81,6 +81,7 @@ public class TelaInicialPF extends JFrame {
         bHandlerSaldo = new BHandlerSaldo();
 
         labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
+        labelHeader.setFont(labelHeader.getFont().deriveFont(14.0f));
         labelHeader.setText(nomeExibicao);
         labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
 
