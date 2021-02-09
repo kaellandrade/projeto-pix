@@ -35,8 +35,8 @@ public class Pix {
     }
 
     /**
-     * Recebe como parâmetro uma chave pix e o banco de dados de todos os
-     * clientes. Retornar um cliente associado a uma determinada chave pix
+     * Recebe como parâmetro uma chave pix e o banco de dados de todos os clientes.
+     * Retornar um cliente associado a uma determinada chave pix
      */
     public static Cliente encontrarChave(String chavepix, Collection clientes) {
 
@@ -45,11 +45,13 @@ public class Pix {
         String chaveCnpj = "";
         String chaveTel = "";
         String chaveEmail = "";
+        String chavePixRand = "";
 
         while (cliIterator.hasNext()) {
             Cliente cli = cliIterator.next();
             chaveEmail = cli.getEmail();
             chaveTel = cli.getTelefone();
+            chavePixRand = cli.getConta().getChavePIX();
             if (cli instanceof ClientePessoaFisica) {
                 ClientePessoaFisica clif = (ClientePessoaFisica) cli;
                 chaveCpf = clif.getCpf();
@@ -58,7 +60,8 @@ public class Pix {
                 chaveCnpj = clij.getCnpj();
             }
 
-            if (chaveCnpj.equals(chavepix) || chaveCpf.equals(chavepix) || chaveTel.equals(chavepix) || chaveEmail.equals(chavepix))
+            if (chaveCnpj.equals(chavepix) || chaveCpf.equals(chavepix) || chaveTel.equals(chavepix)
+                    || chaveEmail.equals(chavepix) || chavePixRand.equals(chavepix))
                 return cli;
 
         }

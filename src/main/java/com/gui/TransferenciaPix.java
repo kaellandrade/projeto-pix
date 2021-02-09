@@ -213,6 +213,7 @@ public class TransferenciaPix extends JFrame {
             Float saldoExibicao = cliente.getConta().getSaldo();
 
             if (!chave.isEmpty()) { // se há valor no campo
+                System.out.println(chave);
                 Cliente recebedor = Pix.encontrarChave(chave, clientes);
                 if (recebedor != null && recebedor != cliente) { // verifica se há um cliente válido
                     String valor_formatado = NumberFormat.getCurrencyInstance(local).format(valor);

@@ -167,7 +167,7 @@ public class GerenciarPix extends JFrame {
             
             textAreaChaveAleatoria.setText(chaveAleatoria);
 
-            LerClientesSerializados.atualizar((Collection)clientes); // atualiza o arquivo .pix
+            LerClientesSerializados.atualizar(clientes); // atualiza o arquivo .pix
 
         }
     }
