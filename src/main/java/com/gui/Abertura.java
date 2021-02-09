@@ -61,7 +61,6 @@ public class Abertura extends JFrame {
         handlerRadioButton = new RadioButtonHandler();
         handlerButtom = new ButtonHandler();
 
-
         idCliente.setColumns(14);
 
         labelTitulo.setIcon(iconUser);
