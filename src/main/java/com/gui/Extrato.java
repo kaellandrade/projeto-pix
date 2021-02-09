@@ -21,11 +21,25 @@ public class Extrato extends JFrame {
     JLabel labelHeader = new JLabel("Extrato bancário");
     JTextArea textAreaExtrato = new JTextArea(20, 5);
 
+    // Declarando o JMenu, JMenuBar e JMenuItem;
+    private JMenuBar barra;
+    private JMenu menu;
+    private JMenuItem login;
+
+    // Variáveis para tratamento de eventos do menu
+    private BHandlerLogin bHandlerLogin;
+
     public Extrato(com.pessoa.Cliente cli) {
 
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Define o menu e seus componentes
+        barra = new JMenuBar();
+        menu = new JMenu("Opções");
+        login = new JMenuItem("Tela de login");
+        bHandlerLogin = new BHandlerLogin();
 
         this.cliente = cli;
         
@@ -36,6 +50,14 @@ public class Extrato extends JFrame {
 
         addElemento(painel, labelHeader, 0, 1, GridBagConstraints.CENTER, 10, 100, 10, 100);
         addElemento(painel, textAreaExtrato, 1, 1, GridBagConstraints.CENTER, 10, 30, 10, 30);
+
+        // adiciona menu ao JFrame
+        menu.add(login);
+        barra.add(menu);
+        this.setJMenuBar(barra);
+
+        // Tratamento de eventos
+        login.addActionListener(bHandlerLogin);
 
         this.add(painel);
         this.pack();
@@ -56,5 +78,15 @@ public class Extrato extends JFrame {
         gc.anchor = alinhamento;
         gc.fill = GridBagConstraints.NONE;
         p.add(c, gc);
+    }
+
+    // Tratamento de eventos do menu (login)
+    private class BHandlerLogin implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            Abertura abertura = new Abertura();
+            dispose();
+        }
     }
 }
