@@ -212,7 +212,6 @@ public class TransferenciaPix extends JFrame {
 
             Float saldoExibicao = cliente.getConta().getSaldo();
 
-
             if (!chave.isEmpty()) { // se há valor no campo
                 com.pessoa.Cliente recebedor = Pix.encontrarChave(chave, clientes);
                 if (recebedor != null && recebedor != cliente) { // verifica se há um cliente válido
