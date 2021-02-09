@@ -33,10 +33,11 @@ public class TransferenciaPix extends JFrame {
     private com.pessoa.Cliente cliente;
     private Collection<Cliente> clientes;
     private final Locale local = new Locale("pt", "BR");
-    
+
     // Configuração do JComboBox
     private final JComboBox<String> jCBoxChaves;
-    private static final String[] tiposChaves = {"Selecione uma chave", "CPF", "CNPJ", "E-mail", "Telefone", "Chave Pix"};
+    private static final String[] tiposChaves = { "Selecione uma chave", "CPF", "CNPJ", "E-mail", "Telefone",
+            "Chave Pix" };
 
     // declarando os JTextField
     JFormattedTextField textFieldValor = new JFormattedTextField(), textFieldChave = new JFormattedTextField();
@@ -46,9 +47,8 @@ public class TransferenciaPix extends JFrame {
 
     // Declarando os JLabels
     JLabel labelHeader = new JLabel("<html><center>Realizar transferência <br />via Pix</center></html>"),
-        labelSaldo = new JLabel(""),
-        labelTituloSaldo = new JLabel("Saldo atual"),
-        labelTransferencia = new JLabel("<html><center>Selecione o meio<br />de transferência</center></html>");
+            labelSaldo = new JLabel(""), labelTituloSaldo = new JLabel("Saldo atual"),
+            labelTransferencia = new JLabel("<html><center>Selecione o meio<br />de transferência</center></html>");
 
     // Declarando o JMenu, JMenuBar e JMenuItem;
     private JMenuBar barra;
@@ -125,8 +125,8 @@ public class TransferenciaPix extends JFrame {
         this.setVisible(true);
     }
 
-    private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
-        int altura, int alinhamento, int superior, int esquerda, int inferior, int direita) {
+    private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, int altura, int alinhamento,
+            int superior, int esquerda, int inferior, int direita) {
         GridBagConstraints gc = new GridBagConstraints();
         gc.gridx = linha;
         gc.gridy = coluna;
@@ -184,6 +184,15 @@ public class TransferenciaPix extends JFrame {
                     System.out.print(e);
                 }
             }
+
+            if (jCBoxChaves.getSelectedIndex() == 5) {
+                try {
+                    MaskFormatter mascaraChavePix = new MaskFormatter("****-****-****-****-****");
+                    mascaraChavePix.install(textFieldChave);
+                } catch (Exception e) {
+                    System.out.print(e);
+                }
+            }
         }
     }
 
@@ -192,8 +201,8 @@ public class TransferenciaPix extends JFrame {
         @Override
         public void actionPerformed(ActionEvent evento) {
             String chave = textFieldChave.getText();
-            
-            Float valor = Float.parseFloat(textFieldValor.getText());
+
+            Float valor = Math.abs(Float.parseFloat(textFieldValor.getText()));
             int selecionado = jCBoxChaves.getSelectedIndex();
 
             Float saldoExibicao = cliente.getConta().getSaldo();
@@ -202,13 +211,37 @@ public class TransferenciaPix extends JFrame {
 
             // 5 é a posição do item "chave pix" no array
             if (selecionado == 5) {
-                if (cliente.getConta().fazerPix(Pix.encontrarChave(chave, clientes), valor)) {
-                    JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso", "Atenção", JOptionPane.INFORMATION_MESSAGE);
-                    labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
-                    TransferenciaPix tela = new TransferenciaPix(cliente, clientes);
-                    dispose();
+                if (!chave.isEmpty()) { // se há valor no campo
+                    com.pessoa.Cliente recebedor = Pix.encontrarChave(chave, clientes);
+                    if (recebedor != null && recebedor != cliente) { // verifica se há um cliente válido
+                        String valor_formatado = NumberFormat.getCurrencyInstance(local).format(valor);
+                        int resposta = JOptionPane.showConfirmDialog(null,
+                                String.format("Fazer pix de %s para %s", valor_formatado, recebedor.getName()),
+                                "Atenção!", JOptionPane.INFORMATION_MESSAGE);
+                        if (resposta == JOptionPane.YES_NO_OPTION) {
+
+                            if (cliente.getConta().fazerPix(recebedor, valor)) {
+                                JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso", "Atenção",
+                                        JOptionPane.INFORMATION_MESSAGE);
+
+                                labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
+                                new TransferenciaPix(cliente, clientes);
+                                dispose();
+                            }else{
+                                JOptionPane.showMessageDialog(null, "Saldo insuficiente", "Atenção",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            }
+
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Não há clientes associados a essa chave", "Atenção",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Digite uma chave", "Atenção", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
+
         }
     }
 }

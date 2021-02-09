@@ -23,21 +23,23 @@ public class App {
         abertura.setVisible(true);
 
 
-        // Início Captura a data base
-        LerClientesSerializados.abreArquivo();
-        Map<String, Cliente> todos_clientes = LerClientesSerializados.lerClientes();
-        LerClientesSerializados.fecharArquivo();
-        // Fim Captura a data base
+        // // Início Captura a data base
+        // LerClientesSerializados.abreArquivo();
+        // Map<String, Cliente> todos_clientes = LerClientesSerializados.lerClientes();
+        // LerClientesSerializados.fecharArquivo();
+        // // Fim Captura a data base
 
-        // Teste teste chave pix
-        Cliente pesso1 = (ClientePessoaJuridica) todos_clientes.get("80650994000120");
-        Cliente pesso2 = (ClientePessoaJuridica) todos_clientes.get("21637668000114");
-
+        // // Teste teste chave pix
+        // Cliente pesso1 = (ClientePessoaJuridica) todos_clientes.get("80650994000120");
         // pesso1.getConta().setChavePIX(Pix.gerarChavePix());
-        System.out.println(pesso1.getConta().getChavePIX());
+        // System.out.println(pesso1.getConta().getChavePIX());
 
-        System.out.println(pesso1.getConta().getExtrato());
-        System.out.println(pesso2.getConta().getExtrato());
+        // Cliente pesso2 = (ClientePessoaJuridica) todos_clientes.get("21637668000114");
+
+        // System.out.println(pesso2.getConta().getChavePIX());
+
+        // System.out.println(pesso1.getConta().getExtrato());
+        // System.out.println(pesso2.getConta().getExtrato());
 
 
 
