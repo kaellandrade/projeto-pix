@@ -60,9 +60,9 @@ public class TransferenciaPix extends JFrame {
     private JComboBoxHandler jComboBoxHandler;
     private BHandlerTransferir bHandlerTransferir;
 
-    public TransferenciaPix(com.pessoa.Cliente cli, Collection clientes) {;
+    public TransferenciaPix(com.pessoa.Cliente cli, Collection cli2) {
         this.cliente = cli;
-        this.clientes = clientes;
+        this.clientes = cli2;
 
         Float saldoExibicao = cliente.getConta().getSaldo();
         labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
@@ -102,6 +102,16 @@ public class TransferenciaPix extends JFrame {
         barra.add(menu);
         this.setJMenuBar(barra);
 
+        // Dispara ação ao fechar a janela
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent evento) {
+                LerClientesSerializados.atualizar(clientes); // atualiza o arquivo .pix
+                evento.getWindow().dispose();
+            }
+        });
+
         this.add(painel);
         this.pack();
         this.setLocationRelativeTo(null);
@@ -113,7 +123,6 @@ public class TransferenciaPix extends JFrame {
         login.addActionListener(bHandlerLogin);
         jCBoxChaves.addActionListener(jComboBoxHandler);
         buttonTransferir.addActionListener(bHandlerTransferir);
-
     }
 
     private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
@@ -136,6 +145,7 @@ public class TransferenciaPix extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent evento) {
+            LerClientesSerializados.atualizar(clientes); // atualiza o arquivo .pix
             Abertura abertura = new Abertura();
             dispose();
         }
@@ -196,7 +206,6 @@ public class TransferenciaPix extends JFrame {
                     JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso", "Atenção", JOptionPane.INFORMATION_MESSAGE);
                     labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
                     TransferenciaPix tela = new TransferenciaPix(cliente, clientes);
-                    LerClientesSerializados.atualizar(clientes); // atualiza o arquivo .pix
                     dispose();
                 }
             }
