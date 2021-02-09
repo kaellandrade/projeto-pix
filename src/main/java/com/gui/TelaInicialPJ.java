@@ -126,7 +126,6 @@ public class TelaInicialPJ extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-
     }
 
     // Método que adiciona os elementos
