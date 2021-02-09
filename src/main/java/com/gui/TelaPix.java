@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.awt.GridBagConstraints;
 
+import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,7 +36,7 @@ public class TelaPix extends JFrame {
 
     private BHandlerTransferir bHandlerTransferir;
     // private BHandlerExtrato bHandlerExtrato;
-    // private BHandlerGenChaves bHandlerGenChaves;
+    private BHandlerGenChaves bHandlerGenChaves;
 
     private Conta conta;
 
@@ -69,11 +70,11 @@ public class TelaPix extends JFrame {
         
         labelChave.setEditable(false);
         if (!minhaChave.isEmpty()) { // caso tenha uma chave
-            labelChave.setText("Sua chave é :" + minhaChave);
+            labelChave.setText("Sua chave é: " + minhaChave);
         }
 
         // bHandlerExtrato = new BHandlerExtrato();
-        // bHandlerGenChaves = BHandlerGenChaves();
+        bHandlerGenChaves = new BHandlerGenChaves();
 
         // Adição dos elementos
         addElemento(painel, labelHeader, 1, 0, GridBagConstraints.CENTER, 10, 150, 40, 150, GridBagConstraints.NONE, 10);
@@ -97,7 +98,7 @@ public class TelaPix extends JFrame {
         buttonTransferir.addActionListener(bHandlerTransferir);
         login.addActionListener(bHandlerLogin);
         // buttonExtrato.addActionListener(bHandlerExtrato);
-        // buttonGenChaves.addActionListener(bHandlerGenChaves);
+        buttonGenChaves.addActionListener(bHandlerGenChaves);
     }
 
     // Método que adiciona os elementos à interface
@@ -131,6 +132,15 @@ public class TelaPix extends JFrame {
         @Override
         public void actionPerformed(ActionEvent evento) {
             Abertura abertura = new Abertura();
+            dispose();
+        }
+    }
+
+    private class BHandlerGenChaves implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+            new GerenciarPix(cliente, clientes);
             dispose();
         }
     }
