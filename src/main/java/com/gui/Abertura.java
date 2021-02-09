@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Collection;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -92,9 +93,8 @@ public class Abertura extends JFrame {
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent evento) {
-                System.out.println("Fechando");
+                LerClientesSerializados.atualizar((Collection)todos_clientes.values()); // atualiza o arquivo .pix
                 evento.getWindow().dispose();
-                System.out.println("Fechado");
             }
         });
 
