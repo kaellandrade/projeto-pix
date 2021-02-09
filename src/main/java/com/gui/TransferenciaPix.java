@@ -112,7 +112,7 @@ public class TransferenciaPix extends JFrame {
                 evento.getWindow().dispose();
             }
         });
-        
+
         // Tratamento de eventos
         jComboBoxHandler = new JComboBoxHandler();
         login.addActionListener(bHandlerLogin);
@@ -203,43 +203,43 @@ public class TransferenciaPix extends JFrame {
             String chave = textFieldChave.getText();
 
             Float valor = Math.abs(Float.parseFloat(textFieldValor.getText()));
+
             int selecionado = jCBoxChaves.getSelectedIndex();
+            // retira a másca dos campos de cpf, cnpj, telefone e chavepix
+            if (selecionado == 1 || selecionado == 2 || selecionado == 4 || selecionado == 5) {
+                chave = chave.replaceAll("\\W", "");
+            }
 
             Float saldoExibicao = cliente.getConta().getSaldo();
 
-            chave = chave.replaceAll("\\W", "");
+            if (!chave.isEmpty()) { // se há valor no campo
+                com.pessoa.Cliente recebedor = Pix.encontrarChave(chave, clientes);
+                if (recebedor != null && recebedor != cliente) { // verifica se há um cliente válido
+                    String valor_formatado = NumberFormat.getCurrencyInstance(local).format(valor);
+                    int resposta = JOptionPane.showConfirmDialog(null,
+                            String.format("Fazer pix de %s para %s", valor_formatado, recebedor.getName()), "Atenção!",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    if (resposta == JOptionPane.YES_NO_OPTION) {
 
-            // 5 é a posição do item "chave pix" no array
-            if (selecionado == 5) {
-                if (!chave.isEmpty()) { // se há valor no campo
-                    com.pessoa.Cliente recebedor = Pix.encontrarChave(chave, clientes);
-                    if (recebedor != null && recebedor != cliente) { // verifica se há um cliente válido
-                        String valor_formatado = NumberFormat.getCurrencyInstance(local).format(valor);
-                        int resposta = JOptionPane.showConfirmDialog(null,
-                                String.format("Fazer pix de %s para %s", valor_formatado, recebedor.getName()),
-                                "Atenção!", JOptionPane.INFORMATION_MESSAGE);
-                        if (resposta == JOptionPane.YES_NO_OPTION) {
+                        if (cliente.getConta().fazerPix(recebedor, valor)) {
+                            JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso", "Atenção",
+                                    JOptionPane.INFORMATION_MESSAGE);
 
-                            if (cliente.getConta().fazerPix(recebedor, valor)) {
-                                JOptionPane.showMessageDialog(null, "Transferência realizada com sucesso", "Atenção",
-                                        JOptionPane.INFORMATION_MESSAGE);
-
-                                labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
-                                new TransferenciaPix(cliente, clientes);
-                                dispose();
-                            }else{
-                                JOptionPane.showMessageDialog(null, "Saldo insuficiente", "Atenção",
-                                        JOptionPane.INFORMATION_MESSAGE);
-                            }
-
+                            labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
+                            new TransferenciaPix(cliente, clientes);
+                            dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Saldo insuficiente", "Atenção",
+                                    JOptionPane.INFORMATION_MESSAGE);
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Não há clientes associados a essa chave", "Atenção",
-                                JOptionPane.ERROR_MESSAGE);
+
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Digite uma chave", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Não há clientes associados a essa chave", "Atenção",
+                            JOptionPane.ERROR_MESSAGE);
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Digite uma chave", "Atenção", JOptionPane.INFORMATION_MESSAGE);
             }
 
         }

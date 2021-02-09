@@ -7,7 +7,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 import com.pessoa.Cliente;
-
+import com.pessoa.ClientePessoaFisica;
+import com.pessoa.ClientePessoaJuridica;
 import com.backend.LerClientesSerializados;
 
 /**
@@ -34,18 +35,30 @@ public class Pix {
     }
 
     /**
-     * Recebe como parâmetro uma chave pix aleatoria e o banco de dados de todos os clientes.
-     * Retornar um cliente associado a uma determinada chave pix para realizar um PIX
+     * Recebe como parâmetro uma chave pix e o banco de dados de todos os
+     * clientes. Retornar um cliente associado a uma determinada chave pix
      */
     public static Cliente encontrarChave(String chavepix, Collection clientes) {
 
         Iterator<Cliente> cliIterator = clientes.iterator();
+        String chaveCpf = "";
+        String chaveCnpj = "";
+        String chaveTel = "";
+        String chaveEmail = "";
 
         while (cliIterator.hasNext()) {
             Cliente cli = cliIterator.next();
-            String chaveCliAtual = cli.getConta().getChavePIX();
+            chaveEmail = cli.getEmail();
+            chaveTel = cli.getTelefone();
+            if (cli instanceof ClientePessoaFisica) {
+                ClientePessoaFisica clif = (ClientePessoaFisica) cli;
+                chaveCpf = clif.getCpf();
+            } else {
+                ClientePessoaJuridica clij = (ClientePessoaJuridica) cli;
+                chaveCnpj = clij.getCnpj();
+            }
 
-            if (chaveCliAtual.equals(chavepix))
+            if (chaveCnpj.equals(chavepix) || chaveCpf.equals(chavepix) || chaveTel.equals(chavepix) || chaveEmail.equals(chavepix))
                 return cli;
 
         }
