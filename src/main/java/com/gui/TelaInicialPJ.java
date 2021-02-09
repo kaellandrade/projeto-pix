@@ -22,6 +22,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+import com.backend.LerClientesSerializados;
 import com.banco.Banco;
 import com.bancocentral.Cliente;
 
@@ -55,7 +56,7 @@ public class TelaInicialPJ extends JFrame {
     // Variáveis para tratamento de eventos do menu
     private BHandlerLogin bHandlerLogin;
 
-    public TelaInicialPJ(com.pessoa.Cliente cli, Collection clientes) {
+    public TelaInicialPJ(com.pessoa.Cliente cli, Collection cli2) {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel painel = new JPanel();
@@ -67,7 +68,7 @@ public class TelaInicialPJ extends JFrame {
         login = new JMenuItem("Tela de login");
         bHandlerLogin = new BHandlerLogin();
 
-        this.clientes = clientes;
+        this.clientes = cli2;
 
         this.cliente = cli;
         String nomeExibicao = cli.getName();
@@ -110,6 +111,16 @@ public class TelaInicialPJ extends JFrame {
         buttonExtrato.addActionListener(bHandlerExtrato);
         login.addActionListener(bHandlerLogin);
         buttonSaldo.addActionListener(bHandlerSaldo);
+
+        // Dispara ação ao fechar a janela
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent evento) {
+                LerClientesSerializados.atualizar(clientes); // atualiza o arquivo .pix
+                evento.getWindow().dispose();
+            }
+        });
 
         this.add(painel);
         this.pack();
