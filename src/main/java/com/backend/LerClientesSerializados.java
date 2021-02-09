@@ -76,10 +76,10 @@ public class LerClientesSerializados {
      * arquivo clienteOJb.pix PS: Esse método deve ser executado após a finalização
      * da aplicação para manter os estados dos objetos atualizados.
      */
-    public static void atualizar(Collection<com.bancocentral.Cliente> clientes) { // atualiza os estados dos objetos apois modificações
+    public static void atualizar(Collection<Cliente> clientes) { // atualiza os estados dos objetos apois modificações
         try {
             output = new ObjectOutputStream(Files.newOutputStream(Paths.get(PATHSERPIX)));
-            Iterator<com.bancocentral.Cliente> iterador = clientes.iterator();
+            Iterator<Cliente> iterador = clientes.iterator();
             while (iterador.hasNext()) {
                 output.writeObject(iterador.next());
             }
