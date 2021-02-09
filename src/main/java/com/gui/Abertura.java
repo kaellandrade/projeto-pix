@@ -172,7 +172,7 @@ public class Abertura extends JFrame {
         if (cli != null) {// Cliente válido
 
             if (cli instanceof ClientePessoaFisica) {
-                new TelaInicialPF(cli);
+                new TelaInicialPF(cli, todos_clientes.values());
                 dispose();
             } else {
                 new TelaInicialPJ(cli, todos_clientes.values());

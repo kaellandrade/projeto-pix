@@ -87,6 +87,7 @@ public class TelaInicialPJ extends JFrame {
 
         // Formataçẽos dos JLabel da tela
         labelSaldo.setFont(labelSaldo.getFont().deriveFont(20.0f));
+        labelHeader.setFont(labelHeader.getFont().deriveFont(14.0f));
         labelHeader.setText(nomeExibicao);
         labelSaldo.setText(NumberFormat.getCurrencyInstance(local).format(saldoExibicao));
 
@@ -126,7 +127,6 @@ public class TelaInicialPJ extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-
     }
 
     // Método que adiciona os elementos
