@@ -9,8 +9,10 @@ import java.awt.GridBagConstraints;
 
 import com.bancocentral.PortalTransparencia;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import javax.swing.JPanel;
-import javax.swing.event.AncestorListener;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,14 +28,14 @@ public class SaldoBanco extends JFrame {
     // declarando o JLabel
     JLabel labelH1 = new JLabel("Informações privilegiadas"),
     labelH2 = new JLabel("Saldo dos bancos"),
-    labelSaldoCC = new JLabel("Saldo CC"),
-    labelSaldoPP = new JLabel("Saldo PP"),
-    labelSaldoCS = new JLabel("Saldo CS"),
+    labelSaldoCC = new JLabel("Saldo das contas correntes"),
+    labelSaldoPP = new JLabel("Saldo das contas poupanças"),
+    labelSaldoCS = new JLabel("Saldo das contas salário"),
     labelSaldoGeral = new JLabel("Saldo geral");
 
     // declarando o JComboBox
-    String bancos[] = {"Banco do Brasil", "Bradesco", "Itaú", "Santander"};
-    JComboBox selecaoBanco = new JComboBox(bancos);
+    private final JComboBox<String> jCBoxBancos;
+    private static final String[] bancos = {"Selecione um banco", "Banco do Brasil", "Bradesco", "Itaú", "Santander"};
 
     // Declarando o JMenu, JMenuBar e JMenuItem;
     private JMenuBar barra;
@@ -42,6 +44,10 @@ public class SaldoBanco extends JFrame {
 
     // Variáveis para tratamento de eventos do menu
     private BHandlerLogin bHandlerLogin;
+
+    private JComboBoxHandler jComboBoxHandler;
+
+    private final Locale local = new Locale("pt", "BR");
 
     public SaldoBanco() {
        
@@ -55,12 +61,14 @@ public class SaldoBanco extends JFrame {
         login = new JMenuItem("Tela de login");
         bHandlerLogin = new BHandlerLogin();
 
-        // Testando para o banco do brasil
-        ArrayList<Float> total = new ArrayList<>();
-        labelSaldoCC.setText(Float.toString(transparencia.calcularMontanteBrasil().get("corrente")));
-        labelSaldoPP.setText(Float.toString(transparencia.calcularMontanteBrasil().get("poupanca")));
-        labelSaldoCS.setText(Float.toString(transparencia.calcularMontanteBrasil().get("salario")));
+        jCBoxBancos = new JComboBox<String>(bancos);
 
+        labelH1.setFont(labelH1.getFont().deriveFont(15.0f));
+        labelSaldoCC.setFont(labelSaldoCC.getFont().deriveFont(20.0f));
+        labelSaldoPP.setFont(labelSaldoPP.getFont().deriveFont(20.0f));
+        labelSaldoCS.setFont(labelSaldoCS.getFont().deriveFont(20.0f));
+        labelSaldoGeral.setFont(labelSaldoGeral.getFont().deriveFont(20.0f));
+        
         // Adição dos elementos
         addElemento(painel, labelH1, 0, 0, 1, 1, GridBagConstraints.CENTER, 10, 100, 30, 100);
         addElemento(painel, labelH2, 0, 1, 1, 1, GridBagConstraints.WEST, 10, 10, 3, 10);
@@ -68,7 +76,7 @@ public class SaldoBanco extends JFrame {
         addElemento(painel, labelSaldoPP, 0, 4, 1, 1, GridBagConstraints.CENTER, 40, 10, 50, 10);
         addElemento(painel, labelSaldoCS, 0, 5, 1, 1, GridBagConstraints.CENTER, 40, 10, 50, 10);
         addElemento(painel, labelSaldoGeral, 0, 6, 1, 1, GridBagConstraints.CENTER, 40, 10, 50, 10);
-        addElemento(painel, selecaoBanco, 0, 2, 1, 1, GridBagConstraints.WEST, 3, 10, 10, 10);
+        addElemento(painel, jCBoxBancos, 0, 2, 1, 1, GridBagConstraints.WEST, 3, 10, 10, 10);
 
         // adiciona menu ao JFrame
         menu.add(login);
@@ -77,6 +85,8 @@ public class SaldoBanco extends JFrame {
 
         // Tratamento de eventos
         login.addActionListener(bHandlerLogin);
+        jComboBoxHandler = new JComboBoxHandler();
+        jCBoxBancos.addActionListener(jComboBoxHandler);
 
         this.add(painel);
         this.pack();
@@ -106,6 +116,76 @@ public class SaldoBanco extends JFrame {
         public void actionPerformed(ActionEvent evento) {
             Abertura abertura = new Abertura();
             dispose();
+        }
+    }
+
+    private class JComboBoxHandler implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evento) {
+
+            ArrayList<Float> total = new ArrayList<>();
+
+            if (jCBoxBancos.getSelectedIndex() == 0) {
+                labelSaldoCC.setText("Saldo das contas correntes");
+                labelSaldoPP.setText("Saldo das contas poupança");
+                labelSaldoCS.setText("Saldo das contas salário");
+                //labelSaldoCC.setText("Saldo geral");
+            }
+
+            if (jCBoxBancos.getSelectedIndex() == 1) {
+
+                Float exibeLabelSaldoCC = transparencia.calcularMontanteBrasil().get("corrente");
+                labelSaldoCC.setText(NumberFormat.getCurrencyInstance(local).format(exibeLabelSaldoCC));
+
+                Float exibeLabelSaldoPP = transparencia.calcularMontanteBrasil().get("poupanca");
+                labelSaldoPP.setText(NumberFormat.getCurrencyInstance(local).format(exibeLabelSaldoPP));
+
+                Float exibeLabelSaldoCS = transparencia.calcularMontanteBrasil().get("salario");
+                labelSaldoCS.setText(NumberFormat.getCurrencyInstance(local).format(exibeLabelSaldoCS));
+                // TODO: Saldo geral
+            }
+
+            if (jCBoxBancos.getSelectedIndex() == 2) {
+
+                Float exibeLabelSaldoCC = transparencia.calcularMontanBradesco().get("corrente");
+                labelSaldoCC.setText(NumberFormat.getCurrencyInstance(local).format(exibeLabelSaldoCC));
+
+                Float exibeLabelSaldoPP = transparencia.calcularMontanBradesco().get("poupanca");
+                labelSaldoPP.setText(NumberFormat.getCurrencyInstance(local).format(exibeLabelSaldoPP));
+
+                Float exibeLabelSaldoCS = transparencia.calcularMontanBradesco().get("salario");
+                labelSaldoCS.setText(NumberFormat.getCurrencyInstance(local).format(exibeLabelSaldoCS));
+                // TODO: Saldo geral
+            }
+
+            if (jCBoxBancos.getSelectedIndex() == 4) {
+
+                Float exibeLabelSaldoCC = transparencia.calcularMontanSantander().get("corrente");
+                labelSaldoCC.setText(NumberFormat.getCurrencyInstance(local).format(exibeLabelSaldoCC));
+
+                Float exibeLabelSaldoPP = transparencia.calcularMontanSantander().get("poupanca");
+                labelSaldoPP.setText(NumberFormat.getCurrencyInstance(local).format(exibeLabelSaldoPP));
+
+                Float exibeLabelSaldoCS = transparencia.calcularMontanSantander().get("salario");
+                labelSaldoCS.setText(NumberFormat.getCurrencyInstance(local).format(exibeLabelSaldoCS));
+                // TODO: Saldo geral
+            }
+
+            if (jCBoxBancos.getSelectedIndex() == 3) {
+
+                Float exibeLabelSaldoCC = transparencia.calcularMontanteItau().get("corrente");
+                labelSaldoCC.setText(NumberFormat.getCurrencyInstance(local).format(exibeLabelSaldoCC));
+
+                Float exibeLabelSaldoPP = transparencia.calcularMontanteItau().get("poupanca");
+                labelSaldoPP.setText(NumberFormat.getCurrencyInstance(local).format(exibeLabelSaldoPP));
+
+                Float exibeLabelSaldoCS = transparencia.calcularMontanteItau().get("salario");
+                labelSaldoCS.setText(NumberFormat.getCurrencyInstance(local).format(exibeLabelSaldoCS));
+                // TODO: Saldo geral
+            }
+
+
         }
     }
     

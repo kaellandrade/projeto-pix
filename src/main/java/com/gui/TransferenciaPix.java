@@ -57,6 +57,7 @@ public class TransferenciaPix extends JFrame {
 
     // Variáveis para tratamento de eventos do menu
     private BHandlerLogin bHandlerLogin;
+
     private JComboBoxHandler jComboBoxHandler;
     private BHandlerTransferir bHandlerTransferir;
 
@@ -111,18 +112,17 @@ public class TransferenciaPix extends JFrame {
                 evento.getWindow().dispose();
             }
         });
+        
+        // Tratamento de eventos
+        jComboBoxHandler = new JComboBoxHandler();
+        login.addActionListener(bHandlerLogin);
+        jCBoxChaves.addActionListener(jComboBoxHandler);
+        buttonTransferir.addActionListener(bHandlerTransferir);
 
         this.add(painel);
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-
-        jComboBoxHandler = new JComboBoxHandler();
-
-        // Tratamento de eventos
-        login.addActionListener(bHandlerLogin);
-        jCBoxChaves.addActionListener(jComboBoxHandler);
-        buttonTransferir.addActionListener(bHandlerTransferir);
     }
 
     private void addElemento(JPanel p, JComponent c, int linha, int coluna, int largura, 
