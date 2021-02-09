@@ -21,31 +21,6 @@ public class App {
         Abertura abertura = new Abertura();
         abertura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         abertura.setVisible(true);
-
-
-        // // Início Captura a data base
-        // LerClientesSerializados.abreArquivo();
-        // Map<String, Cliente> todos_clientes = LerClientesSerializados.lerClientes();
-        // LerClientesSerializados.fecharArquivo();
-        // // Fim Captura a data base
-
-        // // Teste teste chave pix
-        // Cliente pesso1 = (ClientePessoaJuridica) todos_clientes.get("80650994000120");
-        // pesso1.getConta().setChavePIX(Pix.gerarChavePix());
-        // System.out.println(pesso1.getConta().getChavePIX());
-
-        // Cliente pesso2 = (ClientePessoaJuridica) todos_clientes.get("21637668000114");
-
-        // System.out.println(pesso2.getConta().getChavePIX());
-
-        // System.out.println(pesso1.getConta().getExtrato());
-        // System.out.println(pesso2.getConta().getExtrato());
-
-
-
-        // pessof.getConta().fazerPix(Pix.encontrarChave(chave, todos_clientes.values()), 100);
-        
-        // LerClientesSerializados.atualizar((Collection) todos_clientes.values()); // atualiza o arquivo .pix
     }
 
     /**
